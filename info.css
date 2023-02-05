@@ -1,22 +1,112 @@
-
-input[type="file"] {
-    display: none;
+/* font */
+@font-face {
+    font-family: 'Helvetica';
+    src: url('./fonts/HelveticaNeue.ttc') format('truetype');
+    font-weight: normal;
+}
+/* overall */
+*{
+    font-family: 'Helvetica',sans-serif;
+}
+textarea:focus,input:focus{
+    outline: 1px solid #0E80BF;
+    border: 1px solid #0E80BF;
+}
+/* styling both containers */
+.container{
+    border: 1px solid red;
+    margin: auto;
+    width: 90vw;
+    height: 80vh;
 }
 
-.nameLabel{
-
-}
-.cv{
+/* styling each containers */
+.inputDetails{
     text-align: left;
 }
-
 .resume{
 text-align: right;
 }
+/* styling name and lastname input */
 .nameAndLastname{
+    width: 90%;
+    margin-left: 5%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+}
+.nameAndLastname>label>input{
+    height: 30px;
+    outline: #BCBCBC;
+    margin-top: -15px;
+}
+.nameAndLastname>label>h6{
+    margin-top: 5px;
+    font-size: 0.6rem;
+    text-align: center;
 }
 .minSymbol{
     font-weight:100;
 }
+
+/*Styling Image uploading section */
+.image{
+margin-left: 5%;
+margin-top: 5%;
+display: inline-flex;
+align-items: center;
+width: 80%;
+}
+input[type="file"] {
+    display: none;
+}
+.image>span{
+    margin-left: 5%;
+    color: white;
+    display: inline-block;
+width:115px;
+text-align: center;
+line-height: 35px;
+background-color: #0E80BF;
+border-radius: 5px;
+cursor: pointer;
+}
+.image>span:hover{
+   opacity: 0.8;
+}
+
+
+/* Styling about me blockquote */
+.aboutMe{
+    display: inline-block;
+    margin-top: 5%;
+    margin-left: 5%;
+    width: 90%;
+   font-weight: 900;
+   
+}
+.aboutMe>textarea{
+    margin-top: 5%;
+    display: inline-block;
+    width: 100%;
+    height: 150px;
+    overflow: auto;
+    outline: #BCBCBC;
+    outline: none;
+}
+
+/* Styling email and number input fields */
+.emailLabel,.numberLabel{
+    display: block;
+    margin-left: 5%;
+}
+
+.emailLabel>input,.numberLabel>input{
+    display: inline-block;
+    width: 95%;
+    margin-top: -15px;
+}
+.emailLabel>h6, .numberLabel>h6{
+    margin-top: 5px
+}
+
+
