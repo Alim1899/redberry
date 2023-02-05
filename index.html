@@ -6,12 +6,14 @@
     <script src="https://kit.fontawesome.com/e68e90bb61.js" crossorigin="anonymous"></script>
     <script defer src="script.js"></script>
     <link rel="icon" href="images/logo.svg" type="image/icon type">
-    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link rel="stylesheet" href="firstPage.css" type="text/css">
+    <link rel="stylesheet" href="info.css" type="text/css">
+
 
     <title>CV Generator</title>
 </head>
 <body>
-    <div class="firstPage">
+    <div class="hidden firstPage">
         <img class="background" src="./images/background.jfif"/>
       <div class="logo">
          <img  src="./images/logo.svg"/>
@@ -21,6 +23,45 @@
       <button class="addResume">რეზიუმეს დამატება</button>
       </div>
        
+    </div>
+
+    <div class="info">
+        
+        <i class="fa-solid fa-chevron-left"></i>
+        <h2 class="infoHead">პირადი ინფორმაცია</h2>
+        <div class="container">
+            <form style="width:50%; float:left" class="cv">
+                <div>
+                 <input type="text" class="name" required>
+           <input type="text" class="lastName" required>   
+                </div>
+                <label for="imageUpload" class="image">პირადი ფოტოს ატვირთვა
+                    <input id="imageUpload" type="file" class="image" name="img" accept="image/*" required>
+                    <span style="background-color: #0E80BF; color: white; border:4px solid #0E80BF;">ატვირთვა</span>
+                </label>
+           
+           
+           <blockquote class="aboutme"></blockquote>
+           <label class="emailLabel">
+          <input class="email" type="email" required placeholder="anzori666@redberry.ge">
+        </label>
+           <input class="number" type="number" required placeholder="+995 551 12 34 56">
+                </form>
+
+            <div style="width:50%;" class="resume">
+                <h1>ანზორ მუმლაძე</h1>
+                <h4>anzori666@redberry.ge</h4>
+                <h4>+995 63 45 15</h4>
+                <h2>ჩემ შესახებ</h2>
+                <p>Lorem ipsum dolor sit amet consectetur
+                     adipisicing elit. Nobis excepturi repellendus
+                      ipsam autem dolorum? Sed incidunt recusandae 
+                      illum nulla consectetur ducimus velit aspernatur vel
+                     neque deserunt, laborum, quaerat, eaque tempora!</p>
+            </div>
+            
+        </div>
+        <button class="submit" type="submit">შემდეგი</button>
     </div>
 </body>
 </html>

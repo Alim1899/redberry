@@ -1,0 +1,9 @@
+
+input[type="file"] {
+    display: none;
+}
+
+.resume, .cv{
+    border: 1px solid red;
+
+}
