@@ -4,6 +4,7 @@
     font-weight: normal;
 }
 *{
+    font-family: fontName;
     box-sizing: border-box;
     padding: 0px;
     overflow: hidden;
