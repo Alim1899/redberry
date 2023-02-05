@@ -3,7 +3,20 @@ input[type="file"] {
     display: none;
 }
 
-.resume, .cv{
-    border: 1px solid red;
+.nameLabel{
 
+}
+.cv{
+    text-align: left;
+}
+
+.resume{
+text-align: right;
+}
+.nameAndLastname{
+    display: flex;
+    justify-content: space-around;
+}
+.minSymbol{
+    font-weight:100;
 }

@@ -31,17 +31,26 @@
         <h2 class="infoHead">პირადი ინფორმაცია</h2>
         <div class="container">
             <form style="width:50%; float:left" class="cv">
-                <div>
-                 <input type="text" class="name" required>
-           <input type="text" class="lastName" required>   
+                <div class="nameAndLastname">
+                 
+            <label class="nameLabel" for="name"><h4>სახელი</h4
+                ><input type="text" placeholder="ანზორ" id="name" class="name" required>
+                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6></label>
+
+            <label class="lastnameLabel" for="lastname">
+                <h4>გვარი</h4><input placeholder="მუმლაძე" type="text" id="lastname" class="lastname" required>
+                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6></label>
+
                 </div>
                 <label for="imageUpload" class="image">პირადი ფოტოს ატვირთვა
                     <input id="imageUpload" type="file" class="image" name="img" accept="image/*" required>
                     <span style="background-color: #0E80BF; color: white; border:4px solid #0E80BF;">ატვირთვა</span>
                 </label>
            
+           <br>
+           <label for="quote" >ჩემ შესახებ<input class="quote" id="quote" type="blockquote"></label>
+            
            
-           <blockquote class="aboutme"></blockquote>
            <label class="emailLabel">
           <input class="email" type="email" required placeholder="anzori666@redberry.ge">
         </label>
