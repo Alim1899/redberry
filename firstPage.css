@@ -50,3 +50,8 @@ margin-left: 5vw;
     background-color: #000003;
 
 }
+
+/* Temporarily */
+.hidden{
+    display: none;
+}
