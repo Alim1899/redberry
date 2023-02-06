@@ -8,6 +8,7 @@
 *{
     font-family: 'Helvetica',sans-serif;
 }
+
 textarea:focus,input:focus{
     outline: 1px solid #0E80BF;
     border: 1px solid #0E80BF;
@@ -134,7 +135,6 @@ cursor: pointer;
     margin-top: -25px;
 }
 
-
 /* Styling button */
 
 .submit{
@@ -146,5 +146,26 @@ cursor: pointer;
    border-radius: 5px;
    color: white;
    margin-left: 60%;
- 
 }
+
+/* Styles for rendered cv */
+/* styling icon */
+.icon{
+    position: absolute;
+    top: 88%;
+    left: 55%;
+}
+.fullName{
+    width: 100%;
+    height: 38px;
+}
+
+.resumeEmail{
+    height: 18px;
+}
+.resumeNumber{
+    height: 18px;
+
+}
+
+
