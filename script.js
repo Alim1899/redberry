@@ -15,20 +15,31 @@ const emailCV = document.querySelector('.resumeEmail');
 const numberCV = document.querySelector('.resumeNumber');
 let imgArr = [];
 
+const retrieveData = function(){
+    let nameArr = localStorage.getItem('user').split(',');
+    console.log(nameArr);
+    fullname.textContent = nameArr[0]
+    aboutCV.textContent = nameArr[1]
+    emailCV.textContent = nameArr[2];
+    numberCV.textContent = nameArr[3];
+}
+retrieveData()
 
 
 document.addEventListener('input',function(){
-    localStorage.setItem('name',name.value);
-    localStorage.setItem('lastname',lastname.value);
-    localStorage.setItem('about',about.value);
-    localStorage.setItem('email',email.value);
-    localStorage.setItem('number',number.value);
+    const accountDetails = [];
+    accountDetails.push(name.value + ' ' + lastname.value)
+    accountDetails.push(about.value)
+    accountDetails.push(email.value)
+    accountDetails.push(number.value)
+    console.log(accountDetails);
+    localStorage.setItem('user',[...accountDetails]);
+    // localStorage.setItem('lastname',lastname.value);
+    // localStorage.setItem('about',about.value);
+    // localStorage.setItem('email',email.value);
+    // localStorage.setItem('number',number.value);
 
-    let nameArr = [localStorage.getItem('name'), localStorage.getItem('lastname')];
-     fullname.textContent = nameArr.join(' ');
-     aboutCV.textContent = localStorage.getItem('about')
-     emailCV.textContent = localStorage.getItem('email')
-     numberCV.textContent = localStorage.getItem('number')
+   retrieveData();
 })
 
 
