@@ -14,18 +14,38 @@ textarea:focus,input:focus{
 }
 /* styling both containers */
 .container{
-    border: 1px solid red;
     margin: auto;
     width: 90vw;
-    height: 80vh;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: #f7f7f7;
 }
-
+::-webkit-scrollbar{
+    display: none;
+}
 /* styling each containers */
 .inputDetails{
     text-align: left;
+   
 }
+
 .resume{
+    margin-left: 40%;
+    margin-top: -5%;
+   background-color: white;
+   height: 105%;
 text-align: right;
+}
+
+/* Styling header */
+.infoHead{
+    width: 45%;
+    margin-left: 2.5%;
+ border-bottom: 2px solid black;
+ text-align: left;
+ display: flex;
+
+ justify-content: space-between;
 }
 /* styling name and lastname input */
 .nameAndLastname{
@@ -35,7 +55,8 @@ text-align: right;
     justify-content: space-between;
 }
 .nameAndLastname>label>input{
-    height: 30px;
+    height: 48px;
+    width: 280px;
     outline: #BCBCBC;
     margin-top: -15px;
 }
@@ -104,9 +125,26 @@ cursor: pointer;
     display: inline-block;
     width: 95%;
     margin-top: -15px;
+    height: 48px;
 }
 .emailLabel>h6, .numberLabel>h6{
     margin-top: 5px
 }
+.numberLabel{
+    margin-top: -25px;
+}
 
 
+/* Styling button */
+
+.submit{
+    cursor: pointer;
+   width: 151px;
+   height: 48px;
+   background-color: #6B40E3;
+   border: none;
+   border-radius: 5px;
+   color: white;
+   margin-left: 60%;
+ 
+}
