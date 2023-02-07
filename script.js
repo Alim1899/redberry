@@ -19,7 +19,7 @@ const imgCV = document.querySelector('.resumeImg');
 
 //retrieving data from localSTorage
 const retrieveData = function(){    
-    
+    imgCV.src=sessionStorage.getItem('src');
     fullname.textContent = sessionStorage.getItem('fullname');
     aboutCV.textContent = sessionStorage.getItem('about'); 
     //Fontawesome icons
@@ -32,30 +32,46 @@ const retrieveData = function(){
     if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
     else numberCV.textContent = '';
 
+        
+        
+     
+     
 
-
-     imgCV.src = sessionStorage.getItem('src');
 }
 retrieveData();
 
 //Sending data to seesionStorage
-document.addEventListener('input',function(){    
-    sessionStorage.setItem('fullname',name.value + ' ' + lastname.value)
-    sessionStorage.setItem('about',about.value )
-    sessionStorage.setItem('email',email.value )
-    sessionStorage.setItem('number',number.value )
+document.addEventListener('input',function(e){ 
+    if(e.target.id === 'name' || e.target.id === 'lastname'){
+        sessionStorage.setItem('fullname',name.value + ' ' + lastname.value);
+        retrieveData();
+    return;
+}   
+    if(e.target.id === 'quote'){
+        sessionStorage.setItem('about',about.value);
+        retrieveData();
+        return;
+    }
+    if(e.target.id === 'email'){
+        sessionStorage.setItem('email',email.value )
+        retrieveData();
+        return;
+    }
+    if(e.target.id === 'number'){
+        sessionStorage.setItem('number',number.value )
+        retrieveData();
+        return;
+    }
+    
     
     if (img.files && img.files[0]){
         var reader = new FileReader();
-
-        reader.onload = function (e) {
-           
+        reader.onload = function (e) { 
             console.log(e.target.result);
             sessionStorage.setItem('src',e.target.result);
+            retrieveData();
         }
-
         reader.readAsDataURL(img.files[0]);
-        
     }
    retrieveData();
 })
