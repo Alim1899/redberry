@@ -19,16 +19,27 @@ const imgCV = document.querySelector('.resumeImg');
 
 //retrieving data from localSTorage
 const retrieveData = function(){    
+    
     fullname.textContent = sessionStorage.getItem('fullname');
-    aboutCV.textContent = sessionStorage.getItem('about');
-    emailCV.textContent = sessionStorage.getItem('email');
-    numberCV.textContent = sessionStorage.getItem('number');
+    aboutCV.textContent = sessionStorage.getItem('about'); 
+    //Fontawesome icons
+        const emailIcon = '<i class="fa-solid fa-at"></i>';
+        const dialIcon = '<i class="fa-solid fa-phone"></i>';
+
+    if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
+    else emailCV.textContent ='';
+    
+    if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
+    else numberCV.textContent = '';
+
+
+
      imgCV.src = sessionStorage.getItem('src');
 }
 retrieveData();
 
 //Sending data to seesionStorage
-document.addEventListener('change',function(){    
+document.addEventListener('input',function(){    
     sessionStorage.setItem('fullname',name.value + ' ' + lastname.value)
     sessionStorage.setItem('about',about.value )
     sessionStorage.setItem('email',email.value )
@@ -46,8 +57,6 @@ document.addEventListener('change',function(){
         reader.readAsDataURL(img.files[0]);
         
     }
-
-    
    retrieveData();
 })
 

@@ -35,7 +35,7 @@ textarea:focus,input:focus{
     margin-top: -5%;
    background-color: white;
    height: 105%;
-text-align: right;
+
 }
 
 /* Styling header */
@@ -155,17 +155,41 @@ cursor: pointer;
     top: 88%;
     left: 55%;
 }
+
+.resume{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+
+}
+.cvContent{
+    margin-top: 20px;
+    height:250px;
+    width: 60%;
+margin-left: 5%;
+}
+
 .fullName{
     width: 100%;
     height: 38px;
+    color: #F93B1D;
+    font-size: 34px;
+    font-weight: 700;
 }
 .resumeImg{
     width: 246px;
     height: 246px;
     border-radius: 30%;
+    margin-top: 20px;
+}
+.fa-at, .fa-phone{
+    font-size: 0.8em;
+    color: #898989;
 }
 .resumeEmail{
-    height: 18px;
+    font-size: 18px
 }
 .resumeNumber{
     height: 18px;
