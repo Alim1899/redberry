@@ -8,8 +8,6 @@ const about = document.querySelector('.quote');
 const email = document.querySelector('.email');
 const number = document.querySelector('.number');
 
-
-
 // Selections for rendered cv
 const fullname = document.querySelector('.fullName');
 const aboutCV = document.querySelector('.resumeDetails');
@@ -19,14 +17,18 @@ const imgCV = document.querySelector('.resumeImg');
 
 //retrieving data from localSTorage
 const retrieveData = function(){    
-    //Retrieve image
-if(sessionStorage.getItem('src')) imgCV.classList.remove('hidden')
-    imgCV.src=sessionStorage.getItem('src');
+    
     //Retrieving name and lastname, then creating fullname
     fullname.textContent = 
     (sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
     + ' ' + 
     (sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
+
+    //Retrieve image
+if(sessionStorage.getItem('src')) {
+    imgCV.classList.remove('hidden');
+    imgCV.src=sessionStorage.getItem('src');
+}
 
     //Show/hide about me section
     if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
@@ -48,41 +50,29 @@ if(sessionStorage.getItem('src')) imgCV.classList.remove('hidden')
      
 
 }
+
+//Checking input fields validity
+const checkValidity = function(field){
+return field.checkValidity();
+}
+
+
 retrieveData();
 
 //Sending data to seesionStorage
 document.addEventListener('input',function(e){ 
-    if(e.target.id === 'name' ){
-        sessionStorage.setItem('name',name.value);
-        retrieveData();
-    return;
-}   
-if(e.target.id === 'lastname' ){
-    sessionStorage.setItem('lastname',lastname.value);
-    retrieveData();
-return;
-}   
-    if(e.target.id === 'quote'){
-        sessionStorage.setItem('about',about.value);
-        retrieveData();
-        return;
+
+    const inputChecker = function(){
+        console.log(e.target.id);
+        sessionStorage.setItem(e.target.id,e.target.value)
     }
-    if(e.target.id === 'email'){
-        sessionStorage.setItem('email',email.value )
-        retrieveData();
-        return;
-    }
-    if(e.target.id === 'number'){
-        sessionStorage.setItem('number',number.value )
-        retrieveData();
-        return;
-    }
+    inputChecker();
+
     
     
     if (img.files && img.files[0]){
         var reader = new FileReader();
         reader.onload = function (e) { 
-            console.log(e.target.result);
             sessionStorage.setItem('src',e.target.result);
             retrieveData();
         }
@@ -93,6 +83,7 @@ return;
 
 
 }
+
 
 renderInfo();
 

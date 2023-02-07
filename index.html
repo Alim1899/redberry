@@ -35,36 +35,40 @@
             <form style="width:55%; float:left" class="inputDetails">
                 <div class="nameAndLastname">
                  
-            <label class="nameLabel" for="name"><h4>სახელი</h4>
-                <input type="text" placeholder="  ანზორ" id="name" class="name" autocomplete="off" required>
-                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6></label>
+            <label class="nameLabel" for="name">
+                <h4>სახელი</h4>
+                <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="/^[ა-ჰ]+$/" minlength="2" required>
+                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
+                </label>
 
             <label class="lastnameLabel" for="lastname">
-                <h4>გვარი</h4><input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" required>
-                 <h6 class="minSymbol">მინიმმ 2 ასო. ქართული ასოები</h6></label>
+                <h4>გვარი</h4>
+                <input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" pattern="/^[ა-ჰ]+$/" minlength="2" required>
+                 <h6 class="minSymbol">მინიმმ 2 ასო. ქართული ასოები</h6>
+                </label>
 
                 </div>
 
-                <label for="imageUpload" class="image">პირადი ფოტოს ატვირთვა
-                    <input id="imageUpload" type="file" class="imageInput" name="img" accept="image/*" required>
+                <label  class="image">პირადი ფოტოს ატვირთვა
+                    <input type="file" class="imageInput" name="img" accept="image/*" required>
                     <span >ატვირთვა</span>
                 </label>
            
            <br>
 
-           <label for="quote" class="aboutMe">ჩემ შესახებ (არასავალდებულო)
-            <textarea class="quote" id="quote" placeholder="ზოგადი ინფო შენ შესახებ" type="text"></textarea></label>
+           <label for="about" class="aboutMe">ჩემ შესახებ (არასავალდებულო)
+            <textarea class="quote" id="about" placeholder="ზოგადი ინფო შენ შესახებ" type="text"></textarea></label>
             
            
            <label class="emailLabel">
             <h5>ელ.ფოსტა</h5>
-          <input class="email" id="email" type="email" required placeholder="anzori666@redberry.ge">
-          <h6 style="font-weight: lighter;">უნდა მთავრდებოდეს redberry.com-ით</h6>
+          <input class="email" id="email" type="email" required placeholder="anzori666@redberry.ge" pattern=".+@redberry\.ge" required>
+          <h6 style="font-weight: lighter;">უნდა მთავრდებოდეს redberry.ge-ით</h6>
         </label>
 
         <label class="numberLabel">
             <h5>მობილურის ნომერი</h5>
-        <input class="number" id="number" type="number" required placeholder="+995 551 12 34 56">
+        <input class="number" id="number" type="number" pattern="/^(+?995)?(79\d{7}|5\d{8})$/ " required placeholder="+995551123456">
         <h6 style="font-weight: lighter;">უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს</h6>
 
         </label>
