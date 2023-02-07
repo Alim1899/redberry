@@ -1,6 +1,6 @@
 'use strict'
 const renderInfo = function(){
-    //Constants for input fields
+    //Selections for input fields
 const name = document.querySelector('.name');
 const lastname = document.querySelector('.lastname');
 const img = document.querySelector('.imageInput');
@@ -8,37 +8,46 @@ const about = document.querySelector('.quote');
 const email = document.querySelector('.email');
 const number = document.querySelector('.number');
 
-// Constants for rendered cv
+
+
+// Selections for rendered cv
 const fullname = document.querySelector('.fullName');
 const aboutCV = document.querySelector('.resumeDetails');
 const emailCV = document.querySelector('.resumeEmail');
 const numberCV = document.querySelector('.resumeNumber');
-let imgArr = [];
+const imgCV = document.querySelector('.resumeImg');
 
-const retrieveData = function(){
-    let nameArr = localStorage.getItem('user').split(',');
-    console.log(nameArr);
-    fullname.textContent = nameArr[0]
-    aboutCV.textContent = nameArr[1]
-    emailCV.textContent = nameArr[2];
-    numberCV.textContent = nameArr[3];
+//retrieving data from localSTorage
+const retrieveData = function(){    
+    fullname.textContent = sessionStorage.getItem('fullname');
+    aboutCV.textContent = sessionStorage.getItem('about');
+    emailCV.textContent = sessionStorage.getItem('email');
+    numberCV.textContent = sessionStorage.getItem('number');
+     imgCV.src = sessionStorage.getItem('src');
 }
-retrieveData()
+retrieveData();
 
+//Sending data to seesionStorage
+document.addEventListener('change',function(){    
+    sessionStorage.setItem('fullname',name.value + ' ' + lastname.value)
+    sessionStorage.setItem('about',about.value )
+    sessionStorage.setItem('email',email.value )
+    sessionStorage.setItem('number',number.value )
+    
+    if (img.files && img.files[0]){
+        var reader = new FileReader();
 
-document.addEventListener('input',function(){
-    const accountDetails = [];
-    accountDetails.push(name.value + ' ' + lastname.value)
-    accountDetails.push(about.value)
-    accountDetails.push(email.value)
-    accountDetails.push(number.value)
-    console.log(accountDetails);
-    localStorage.setItem('user',[...accountDetails]);
-    // localStorage.setItem('lastname',lastname.value);
-    // localStorage.setItem('about',about.value);
-    // localStorage.setItem('email',email.value);
-    // localStorage.setItem('number',number.value);
+        reader.onload = function (e) {
+           
+            console.log(e.target.result);
+            sessionStorage.setItem('src',e.target.result);
+        }
 
+        reader.readAsDataURL(img.files[0]);
+        
+    }
+
+    
    retrieveData();
 })
 
@@ -47,8 +56,3 @@ document.addEventListener('input',function(){
 
 renderInfo();
 
-//img.addEventListener('change',function(){
-//     const imgFile = img.files;
-//    imgArr.push[imgFile[0]];
-//    console.log(imgFile + 'this' + imgArr);
-// })
