@@ -16,7 +16,7 @@
 }
 .cvContent{
     margin-top: 20px;
-    height:250px;
+    height:300px;
     width: 60%;
 margin-left: 5%;
 }
@@ -27,6 +27,9 @@ margin-left: 5%;
     color: #F93B1D;
     font-size: 34px;
     font-weight: 700;
+}
+.aboutMeCv{
+    color: #F93B1D;
 }
 .resumeImg{
     width: 246px;
@@ -39,9 +42,13 @@ margin-left: 5%;
     color: #898989;
 }
 .resumeEmail{
-    font-size: 18px
+    font-size: 18px;
+    font-weight: 500;
 }
 .resumeNumber{
-    height: 18px;
-
+    font-size: 18px;
+    font-weight: 500;
+}
+.resumeDetails{
+    max-height: 80px;
 }

@@ -19,9 +19,19 @@ const imgCV = document.querySelector('.resumeImg');
 
 //retrieving data from localSTorage
 const retrieveData = function(){    
+    //Retrieve image
+if(sessionStorage.getItem('src')) imgCV.classList.remove('hidden')
     imgCV.src=sessionStorage.getItem('src');
-    fullname.textContent = sessionStorage.getItem('fullname');
+    //Retrieving name and lastname, then creating fullname
+    fullname.textContent = 
+    (sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
+    + ' ' + 
+    (sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
+
+    //Show/hide about me section
+    if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
     aboutCV.textContent = sessionStorage.getItem('about'); 
+
     //Fontawesome icons
         const emailIcon = '<i class="fa-solid fa-at"></i>';
         const dialIcon = '<i class="fa-solid fa-phone"></i>';
@@ -42,10 +52,15 @@ retrieveData();
 
 //Sending data to seesionStorage
 document.addEventListener('input',function(e){ 
-    if(e.target.id === 'name' || e.target.id === 'lastname'){
-        sessionStorage.setItem('fullname',name.value + ' ' + lastname.value);
+    if(e.target.id === 'name' ){
+        sessionStorage.setItem('name',name.value);
         retrieveData();
     return;
+}   
+if(e.target.id === 'lastname' ){
+    sessionStorage.setItem('lastname',lastname.value);
+    retrieveData();
+return;
 }   
     if(e.target.id === 'quote'){
         sessionStorage.setItem('about',about.value);
