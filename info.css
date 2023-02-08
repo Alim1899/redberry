@@ -10,8 +10,7 @@
 }
 
 textarea:focus,input:focus{
-    outline: 1px solid #0E80BF;
-    border: 1px solid #0E80BF;
+    outline: none
 }
 /* styling both containers */
 .container{
@@ -147,5 +146,4 @@ cursor: pointer;
    color: white;
    margin-left: 60%;
 }
-
 

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="info.css" type="text/css">
     <link rel="stylesheet" href="resume.css" type="text/css">
 
-
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        </head>
     <title>CV Generator</title>
 </head>
 <body>
@@ -37,14 +39,14 @@
                  
             <label class="nameLabel" for="name">
                 <h4>სახელი</h4>
-                <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="/^[ა-ჰ]+$/" minlength="2" required>
+                <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="^[ა-ჰ]+$" minlength="2" required>
                  <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
                 </label>
 
             <label class="lastnameLabel" for="lastname">
                 <h4>გვარი</h4>
-                <input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" pattern="/^[ა-ჰ]+$/" minlength="2" required>
-                 <h6 class="minSymbol">მინიმმ 2 ასო. ქართული ასოები</h6>
+                <input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" pattern="^[ა-ჰ]+$" minlength="2" required>
+                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
                 </label>
 
                 </div>
@@ -57,7 +59,7 @@
            <br>
 
            <label for="about" class="aboutMe">ჩემ შესახებ (არასავალდებულო)
-            <textarea class="quote" id="about" placeholder="ზოგადი ინფო შენ შესახებ" type="text"></textarea></label>
+            <textarea class="quote" id="about" placeholder="ზოგადი ინფო შენ შესახებ" pattern="^[ა-ჰ]+$" type="text"></textarea></label>
             
            
            <label class="emailLabel">
@@ -68,7 +70,7 @@
 
         <label class="numberLabel">
             <h5>მობილურის ნომერი</h5>
-        <input class="number" id="number" type="number" pattern="/^(+?995)?(79\d{7}|5\d{8})$/ " required placeholder="+995551123456">
+        <input class="number" id="number"  pattern="([+]995)[5][0-9]{8}"  placeholder="+995551123456" required>
         <h6 style="font-weight: lighter;">უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს</h6>
 
         </label>

@@ -1,7 +1,13 @@
 /* Styles for rendered cv */
 /* styling icon */
-
-
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue.ttc') format('truetype');
+    font-weight: normal;
+}
+*{
+    font-family: HelveticaNeue;
+}
 .icon{
     position: absolute;
     top: 88%;
@@ -16,7 +22,7 @@
 }
 .cvContent{
     margin-top: 20px;
-    height:300px;
+    max-height:500px;
     width: 60%;
 margin-left: 5%;
 }
@@ -50,5 +56,9 @@ margin-left: 5%;
     font-weight: 500;
 }
 .resumeDetails{
-    max-height: 80px;
+    max-height:250px;
+    overflow: scroll;
+    font-family: HelveticaNeue;
+    font-weight: 400;
 }
+

@@ -44,32 +44,30 @@ if(sessionStorage.getItem('src')) {
     if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
     else numberCV.textContent = '';
 
-        
-        
-     
-     
-
 }
-
-//Checking input fields validity
-const checkValidity = function(field){
-return field.checkValidity();
-}
-
-
 retrieveData();
+
+//Checking inputted fields validation
+const checkValidity = function(field){
+    if(field.value.match(/\s/g)){
+      field.value=field.value.replace(/\s/g,'');      
+}
+        field.checkValidity()?field.style.border = '2px solid #98E37E':field.style.border = '1px solid #EF5050';
+    
+}
 
 //Sending data to seesionStorage
 document.addEventListener('input',function(e){ 
 
+checkValidity(e.target);
+
+
+
     const inputChecker = function(){
-        console.log(e.target.id);
         sessionStorage.setItem(e.target.id,e.target.value)
     }
     inputChecker();
 
-    
-    
     if (img.files && img.files[0]){
         var reader = new FileReader();
         reader.onload = function (e) { 
@@ -80,7 +78,6 @@ document.addEventListener('input',function(e){
     }
    retrieveData();
 })
-
 
 }
 
