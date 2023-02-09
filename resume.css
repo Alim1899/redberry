@@ -57,7 +57,7 @@ margin-left: 5%;
     font-weight: 500;
 }
 .resumeDetails{
-    max-height:250px;
+    max-height:150px;
     overflow: scroll;
     font-family: HelveticaNeue;
     font-weight: 400;
