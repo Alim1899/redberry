@@ -49,11 +49,30 @@ retrieveData();
 
 //Checking inputted fields validation
 const checkValidity = function(field){
-    if(field.value.match(/\s/g)){
+    //Restriction for space character in number input field
+    if(field.id==='number'){
+        if(field.value.match(/\s/g)){
       field.value=field.value.replace(/\s/g,'');      
 }
-        field.checkValidity()?field.style.border = '2px solid #98E37E':field.style.border = '1px solid #EF5050';
+    }
     
+    
+    const show = document.querySelector(`.show-${field.id}`);
+    const hide = document.querySelector(`.hide-${field.id}`);
+    
+    
+    if(field.checkValidity()){
+    if(show==null){
+        field.style.border = '2px solid #98E37E'
+    }
+     show.classList.remove('hidden');
+     hide.classList.add('hidden');
+        field.style.border = '2px solid #98E37E'
+    }else{
+        show.classList.add('hidden');
+        hide.classList.remove('hidden');
+        field.style.border = '2px solid #EF5050'
+    }
 }
 
 //Sending data to seesionStorage

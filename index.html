@@ -16,7 +16,7 @@
     <title>CV Generator</title>
 </head>
 <body>
-    <div class="hidden firstPage">
+    <div class="hide firstPage">
         <img class="background" src="./images/background.jfif"/>
       <div class="logo">
          <img  src="./images/logo.svg"/>
@@ -40,12 +40,16 @@
             <label class="nameLabel" for="name">
                 <h4>სახელი</h4>
                 <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="^[ა-ჰ]+$" minlength="2" required>
+                <i class="fa-solid fa-circle-check show-name hidden"></i>
+                <i class="fa-solid fa-triangle-exclamation hide-name hidden"></i>
                  <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
                 </label>
 
             <label class="lastnameLabel" for="lastname">
                 <h4>გვარი</h4>
                 <input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" pattern="^[ა-ჰ]+$" minlength="2" required>
+                <i class="fa-solid fa-circle-check show-lastname hidden"></i>
+                <i class="fa-solid fa-triangle-exclamation hide-lastname hidden"></i>
                  <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
                 </label>
 
@@ -65,12 +69,16 @@
            <label class="emailLabel">
             <h5>ელ.ფოსტა</h5>
           <input class="email" id="email" type="email" required placeholder="anzori666@redberry.ge" pattern=".+@redberry\.ge" required>
+          <i class="fa-solid fa-circle-check show-email hidden"></i>
+          <i class="fa-solid fa-triangle-exclamation hide-email hidden"></i>
           <h6 style="font-weight: lighter;">უნდა მთავრდებოდეს redberry.ge-ით</h6>
         </label>
 
         <label class="numberLabel">
             <h5>მობილურის ნომერი</h5>
         <input class="number" id="number"  pattern="([+]995)[5][0-9]{8}"  placeholder="+995551123456" required>
+        <i class="fa-solid fa-circle-check show-number hidden"></i>
+        <i class="fa-solid fa-triangle-exclamation hide-number hidden"></i>
         <h6 style="font-weight: lighter;">უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს</h6>
 
         </label>

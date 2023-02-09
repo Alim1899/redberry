@@ -145,5 +145,16 @@ cursor: pointer;
    border-radius: 5px;
    color: white;
    margin-left: 60%;
+   margin-top: 110px;
 }
 
+
+/* Styling icon */
+.fa-circle-check{
+    position: absolute;
+    margin-left: -29px;
+    color: #98E37E;
+}
+.fa-triangle-exclamation{
+    color: #F02424;
+}
