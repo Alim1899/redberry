@@ -42,7 +42,7 @@
                 <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="^[ა-ჰ]+$" title="მინიმუმ 2 ასო. ქართული ასოები" minlength="2" required>
                 <i class="fa-solid fa-circle-check show-name hidden"></i>
                 <i class="fa-solid fa-triangle-exclamation hide-name hidden"></i>
-                 <h6 class="minSymbol message">მინიმუმ 2 ასო. ქართული ასოები</h6>
+                 <h6 class="minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
                 </label>
 
             <label class="lastnameLabel" for="lastname">
@@ -76,13 +76,13 @@
 
         <label class="numberLabel">
             <h5>მობილურის ნომერი</h5>
-        <input class="number" id="number"  pattern="([+]995)[5][0-9]{8}"  placeholder="+995551123456" title="უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს" required>
+        <input class="number" id="number"  pattern="([+]995)[5][0-9]{8}" maxlength="13"  placeholder="+995551123456" title="უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს" required>
         <i class="fa-solid fa-circle-check show-number hidden"></i>
         <i class="fa-solid fa-triangle-exclamation hide-number hidden"></i>
         <h6 class="message" style="font-weight: lighter;">უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს</h6>
 
         </label>
-          <button class="submit" type="submit">შემდეგი</button>
+          <button class="submit"  type="submit" disabled>შემდეგი</button>
 
                 </form>
 

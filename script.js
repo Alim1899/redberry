@@ -7,6 +7,7 @@ const img = document.querySelector('.imageInput');
 const about = document.querySelector('.quote');
 const email = document.querySelector('.email');
 const number = document.querySelector('.number');
+const submit = document.querySelector('.submit');
 
 // Selections for rendered cv
 const fullname = document.querySelector('.fullName');
@@ -47,8 +48,20 @@ if(sessionStorage.getItem('src')) {
 }
 retrieveData();
 
+//Enable/disable nextPage button
+const btnEnabler = function(){
+    if(
+        name.checkValidity() &&
+        lastname.checkValidity() &&
+        email.checkValidity() &&
+        number.checkValidity()
+    ){
+      submit.style.cursor = 'pointer';
+    }
+}
+
 //Checking inputted fields validation
-const checkValidity = function(field){
+const validation = function(field){
     //Restriction for space character in number input field
     if(field.id==='number'){
         if(field.value.match(/\s/g)){
@@ -60,32 +73,35 @@ const checkValidity = function(field){
     const show = document.querySelector(`.show-${field.id}`);
     const hide = document.querySelector(`.hide-${field.id}`);
     
-    if(field.checkValidity()){
+    if(field.checkValidity()){       
     if(show==null){
         field.style.border = '2px solid #98E37E'
     }
-    if(field.id==='image')return;
-    console.log(show);
+    if(field.id==='image' || field.id==='about')return;
+        
      show.classList.remove('hidden');
      hide.classList.add('hidden');
         field.style.border = '2px solid #98E37E'
     }else{
+       
         show.classList.add('hidden');
         hide.classList.remove('hidden');
         field.style.border = '2px solid #EF5050'
     }
+
 }
 
 //Sending data to seesionStorage
 document.addEventListener('input',function(e){ 
 
-checkValidity(e.target);
+validation(e.target);
+btnEnabler();
 
 
 
     const inputChecker = function(){
-        //
-        if(e.target.id!=='image'){
+        if(e.target.checkValidity()){
+             if(e.target.id!=='image'){
             sessionStorage.setItem(e.target.id,e.target.value)
         }
         if(e.target.id==='image'){
@@ -103,6 +119,8 @@ checkValidity(e.target);
         reader.readAsDataURL(img.files[0]);
     }
         }
+        }
+       
         
     }
     inputChecker();
@@ -110,6 +128,10 @@ checkValidity(e.target);
    
    retrieveData();
 })
+
+
+//Events for submit button
+
 
 }
 
