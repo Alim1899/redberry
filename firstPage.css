@@ -1,15 +1,16 @@
 @font-face {
-    font-family: 'FontName';
+    font-family: 'HelveticaNeue';
     src: url('./fonts/HelveticaNeue.ttc') format('truetype');
     font-weight: normal;
 }
 *{
-    font-family: fontName;
+    font-family: HelveticaNeue;
     box-sizing: border-box;
     padding: 0px;
     overflow: hidden;
 }
 .firstPage{
+    z-index: 99;
    background-size: cover;
     width: 100vw;
     height: 100vh;
@@ -17,7 +18,6 @@
     max-height: 1080px;
 }
 .background{
-   
     width: 100%;
     height: 100%;
 position: absolute;
@@ -28,6 +28,7 @@ width: 90vw;
 margin-left: 5vw;
 }
 .logo>img{
+    
     margin-top: 3vh;
 }
 .line{
@@ -49,7 +50,10 @@ margin-left: 5vw;
     color: white;
     cursor: pointer;
     background-color: #000003;
-
+}
+.addResume>a{
+    text-decoration: none;
+    color: white;
 }
 
 /* Temporarily:not */

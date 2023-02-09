@@ -1,16 +1,29 @@
 'use strict'
+
+//Selections for navigate
 const addResume = document.querySelector('.addResume');
 const back = document.querySelector('.back');
+
 addResume.addEventListener('click',function(e){
-    e.preventDefault()
+    console.log(window.location);
+    if(window.location.hash == "#firstPage"){
+document.querySelector('.info').classList.add('hide'); document.querySelector('.firstPage').classList.remove('hide');
+}
+if(window.location.hash == "#info" || window.location.hash == ""){
     document.querySelector('.info').classList.remove('hide');
-    document.querySelector('.firstPage').classList.add('hide');
+ document.querySelector('.firstPage').classList.add('hide');
+}
 })
+
 back.addEventListener('click',function(e){
+   
     document.querySelector('.info').classList.add('hide');
     document.querySelector('.firstPage').classList.remove('hide');
+    window.location.hash = '#info';
+    location.reload();
+    
 })
-console.log(back);
+
 
 
 const renderInfo = function(){
@@ -149,6 +162,10 @@ btnEnabler();
 
 }
 renderInfo();
+
+
+
+
 
 
 
