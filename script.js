@@ -1,4 +1,18 @@
 'use strict'
+const addResume = document.querySelector('.addResume');
+const back = document.querySelector('.back');
+addResume.addEventListener('click',function(e){
+    e.preventDefault()
+    document.querySelector('.info').classList.remove('hide');
+    document.querySelector('.firstPage').classList.add('hide');
+})
+back.addEventListener('click',function(e){
+    document.querySelector('.info').classList.add('hide');
+    document.querySelector('.firstPage').classList.remove('hide');
+})
+console.log(back);
+
+
 const renderInfo = function(){
     //Selections for input fields
 const name = document.querySelector('.name');
@@ -134,7 +148,7 @@ btnEnabler();
 
 
 }
-
-
 renderInfo();
+
+
 

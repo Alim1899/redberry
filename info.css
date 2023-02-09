@@ -1,24 +1,28 @@
 /* font */
 @font-face {
-    font-family: 'Helvetica';
+    font-family: 'HelveticaNeue';
     src: url('./fonts/HelveticaNeue.ttc') format('truetype');
     font-weight: normal;
 }
 /* overall */
 *{
-    font-family: 'Helvetica',sans-serif;
+    font-family: 'HelveticaNeue';
+    box-sizing: border-box;
+    padding: 0;
 }
 
+.info{
+    background-color:#f7f7f7 ;
+}
 textarea:focus,input:focus{
     outline: none
 }
 /* styling both containers */
 .container{
     margin: auto;
-    width: 90vw;
+    width: 100vw;
     height: 100vh;
     overflow-y: scroll;
-    background-color: #f7f7f7;
 }
 ::-webkit-scrollbar{
     display: none;
@@ -39,39 +43,41 @@ textarea:focus,input:focus{
 
 /* Styling header */
 .infoHead{
-    width: 45%;
-    margin-left: 2.5%;
+    width: 798px;
+    margin-left:130px;
+    margin-top: 47px;
  border-bottom: 2px solid black;
  text-align: left;
  display: flex;
-
  justify-content: space-between;
 }
 /* styling name and lastname input */
 .nameAndLastname{
-    width: 90%;
-    margin-left: 5%;
-    display: flex;
-    justify-content: space-between;
+    width: 798px;
+    margin-left: 130px;
+   display: flex;
+   justify-content: space-between;
+    
 }
 .nameAndLastname>label>input{
     height: 48px;
-    width: 280px;
+    width: 371px;
     outline: #BCBCBC;
     margin-top: -15px;
 }
 .nameAndLastname>label>h6{
     margin-top: 5px;
-    font-size: 0.6rem;
+    font-size: 14px;
     text-align: center;
 }
 .minSymbol{
-    font-weight:100;
+    font-family: HelveticaNeue;
+    font-weight:300;
 }
 
 /*Styling Image uploading section */
 .image{
-margin-left: 5%;
+margin-left: 130px;
 margin-top: 5%;
 display: inline-flex;
 align-items: center;
@@ -100,16 +106,16 @@ cursor: pointer;
 .aboutMe{
     display: inline-block;
     margin-top: 5%;
-    margin-left: 5%;
-    width: 90%;
+    margin-left: 130px;
+    width: 798px;
    font-weight: 900;
    
 }
 .aboutMe>textarea{
-    margin-top: 5%;
+    margin-top: 2%;
     display: inline-block;
-    width: 100%;
-    height: 150px;
+    width: 798px;
+    height: 103px;
     overflow: auto;
     outline: #BCBCBC;
     outline: none;
@@ -118,12 +124,12 @@ cursor: pointer;
 /* Styling email and number input fields */
 .emailLabel,.numberLabel{
     display: block;
-    margin-left: 5%;
+    margin-left: 130px;
 }
 
 .emailLabel>input,.numberLabel>input{
     display: inline-block;
-    width: 95%;
+    width: 798px;
     margin-top: -15px;
     height: 48px;
 }
@@ -151,6 +157,13 @@ cursor: pointer;
 .fa-triangle-exclamation:hover{
 cursor:help;
 }
+.fa-chevron-left{
+    position: absolute;
+    top: 57px;
+    left:62px;
+    font-size: 16px;
+    cursor: pointer;
+}
 /* Styling button */
 
 .submit{
@@ -160,8 +173,8 @@ cursor:help;
    border: none;
    border-radius: 5px;
    color: white;
-   margin-left: 70%;
-   margin-top: 110px;
+   margin-left: 776px;
+   margin-top: 40px;
    cursor: not-allowed;
 }
 

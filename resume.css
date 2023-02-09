@@ -17,15 +17,16 @@
 /* Styling text Contents */
 .resume{
     width: 100%;
-    height: 100%;
+    height: 99%;
     display: flex;
-    justify-content: space-between;
+   justify-content: last baseline;
 }
 .cvContent{
     margin-top: 20px;
     max-height:500px;
     width: 60%;
-margin-left: 5%;
+
+margin-left: 70px;
 }
 
 .fullName{
@@ -41,7 +42,7 @@ margin-left: 5%;
 .resumeImg{
     width: 246px;
     height: 246px;
-    border-radius: 30%;
+    border-radius: 50%;
     margin-top: 20px;
 }
 .fa-at, .fa-phone{
@@ -49,10 +50,11 @@ margin-left: 5%;
     color: #898989;
 }
 .resumeEmail{
+    width: 100%;
     font-size: 18px;
     font-weight: 500;
 }
-.resumeNumber{
+.resumeNumber{    
     font-size: 18px;
     font-weight: 500;
 }
