@@ -158,3 +158,11 @@ cursor: pointer;
 .fa-triangle-exclamation{
     color: #F02424;
 }
+.fa-triangle-exclamation:hover+ .message{
+    color: #F02424;
+    font-size: 1em;
+    width: 93%;
+}
+.fa-triangle-exclamation:hover{
+cursor:help;
+}

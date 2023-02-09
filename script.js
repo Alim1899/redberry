@@ -60,11 +60,12 @@ const checkValidity = function(field){
     const show = document.querySelector(`.show-${field.id}`);
     const hide = document.querySelector(`.hide-${field.id}`);
     
-    
     if(field.checkValidity()){
     if(show==null){
         field.style.border = '2px solid #98E37E'
     }
+    if(field.id==='image')return;
+    console.log(show);
      show.classList.remove('hidden');
      hide.classList.add('hidden');
         field.style.border = '2px solid #98E37E'
@@ -83,11 +84,17 @@ checkValidity(e.target);
 
 
     const inputChecker = function(){
-        sessionStorage.setItem(e.target.id,e.target.value)
-    }
-    inputChecker();
+        //
+        if(e.target.id!=='image'){
+            sessionStorage.setItem(e.target.id,e.target.value)
+        }
+        if(e.target.id==='image'){
 
-    if (img.files && img.files[0]){
+             if (img.files && img.files[0]){
+            if(img.files[0].size>=2000000){
+                alert('გთხოვთ შეარჩიოთ უფრო მცირე ზომის ფოტო (მაქს:2მბ)');
+                return;
+            }
         var reader = new FileReader();
         reader.onload = function (e) { 
             sessionStorage.setItem('src',e.target.result);
@@ -95,6 +102,12 @@ checkValidity(e.target);
         }
         reader.readAsDataURL(img.files[0]);
     }
+        }
+        
+    }
+    inputChecker();
+
+   
    retrieveData();
 })
 
