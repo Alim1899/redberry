@@ -142,10 +142,7 @@ renderInfo();
 const pagesNavigation = function(){
 
 const submit =  document.querySelector('.submit');
-submit.disabled = false;
 //Next page button 
-submit.style.cursor = 'pointer';
-
 submit.addEventListener('click',function(e){
     //Selections for navigation
     const div1 = document.querySelector('.inputDetails');
@@ -240,9 +237,4 @@ renderInfo();
 
 navigation();
 
-
-
-
-
-//////////////////////////////////////////////////////////
 

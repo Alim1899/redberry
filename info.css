@@ -167,15 +167,15 @@ cursor:help;
 /* Styling button */
 
 .submit{
+    position: absolute;
    width: 151px;
    height: 48px;
    background-color: #6B40E3;
    border: none;
    border-radius: 5px;
    color: white;
-   margin-left: 776px; 
-    margin-top: 40px;
-   
+   margin-left: -275px;
+   margin-top: 800px;
    cursor: not-allowed;
 }
 
