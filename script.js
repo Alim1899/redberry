@@ -5,23 +5,26 @@ const addResume = document.querySelector('.addResume');
 const back = document.querySelector('.back');
 
 addResume.addEventListener('click',function(e){
-    console.log(window.location);
-    if(window.location.hash == "#firstPage"){
-document.querySelector('.info').classList.add('hide'); document.querySelector('.firstPage').classList.remove('hide');
-}
-if(window.location.hash == "#info" || window.location.hash == ""){
-    document.querySelector('.info').classList.remove('hide');
+    
+document.querySelector('.info').classList.remove('hide');
  document.querySelector('.firstPage').classList.add('hide');
-}
+
 })
 
 back.addEventListener('click',function(e){
-   
     document.querySelector('.info').classList.add('hide');
     document.querySelector('.firstPage').classList.remove('hide');
-    window.location.hash = '#info';
+    window.location.hash = '#firstPage';
+    sessionStorage.clear();
     location.reload();
-    
+})
+window.addEventListener('load',function(e){
+    e.preventDefault();
+    if(document.location.hash === "#info"){
+        document.querySelector('.info').classList.remove('hide');
+        document.querySelector('.firstPage').classList.add('hide');
+    }
+    console.log(document.location.hash);
 })
 
 
