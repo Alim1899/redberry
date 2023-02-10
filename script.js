@@ -1,34 +1,4 @@
 'use strict'
-
-//Selections for navigate
-const addResume = document.querySelector('.addResume');
-const back = document.querySelector('.back');
-
-addResume.addEventListener('click',function(e){
-    
-document.querySelector('.info').classList.remove('hide');
- document.querySelector('.firstPage').classList.add('hide');
-
-})
-
-back.addEventListener('click',function(e){
-    document.querySelector('.info').classList.add('hide');
-    document.querySelector('.firstPage').classList.remove('hide');
-    window.location.hash = '#firstPage';
-    sessionStorage.clear();
-    location.reload();
-})
-window.addEventListener('load',function(e){
-    e.preventDefault();
-    if(document.location.hash === "#info"){
-        document.querySelector('.info').classList.remove('hide');
-        document.querySelector('.firstPage').classList.add('hide');
-    }
-    console.log(document.location.hash);
-})
-
-
-
 const renderInfo = function(){
     //Selections for input fields
 const name = document.querySelector('.name');
@@ -80,14 +50,16 @@ retrieveData();
 
 //Enable/disable nextPage button
 const btnEnabler = function(){
-    if(
-        name.checkValidity() &&
-        lastname.checkValidity() &&
-        email.checkValidity() &&
-        number.checkValidity()
-    ){
-      submit.style.cursor = 'pointer';
-    }
+    submit.style.cursor = 'pointer';
+    submit.disabled = false;
+    // if(
+    //     name.checkValidity() &&
+    //     lastname.checkValidity() &&
+    //     email.checkValidity() &&
+    //     number.checkValidity()
+    // ){
+    //   submit.style.cursor = 'pointer';
+    // }
 }
 
 //Checking inputted fields validation
@@ -164,11 +136,113 @@ btnEnabler();
 
 
 }
+
 renderInfo();
 
+const pagesNavigation = function(){
+
+const submit =  document.querySelector('.submit');
+submit.disabled = false;
+//Next page button 
+submit.style.cursor = 'pointer';
+
+submit.addEventListener('click',function(e){
+    //Selections for navigation
+    const div1 = document.querySelector('.inputDetails');
+    const info = document.querySelector('.infoHead');
+    const page = document.querySelector('.infoSpan');
+
+    //Creating new elements, because losing chained span
+    // Page 2/3
+    const span = document.createElement("span");
+    const text = document.createTextNode('2/3');
+    span.appendChild(text);
+    span.classList.add('infoSpan');
+    // Page 3/3
+    const span1 = document.createElement("span");
+    const text1 = document.createTextNode('3/3');
+    span1.appendChild(text1);
+    span1.classList.add('infoSpan');
+
+    if(page.textContent === '1/3'){
+        // div1.classList.add('hidden');
+        info.textContent = 'გამოცდილება';
+        info.appendChild(span);
+    }
+    if(page.textContent === '2/3'){
+        // div1.classList.add('hidden');
+        info.textContent = 'განათლება';
+        info.appendChild(span1);
+    }
+})
+
+
+}
+
+
+
+
+const navigation = function(){
+    //Selections for navigate
+const addResume = document.querySelector('.addResume');
+const back = document.querySelector('.back');
+
+
+
+// Event listeners
+// Event for start filling fields
+addResume.addEventListener('click',function(e){
+document.querySelector('.info').classList.remove('hide');
+ document.querySelector('.firstPage').classList.add('hide');
+})
+// Event for return first page and clear storage
+back.addEventListener('click',function(e){
+    e.preventDefault();
+    const info = document.querySelector('.infoHead');
+    const page = document.querySelector('.infoSpan');
+    if(page.textContent === "1/3"){
+    document.querySelector('.info').classList.add('hide');
+    document.querySelector('.firstPage').classList.remove('hide');
+    window.location.hash = '#firstPage';
+    sessionStorage.clear();
+    location.reload();
+    }
+    if(page.textContent === '2/3'){
+    const span = document.createElement("span");
+    const text = document.createTextNode('1/3');
+    span.appendChild(text);
+    span.classList.add('infoSpan');
+    info.textContent='პირადი ინფო';
+    info.appendChild(span);
+    }
+    if(page.textContent === '3/3'){
+        const span = document.createElement("span");
+        const text = document.createTextNode('2/3');
+        span.appendChild(text);
+        span.classList.add('infoSpan');
+        info.textContent='გამოცდილება';
+        info.appendChild(span);
+        }
+    
+})
+//Event for stay in same page when refreshi
+window.addEventListener('load',function(e){
+    e.preventDefault();
+    if(document.location.hash === "#info"){
+        document.querySelector('.firstPage').classList.add('hide');
+        document.querySelector('.info').classList.remove('hide');
+        
+    }
+})
+pagesNavigation();
+}
+renderInfo();
+
+navigation();
 
 
 
 
 
+//////////////////////////////////////////////////////////
 

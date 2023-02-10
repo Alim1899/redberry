@@ -173,8 +173,9 @@ cursor:help;
    border: none;
    border-radius: 5px;
    color: white;
-   margin-left: 776px;
-   margin-top: 40px;
+   margin-left: 776px; 
+    margin-top: 40px;
+   
    cursor: not-allowed;
 }
 
