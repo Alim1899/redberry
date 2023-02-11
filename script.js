@@ -180,6 +180,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         info.appendChild(span1);
         document.querySelector('.submit').textContent = "დასრულება";
         document.querySelector('.experience').classList.add('hide');
+        document.querySelector('.education').classList.remove('hide');
 
     }
 })
@@ -210,6 +211,7 @@ back.addEventListener('click',function(){
 
 // Event for start filling fields
 addResume.addEventListener('click',function(e){
+    document.querySelector('.education').classList.add('hide');
     document.querySelector('.experience').classList.add('hide');
 
     document.querySelector('.backWard').classList.add('hidden');
@@ -219,6 +221,8 @@ document.querySelector('.info').classList.remove('hide');
 // Event for return first page and clear storage
 backWard.addEventListener('click',function(e){
     e.preventDefault();
+    document.querySelector('.education').classList.add('hide');
+
     const info = document.querySelector('.infoHead');
     const page = document.querySelector('.infoSpan');
     if(page.textContent === "1/3"){
@@ -259,22 +263,19 @@ backWard.addEventListener('click',function(e){
 
 
 
-
-
-
-
-
 //Event for stay in same page when refreshi
 window.addEventListener('load',function(e){
     e.preventDefault();
     if(document.location.hash === "#info"){
         document.querySelector('.experience').classList.add('hide');
+        document.querySelector('.education').classList.add('hide');
 
         this.document.querySelector(".backWard").style.visibility = "hidden";
         document.querySelector('.firstPage').classList.add('hide');
         document.querySelector('.info').classList.remove('hide');
     }
     if(document.location.hash === "#experience"){
+        document.querySelector('.education').classList.add('hide');
         document.querySelector('.inputDetails').classList.add('hidden');
         document.querySelector(".backWard").style.visibility = "visible";
         document.querySelector('.firstPage').classList.add('hide');
@@ -314,6 +315,42 @@ window.addEventListener('load',function(e){
 
     const addExperience = document.querySelector('.addExperience');
     const form2 = document.querySelector('.experience');
+    const addEducation  = document.querySelector('.addEducation');
+    const form3 = document.querySelector('.education');
+    addEducation.addEventListener('click',function(e){
+        e.preventDefault();
+        form3.insertAdjacentHTML('afterbegin',` <div class="uniLabel">
+        <h2 class="dateHead">
+                სასწავლებელი
+              </h2>
+              <input class="university" minlength="2"  required>
+              <h6 class="message" style="font-weight: lighter">
+                მინიმუმ 2 სიმბოლო
+              </h6>
+      </div>
+      <div class="degreeLabel">
+        <div class="degrees">
+          <h2 class="dateHead">
+            ხარისხი
+          </h2>
+          <input class="degree"  required>
+          
+        </div>
+        <div class="eduDate">
+          <h2 class="dateHead">
+            დასრულების რიცხვი
+          </h2>
+          <input class="date" type="date"  required>
+        </div>
+      </div>
+
+      <div class="edu">
+        <h2 class="dateHead">აღწერა</h2>
+        <textarea class="eduDescription" placeholder="განათლების აღწერა"></textarea>
+      </div>
+
+      <hr class="underLine">`)
+    })
     addExperience.addEventListener('click',function(e){
         e.preventDefault();
         form2.insertAdjacentHTML('afterbegin',`<div class="positionLabel">
