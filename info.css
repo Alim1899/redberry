@@ -176,6 +176,18 @@ cursor:help;
    color: white;
    margin-left: -275px;
    margin-top: 800px;
-   cursor: not-allowed;
+   /* cursor: not-allowed; */
+}
+.backWard{
+    position: absolute;
+    width: 151px;
+    height: 48px;
+    background-color: #6B40E3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-left: -50%;
+    margin-top: 800px;
+    /* cursor: not-allowed; */
 }
 
