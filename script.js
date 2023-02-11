@@ -295,6 +295,59 @@ window.addEventListener('load',function(e){
         document.querySelector('.submit').textContent = "დასრულება";
 
     }
+
+
+
+
+
+    const addExperience = document.querySelector('.addExperience');
+    const form2 = document.querySelector('.experience');
+    addExperience.addEventListener('click',function(e){
+        e.preventDefault();
+        form2.insertAdjacentHTML('afterbegin',`<div class="positionLabel">
+            
+        <h2 class="positionHead">თანამდებობა</h2>
+        <input id="position" class="position" minlength="2" placeholder="დეველოპერი, დიზაინერი, ა.შ" required>
+        <i style="margin-top: 14px;" class="fa-solid fa-circle-check show-number "></i>
+        <i class="fa-solid fa-triangle-exclamation hide-number "></i>
+        <h6 class="message" style="font-weight: lighter">
+          მინიმუმ 2 სიმბოლო
+        </h6>
+      </div>
+
+      <div for="employer" class="employerLabel">
+        <h2 class="employerHead">დამსაქმებელი</h2>
+        <input id="employer" class="employer" minlength="2" placeholder="დამსაქმებელი" required>
+        <i style="margin-top: 13px;" class="fa-solid fa-circle-check show-number "></i>
+        <i class="fa-solid fa-triangle-exclamation hide-number "></i>
+        <h6 class="message" style="font-weight: lighter">
+          მინიმუმ 2 სიმბოლო
+        </h6>
+      </div>
+
+      <div class="dateLabel">
+        <div class="date1">
+          <h2 class="dateHead">
+            დაწყების რიცხვი
+          </h2>
+          <input class="start" type="date">
+        </div>
+        
+        
+          <div class="date2">
+            <h2 class="dateHead">
+              დასრულების რიცხვი
+            </h2>
+            <input class="end" type="date">
+          </div>
+      </div>
+      <div class="job">
+        <h2 class="dateHead">აღწერა</h2>
+        <textarea class="jobDescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"></textarea>
+      </div>
+      <hr class="underLine">`)
+    })
+
 })
 
 
