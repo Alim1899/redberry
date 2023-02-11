@@ -1,114 +1,161 @@
 <html lang="ge">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/e68e90bb61.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/e68e90bb61.js"
+      crossorigin="anonymous"
+    ></script>
     <script defer src="script.js"></script>
-    <link rel="icon" href="images/logo.svg" type="image/icon type">
-    <link rel="stylesheet" href="firstPage.css" type="text/css">
-    <link rel="stylesheet" href="info.css" type="text/css">
-    <link rel="stylesheet" href="resume.css" type="text/css">
+    <link rel="icon" href="images/logo.svg" type="image/icon type" />
+    <link rel="stylesheet" href="firstPage.css" type="text/css" />
+    <link rel="stylesheet" href="info.css" type="text/css" />
+    <link rel="stylesheet" href="resume.css" type="text/css" />
 
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-        </head>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    </head>
     <title>CV Generator</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="firstPage" id="firstPage">
-        <img class="background" src="./images/background.jfif"/>
+      <img class="background" src="./images/background.jfif" />
       <div class="logo">
-         <img  src="./images/logo.svg"/>
-          <hr class="line">
+        <img src="./images/logo.svg" />
+        <hr class="line" />
       </div>
       <div class="start">
-      <button class="addResume"><a href="#info">რეზიუმეს დამატება</a>  </button>
+        <button class="addResume"><a href="#info">რეზიუმეს დამატება</a></button>
       </div>
-       
     </div>
 
-    <div class="info hide" id="info" >
-        
-        <div class="container">
+    <div class="info hide" id="info">
+      <div class="container">
         <i class="fa-solid fa-chevron-left back"><a href="#firstPage"></a></i>
 
-            <h2 class="infoHead">პირადი ინფო <span class="infoSpan">1/3</span></h2>
-            <form style="width:55%; float:left" class="inputDetails">
-                <div class="nameAndLastname">
-                 
+        <h2 class="infoHead">პირადი ინფო <span class="infoSpan">1/3</span></h2>
+        <form style="width: 55%; float: left" class="inputDetails">
+          <div class="nameAndLastname">
             <label class="nameLabel" for="name">
-                <h4>სახელი</h4>
-                <input type="text" placeholder="  ანზორ" id="name" class="name" pattern="^[ა-ჰ]+$" title="მინიმუმ 2 ასო. ქართული ასოები" minlength="2" required>
-                <i class="fa-solid fa-circle-check show-name hidden"></i>
-                <i class="fa-solid fa-triangle-exclamation hide-name hidden"></i>
-                 <h6 class="message minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
-                </label>
+              <h4>სახელი</h4>
+              <input
+                type="text"
+                placeholder="  ანზორ"
+                id="name"
+                class="name"
+                pattern="^[ა-ჰ]+$"
+                title="მინიმუმ 2 ასო. ქართული ასოები"
+                minlength="2"
+                required
+              />
+              <i class="fa-solid fa-circle-check show-name hidden"></i>
+              <i class="fa-solid fa-triangle-exclamation hide-name hidden"></i>
+              <h6 class="message minSymbol">მინიმუმ 2 ასო. ქართული ასოები</h6>
+            </label>
 
             <label class="lastnameLabel" for="lastname">
-                <h4>გვარი</h4>
-                <input placeholder="  მუმლაძე" type="text" id="lastname" class="lastname" pattern="^[ა-ჰ]+$" title="მინიმუმ 2 ასო. ქართული ასოები" minlength="2" required>
-                <i class="fa-solid fa-circle-check show-lastname hidden"></i>
-                <i class="fa-solid fa-triangle-exclamation hide-lastname hidden"></i>
-                 <h6 class="minSymbol message">მინიმუმ 2 ასო. ქართული ასოები</h6>
-                </label>
+              <h4>გვარი</h4>
+              <input
+                placeholder="  მუმლაძე"
+                type="text"
+                id="lastname"
+                class="lastname"
+                pattern="^[ა-ჰ]+$"
+                title="მინიმუმ 2 ასო. ქართული ასოები"
+                minlength="2"
+                required
+              />
+              <i class="fa-solid fa-circle-check show-lastname hidden"></i>
+              <i
+                class="fa-solid fa-triangle-exclamation hide-lastname hidden"
+              ></i>
+              <h6 class="minSymbol message">მინიმუმ 2 ასო. ქართული ასოები</h6>
+            </label>
+          </div>
 
-                </div>
+          <label class="image"
+            >პირადი ფოტოს ატვირთვა
+            <input
+              type="file"
+              class="imageInput"
+              id="image"
+              name="img"
+              accept="image/*"
+              required
+            />
+            <span>ატვირთვა</span>
+          </label>
 
-                <label  class="image">პირადი ფოტოს ატვირთვა
-                    <input type="file" class="imageInput" id="image" name="img" accept="image/*"  required>
-                    <span >ატვირთვა</span>
-                </label>
-           
-           <br>
+          <br />
 
-           <label for="about" class="aboutMe">ჩემ შესახებ (არასავალდებულო)
-            <textarea class="quote"  id="about" placeholder="ზოგადი ინფო შენ შესახებ" pattern="^[ა-ჰ]+$" type="text"></textarea></label>
-            
-           
-           <label class="emailLabel">
+          <label for="about" class="aboutMe"
+            >ჩემ შესახებ (არასავალდებულო)
+            <textarea
+              class="quote"
+              id="about"
+              placeholder="ზოგადი ინფო შენ შესახებ"
+              pattern="^[ა-ჰ]+$"
+              type="text"
+            ></textarea>
+          </label>
+
+          <label class="emailLabel">
             <h5>ელ.ფოსტა</h5>
-          <input class="email" id="email" type="email" required placeholder="anzori666@redberry.ge" pattern=".+@redberry\.ge" title="უნდა მთავრდებოდეს redberry.ge-ით" required>
-          <i class="fa-solid fa-circle-check show-email hidden"></i>
-          <i class="fa-solid fa-triangle-exclamation hide-email hidden"></i>
-          <h6 class="message" style="font-weight: lighter;">უნდა მთავრდებოდეს redberry.ge-ით</h6>
-        </label>
+            <input
+              class="email"
+              id="email"
+              type="email"
+              required
+              placeholder="anzori666@redberry.ge"
+              pattern=".+@redberry\.ge"
+              title="უნდა მთავრდებოდეს redberry.ge-ით"
+              required
+            />
+            <i class="fa-solid fa-circle-check show-email hidden"></i>
+            <i class="fa-solid fa-triangle-exclamation hide-email hidden"></i>
+            <h6 class="message" style="font-weight: lighter">
+              უნდა მთავრდებოდეს redberry.ge-ით
+            </h6>
+          </label>
 
-        <label class="numberLabel">
+          <label class="numberLabel">
             <h5>მობილურის ნომერი</h5>
-        <input class="number" id="number"  pattern="([+]995)[5][0-9]{8}" maxlength="13"  placeholder="+995551123456" title="უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს" required>
-        <i class="fa-solid fa-circle-check show-number hidden"></i>
-        <i class="fa-solid fa-triangle-exclamation hide-number hidden"></i>
-        <h6 class="message" style="font-weight: lighter;">უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს</h6>
+            <input
+              class="number"
+              id="number"
+              pattern="([+]995)[5][0-9]{8}"
+              maxlength="13"
+              placeholder="+995551123456"
+              title="უნდა აკმაყოფილებდეს ქართული ნომრის ფორმატს"
+              required
+            />
+            <i class="fa-solid fa-circle-check show-number hidden"></i>
+            <i class="fa-solid fa-triangle-exclamation hide-number hidden"></i>
+            <h6 class="message" style="font-weight: lighter">
+              უნდა აკმაყოფილებდეს ქართული მობილური ნომრის ფორმატს
+            </h6>
+          </label>
+        </form>
+        <button class="submit" type="button">შემდეგი</button>
 
-    </label>
-</form>
-<button class="submit"  type="button" disabled>შემდეგი</button>
+        <div style="width: 45%" class="resume">
+          <div class="cvContent">
+            <h1 class="fullName" value="ragaca"></h1>
+            <h4 class="resumeEmail"><i class="fa-solid fa-at"></i></h4>
+            <h4 class="resumeNumber"><i class="fa-solid fa-phone"></i></h4>
+            <h3 class="aboutMeCv hidden">ჩემ შესახებ</h3>
+            <p class="resumeDetails"></p>
+          </div>
+          <div class="imageCv">
+            <img src="" class="resumeImg hidden" />
+          </div>
 
-            <div style="width:45%;" class="resume">
-                <div class="cvContent">
-                    <h1 class="fullName" value="ragaca"></h1>
-                   <h4 class="resumeEmail"><i class="fa-solid fa-at"></i></h4> 
-                    <h4 class="resumeNumber"><i class="fa-solid fa-phone"></i></h4>
-                    <h3 class="aboutMeCv hidden">ჩემ შესახებ</h3>
-                    <p class="resumeDetails"></p>
-                </div>
-                <div class="imageCv">
-                    <img src="" class="resumeImg hidden">
-                </div>
-                
-                
-                
-                
-                
-                <div class="icon">
-                     <img class="logoIcon" src="./images/logo-icon.svg">
-                </div>
-                    
-            </div>
-            
+          <div class="icon">
+            <img class="logoIcon" src="./images/logo-icon.svg" />
+          </div>
         </div>
-        
+      </div>
     </div>
-</body>
+  </body>
 </html>

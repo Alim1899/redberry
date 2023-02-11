@@ -162,11 +162,13 @@ submit.addEventListener('click',function(e){
     span1.classList.add('infoSpan');
 
     if(page.textContent === '1/3'){
+        document.location.hash = '#experience';
         // div1.classList.add('hidden');
         info.textContent = 'გამოცდილება';
         info.appendChild(span);
     }
     if(page.textContent === '2/3'){
+        document.location.hash = '#education';
         // div1.classList.add('hidden');
         info.textContent = 'განათლება';
         info.appendChild(span1);
@@ -184,8 +186,6 @@ const navigation = function(){
 const addResume = document.querySelector('.addResume');
 const back = document.querySelector('.back');
 
-
-
 // Event listeners
 // Event for start filling fields
 addResume.addEventListener('click',function(e){
@@ -198,6 +198,7 @@ back.addEventListener('click',function(e){
     const info = document.querySelector('.infoHead');
     const page = document.querySelector('.infoSpan');
     if(page.textContent === "1/3"){
+        document.location.hash = '#info';
     document.querySelector('.info').classList.add('hide');
     document.querySelector('.firstPage').classList.remove('hide');
     window.location.hash = '#firstPage';
@@ -205,6 +206,7 @@ back.addEventListener('click',function(e){
     location.reload();
     }
     if(page.textContent === '2/3'){
+        document.location.hash = '#info';
     const span = document.createElement("span");
     const text = document.createTextNode('1/3');
     span.appendChild(text);
@@ -215,6 +217,7 @@ back.addEventListener('click',function(e){
     if(page.textContent === '3/3'){
         const span = document.createElement("span");
         const text = document.createTextNode('2/3');
+        document.location.hash = '#experience';
         span.appendChild(text);
         span.classList.add('infoSpan');
         info.textContent='გამოცდილება';
@@ -228,7 +231,6 @@ window.addEventListener('load',function(e){
     if(document.location.hash === "#info"){
         document.querySelector('.firstPage').classList.add('hide');
         document.querySelector('.info').classList.remove('hide');
-        
     }
 })
 pagesNavigation();
