@@ -1,4 +1,5 @@
 'use strict'
+
 const renderInfo = function(){
     //Selections for input fields
 const name = document.querySelector('.name');
@@ -8,6 +9,8 @@ const about = document.querySelector('.quote');
 const email = document.querySelector('.email');
 const number = document.querySelector('.number');
 const submit = document.querySelector('.submit');
+
+
 
 // Selections for rendered cv
 const fullname = document.querySelector('.fullName');
@@ -148,7 +151,7 @@ submit.addEventListener('click',function(e){
     const div1 = document.querySelector('.inputDetails');
     const info = document.querySelector('.infoHead');
     const page = document.querySelector('.infoSpan');
-
+document.querySelector('.backWard').style.visibility = "visible";
     //Creating new elements, because losing chained span
     // Page 2/3
     const span = document.createElement("span");
@@ -163,6 +166,7 @@ submit.addEventListener('click',function(e){
 
     if(page.textContent === '1/3'){
         document.location.hash = '#experience';
+        document.querySelector('.backWard').style.visibility = "visible";
         // div1.classList.add('hidden');
         info.textContent = 'გამოცდილება';
         info.appendChild(span);
@@ -172,6 +176,7 @@ submit.addEventListener('click',function(e){
         // div1.classList.add('hidden');
         info.textContent = 'განათლება';
         info.appendChild(span1);
+
     }
 })
 
@@ -192,7 +197,10 @@ const back = document.querySelector('.back');
 back.addEventListener('click',function(){
     document.querySelector('.firstPage').classList.remove('hide');
     document.location.hash = '#firstPage';
+    document.querySelector('.info').classList.add('hide');
+    sessionStorage.clear();
     location.reload();
+    document.querySelector('.backWard').style.visibility = "hidden";
 })
 
 // Event for start filling fields
@@ -207,11 +215,9 @@ backWard.addEventListener('click',function(e){
     const page = document.querySelector('.infoSpan');
     if(page.textContent === "1/3"){
         document.location.hash = '#info';
-    document.querySelector('.info').classList.add('hide');
-    document.querySelector('.firstPage').classList.remove('hide');
-    window.location.hash = '#firstPage';
-    sessionStorage.clear();
-    location.reload();
+    
+    document.querySelector('.backWard').style.visibility = "hidden";
+
     }
     if(page.textContent === '2/3'){
         document.location.hash = '#info';
@@ -221,6 +227,7 @@ backWard.addEventListener('click',function(e){
     span.classList.add('infoSpan');
     info.textContent='პირადი ინფო';
     info.appendChild(span);
+    document.querySelector('.backWard').style.visibility = "hidden";
     }
     if(page.textContent === '3/3'){
         const span = document.createElement("span");
@@ -233,6 +240,10 @@ backWard.addEventListener('click',function(e){
         }
     
 })
+
+
+
+
 
 
 
