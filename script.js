@@ -169,6 +169,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         document.querySelector('.backWard').style.visibility = "visible";
         div1.classList.add('hidden');
         info.textContent = 'გამოცდილება';
+        document.querySelector('.experience').classList.remove('hide');
 
         info.appendChild(span);
     }
@@ -178,6 +179,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         info.textContent = 'განათლება';
         info.appendChild(span1);
         document.querySelector('.submit').textContent = "დასრულება";
+        document.querySelector('.experience').classList.add('hide');
 
     }
 })
@@ -208,6 +210,8 @@ back.addEventListener('click',function(){
 
 // Event for start filling fields
 addResume.addEventListener('click',function(e){
+    document.querySelector('.experience').classList.add('hide');
+
     document.querySelector('.backWard').classList.add('hidden');
 document.querySelector('.info').classList.remove('hide');
  document.querySelector('.firstPage').classList.add('hide');
@@ -221,9 +225,10 @@ backWard.addEventListener('click',function(e){
         document.location.hash = '#info';
         document.querySelector('.submit').textContent = "შემდეგი";
     document.querySelector('.backWard').style.visibility = "hidden";
-
     }
     if(page.textContent === '2/3'){
+        document.querySelector('.experience').classList.add('hide');
+
         document.location.hash = '#info';
     const span = document.createElement("span");
     const text = document.createTextNode('1/3');
@@ -237,6 +242,8 @@ backWard.addEventListener('click',function(e){
     document.querySelector('.backWard').style.visibility = "hidden";
     }
     if(page.textContent === '3/3'){
+        document.querySelector('.experience').classList.remove('hide');
+
         const span = document.createElement("span");
         const text = document.createTextNode('2/3');
         document.location.hash = '#experience';
@@ -261,6 +268,8 @@ backWard.addEventListener('click',function(e){
 window.addEventListener('load',function(e){
     e.preventDefault();
     if(document.location.hash === "#info"){
+        document.querySelector('.experience').classList.add('hide');
+
         this.document.querySelector(".backWard").style.visibility = "hidden";
         document.querySelector('.firstPage').classList.add('hide');
         document.querySelector('.info').classList.remove('hide');
@@ -278,6 +287,8 @@ window.addEventListener('load',function(e){
         span.classList.add('infoSpan');
         info.textContent='გამოცდილება';
         info.appendChild(span);
+        document.querySelector('.experience').classList.remove('hide');
+
     }
     if(document.location.hash === "#education"){
         document.querySelector('.inputDetails').classList.add('hidden');
@@ -292,6 +303,7 @@ window.addEventListener('load',function(e){
         span.classList.add('infoSpan');
         info.textContent='განათლება';
         info.appendChild(span);
+        document.querySelector('.experience').classList.add('hide');
         document.querySelector('.submit').textContent = "დასრულება";
 
     }
@@ -349,9 +361,6 @@ window.addEventListener('load',function(e){
     })
 
 })
-
-
-
 
 pagesNavigation();
 }
