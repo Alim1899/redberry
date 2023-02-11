@@ -1,0 +1,74 @@
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue.ttc') format('truetype');
+    font-weight: normal;
+}
+:root{
+--contentWidth: 798px;
+--left:130px;
+--inputHeight:48px;
+}
+*{
+    font-family: HelveticaNeue;
+}
+.education{
+    overflow: scroll;
+    position: absolute;
+    height: 70%;
+}
+.uniLabel{
+    height: 150px;
+    width: 100%;
+}
+.uniLabel>input{
+    width: var(--contentWidth);
+    height:var(--inputHeight) ;
+    margin-left: var(--left);
+}
+.uniLabel>h2{
+    font-size: 16px;
+    margin-left: var(--left);
+}
+
+.uniLabel>h6{
+    font-size: 14px;
+    margin-left: var(--left);
+}
+.degreeLabel{
+    width: var(--contentWidth);
+    margin-left: 130px;
+    display: flex;
+    justify-content:space-between;
+}
+.degrees>input, .eduDate>input{
+    width: 371px;
+    height: 50px;
+}
+.datehead{
+    font-size: 16px;
+}
+
+.edu{
+    margin-left: var(--left);
+    
+}
+.eduDescription{
+    width: var(--contentWidth);
+    height: 123px;
+}
+.underLine{
+    width: var(--contentWidth);
+    margin-top: 60px;
+}
+.addEducation{
+    width: 289px;
+    height: 48px;
+    background-color: #62A1EB;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: var(--left);
+    cursor: pointer;
+}

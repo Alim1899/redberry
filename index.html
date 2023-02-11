@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="info.css" type="text/css" />
     <link rel="stylesheet" href="resume.css" type="text/css" />
     <link rel="stylesheet" href="experience.css" type="text/css" />
+    <link rel="stylesheet" href="education.css" type="text/css" />
 
 
     <head>
@@ -187,6 +188,44 @@
 
           <button type="button" class="addExperience">მეტი გამოცდილების დამატება</button>
         </form>
+
+
+        <form style="width: 55%; float: left" class="education">
+        <div class="uniLabel">
+          <h2 class="dateHead">
+                  სასწავლებელი
+                </h2>
+                <input class="university" minlength="2"  required>
+                <h6 class="message" style="font-weight: lighter">
+                  მინიმუმ 2 სიმბოლო
+                </h6>
+        </div>
+        <div class="degreeLabel">
+          <div class="degrees">
+            <h2 class="dateHead">
+              ხარისხი
+            </h2>
+            <input class="degree"  required>
+            
+          </div>
+          <div class="eduDate">
+            <h2 class="dateHead">
+              დასრულების რიცხვი
+            </h2>
+            <input class="date" type="date"  required>
+          </div>
+        </div>
+
+        <div class="edu">
+          <h2 class="dateHead">აღწერა</h2>
+          <textarea class="eduDescription" placeholder="განათლების აღწერა"></textarea>
+        </div>
+
+        <hr class="underLine">
+
+          <button type="button" class="addEducation">სხვა სასწავლებლის დამატება</button>
+        </form>
+      
         
           <button class="submit" type="button">შემდეგი</button>
           <button class="backWard" type="button">უკან</button>
