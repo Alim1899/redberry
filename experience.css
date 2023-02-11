@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: url('./fonts/HelveticaNeue.ttc') format('truetype');
+    font-weight: normal;
+}
+:root{
+--contentWidth: 798px;
+--left:130px;
+--inputHeight:48px;
+}
+*{
+    font-family: HelveticaNeue;
+}
+.experience{
+    position: absolute;
+    height: 100%;
+}
+.positionLabel,.employerLabel{
+    height: 150px;
+    width: 100%;
+}
+.positionLabel>input,.employerLabel>input{
+    width: var(--contentWidth);
+    height:var(--inputHeight) ;
+    margin-left: var(--left);
+}
+.positionLabel>h2,.employerLabel>h2{
+    font-size: 16px;
+    margin-left: var(--left);
+}
+
+.positionLabel>h6,.employerLabel>h6{
+    font-size: 14px;
+    margin-left: var(--left);
+}
+.datelabel{
+    width: var(--contentWidth);
+    margin-left: 130px;
+    display: flex;
+    justify-content:space-between;
+}
+.date1>input, .date2>input{
+    width: 371px;
+    height: 50px;
+}
+.datehead{
+    font-size: 16px;
+}
+.job{
+    margin-left: var(--left);
+    
+}
+.jobDescription{
+    width: var(--contentWidth);
+    height: 123px;
+}
+.underLine{
+    width: var(--contentWidth);
+    margin-top: 60px;
+}
+.addExperience{
+    width: 289px;
+    height: 48px;
+    background-color: #62A1EB;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: var(--left)
+}

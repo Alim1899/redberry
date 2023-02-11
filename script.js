@@ -169,6 +169,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         document.querySelector('.backWard').style.visibility = "visible";
         div1.classList.add('hidden');
         info.textContent = 'გამოცდილება';
+
         info.appendChild(span);
     }
     if(page.textContent === '2/3'){
@@ -176,6 +177,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         div1.classList.add('hidden');
         info.textContent = 'განათლება';
         info.appendChild(span1);
+        document.querySelector('.submit').textContent = "დასრულება";
 
     }
 })
@@ -217,7 +219,7 @@ backWard.addEventListener('click',function(e){
     const page = document.querySelector('.infoSpan');
     if(page.textContent === "1/3"){
         document.location.hash = '#info';
-    
+        document.querySelector('.submit').textContent = "შემდეგი";
     document.querySelector('.backWard').style.visibility = "hidden";
 
     }
@@ -229,6 +231,8 @@ backWard.addEventListener('click',function(e){
     span.classList.add('infoSpan');
     info.textContent='პირადი ინფო';
     info.appendChild(span);
+    document.querySelector('.submit').textContent = "შემდეგი";
+
     document.querySelector('.inputDetails').classList.remove('hidden');
     document.querySelector('.backWard').style.visibility = "hidden";
     }
@@ -237,6 +241,8 @@ backWard.addEventListener('click',function(e){
         const text = document.createTextNode('2/3');
         document.location.hash = '#experience';
         span.appendChild(text);
+        document.querySelector('.submit').textContent = "შემდეგი";
+
         span.classList.add('infoSpan');
         info.textContent='გამოცდილება';
         info.appendChild(span);
@@ -286,6 +292,8 @@ window.addEventListener('load',function(e){
         span.classList.add('infoSpan');
         info.textContent='განათლება';
         info.appendChild(span);
+        document.querySelector('.submit').textContent = "დასრულება";
+
     }
 })
 
