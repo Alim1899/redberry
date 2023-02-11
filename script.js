@@ -184,16 +184,24 @@ submit.addEventListener('click',function(e){
 const navigation = function(){
     //Selections for navigate
 const addResume = document.querySelector('.addResume');
+const backWard = document.querySelector('.backWard');
 const back = document.querySelector('.back');
 
-// Event listeners
+
+// Event listener for returning main page and reset data
+back.addEventListener('click',function(){
+    document.querySelector('.firstPage').classList.remove('hide');
+    document.location.hash = '#firstPage';
+    location.reload();
+})
+
 // Event for start filling fields
 addResume.addEventListener('click',function(e){
 document.querySelector('.info').classList.remove('hide');
  document.querySelector('.firstPage').classList.add('hide');
 })
 // Event for return first page and clear storage
-back.addEventListener('click',function(e){
+backWard.addEventListener('click',function(e){
     e.preventDefault();
     const info = document.querySelector('.infoHead');
     const page = document.querySelector('.infoSpan');
@@ -225,14 +233,49 @@ back.addEventListener('click',function(e){
         }
     
 })
+
+
+
+
 //Event for stay in same page when refreshi
 window.addEventListener('load',function(e){
     e.preventDefault();
     if(document.location.hash === "#info"){
+        this.document.querySelector(".backWard").style.visibility = "hidden";
         document.querySelector('.firstPage').classList.add('hide');
         document.querySelector('.info').classList.remove('hide');
     }
+    if(document.location.hash === "#experience"){
+        document.querySelector(".backWard").style.visibility = "visible";
+        document.querySelector('.firstPage').classList.add('hide');
+        document.querySelector('.info').classList.remove('hide');
+        const info = document.querySelector('.infoHead');
+        const span = document.createElement("span");
+        const text = document.createTextNode('2/3');
+        document.location.hash = '#experience';
+        span.appendChild(text);
+        span.classList.add('infoSpan');
+        info.textContent='გამოცდილება';
+        info.appendChild(span);
+    }
+    if(document.location.hash === "#education"){
+        document.querySelector(".backWard").style.visibility = "visible";
+        document.querySelector('.firstPage').classList.add('hide');
+        document.querySelector('.info').classList.remove('hide');
+        const info = document.querySelector('.infoHead');
+        const span = document.createElement("span");
+        const text = document.createTextNode('3/3');
+        document.location.hash = '#education';
+        span.appendChild(text);
+        span.classList.add('infoSpan');
+        info.textContent='განათლება';
+        info.appendChild(span);
+    }
 })
+
+
+
+
 pagesNavigation();
 }
 renderInfo();
