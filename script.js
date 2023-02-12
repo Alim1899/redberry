@@ -2,15 +2,24 @@
 
 const renderInfo = function(){
     //Selections for input fields
+    //Info
 const name = document.querySelector('.name');
 const lastname = document.querySelector('.lastname');
 const img = document.querySelector('.imageInput');
-const about = document.querySelector('.quote');
 const email = document.querySelector('.email');
 const number = document.querySelector('.number');
 const submit = document.querySelector('.submit');
-
-
+//Experience
+const position = document.querySelector('.position');
+const employer = document.querySelector('.employer');
+const startDate = document.querySelector('.startt');
+const endDate = document.querySelector('.end');
+const JobDescription = document.querySelector('.jobDescription');
+//Education
+const uni = document.querySelector('.university');
+const uniDegree = document.querySelector('.degree');
+const eduEndDate = document.querySelector('.eduDate');
+const aboutEdu = document.querySelector('.eduDescription');
 
 // Selections for rendered cv
 const fullname = document.querySelector('.fullName');
@@ -100,16 +109,52 @@ retrieveData();
 
 //Enable/disable nextPage button
 const btnEnabler = function(){
-    submit.style.cursor = 'pointer';
-    submit.disabled = false;
-    // if(
-    //     name.checkValidity() &&
-    //     lastname.checkValidity() &&
-    //     email.checkValidity() &&
-    //     number.checkValidity()
-    // ){
-    //   submit.style.cursor = 'pointer';
-    // }
+  const checkInfo = function(){
+    if(
+        name.checkValidity() &&
+        lastname.checkValidity() &&
+        email.checkValidity() &&
+        number.checkValidity()
+    ){
+      submit.style.cursor = "pointer";
+      submit.disabled = false;
+    }else{
+      submit.disabled = true;
+    }
+
+  }
+  const checkExperience = function(){
+    if(
+      position.checkValidity()&&
+      employer.checkValidity()&&
+      startDate.checkValidity()&&
+      endDate.checkValidity()&&
+      JobDescription.checkValidity()
+    ){
+      submit.style.cursor = "pointer";
+      submit.disabled = false;
+    }else{
+      submit.style.cursor = "not-allowed";
+      submit.disabled = true;
+    }
+  }
+  const checkEducation = function(){
+if(uni.checkValidity()&&
+uniDegree.checkValidity()&&
+aboutEdu.checkValidity()
+){
+  submit.style.cursor = "pointer";
+  submit.disabled = false;
+}else{
+  submit.style.cursor = "not-allowed";
+      submit.disabled = true;
+}
+  }
+
+  if(document.location.hash ==="#info") checkInfo();
+  if(document.location.hash ==="#experience") checkExperience();
+  if(document.location.hash ==="#education") checkEducation();
+
 }
 
 //Checking inputted fields validation
@@ -135,7 +180,7 @@ const validation = function(field){
     if(field.id ==="start"||field.id==="end" || field.id==="eduEnd"){
       field.style.border = '2px solid #98E37E'
       const date = new Date(field.value)
-      if(date.getFullYear()<=1970){
+      if(date.getFullYear()<=1970){ 
         field.style.border = '2px solid #EF5050'
       }
       return;
@@ -161,7 +206,9 @@ const validation = function(field){
        ||field.id==="end"
        ||field.id==="jobDescription"
        ||field.id==="eduEnd"
-       ||field.id==="eduDescription")
+       ||field.id==="eduDescription"
+       ||field.id==="degree"
+      )
        return;
      show.classList.remove('hidden');
      hide.classList.add('hidden');
@@ -178,7 +225,6 @@ const validation = function(field){
 /////Information form
 document.querySelector('.inputDetails').addEventListener('input',function(e){ 
 validation(e.target);
-btnEnabler();
         if(e.target.checkValidity()){
              if(e.target.id!=='image'){
             sessionStorage.setItem(e.target.id,e.target.value)
@@ -199,12 +245,16 @@ btnEnabler();
     }
         }
         }
+        btnEnabler();
+        
    retrieveData();
 })
 /////Experience form
 document.querySelector('.experience').addEventListener('input',function(e){
+  submit.style.cursor = "not-allowed";
+        submit.disabled = true;
+         btnEnabler();
 validation(e.target);
-btnEnabler();
 retrieveData();
 if(e.target.checkValidity()){
   sessionStorage.setItem(e.target.id, e.target.value);
@@ -212,15 +262,18 @@ if(e.target.checkValidity()){
 })
 ////Education form
 document.querySelector('.education').addEventListener('input',function(e){
+  submit.style.cursor = "not-allowed";
+        submit.disabled = true;
   validation(e.target);
   if(e.target.value !="null"){
   document.querySelector('.educationCV').classList.remove('hide');
   }
-  btnEnabler();
-  retrieveData();
+  
   if(e.target.checkValidity()){
     sessionStorage.setItem(e.target.id, e.target.value);
   }
+ btnEnabler();
+  retrieveData();
 })
 }
 
