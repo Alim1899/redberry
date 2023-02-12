@@ -111,3 +111,18 @@ width: 100%;
     width: 100%;
     }
 
+
+    /* Styling succesfull message */
+    .succes{
+        width: 427px;
+        height: 167px;
+        font-size: 28px;
+        position: absolute;
+        top: 20px;
+        right: 70px;
+        text-align: right;
+    }
+    .succes>div>i{
+        cursor: pointer;
+       
+    }

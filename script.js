@@ -318,7 +318,21 @@ document.querySelector('.backWard').style.visibility = "visible";
         document.querySelector('.submit').textContent = "დასრულება";
         document.querySelector('.experience').classList.add('hide');
         document.querySelector('.education').classList.remove('hide');
-
+    }
+    if( document.querySelector('.submit').textContent = "დასრულება"
+    ||document.location.hash === '#education'){
+      document.querySelector('.inputDetails').style.display = "none";
+      document.querySelector('.experience').style.display = "none";
+      document.querySelector('.education').style.display = "none";
+      info.style.display="none";
+      document.location.hash = "#resume";
+      document.querySelector('.resume').style.marginTop="0px";
+      document.querySelector('.resume').style.marginLeft="550px";
+      document.querySelector('.succes').classList.remove('hidden');
+      document.querySelector(".remove").addEventListener('click',function(){
+        document.querySelector('.succes').classList.add('hidden');
+        
+      })
     }
 })
 
@@ -550,3 +564,6 @@ const degree = document.querySelector('.degree');
 .then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
   <option class="options">${el.title}</options>`) )
 }))
+
+
+
