@@ -18,15 +18,18 @@
 .resume{
     width: 100%;
     height: 99%;
-    display: flex;
-   justify-content: last baseline;
+   
 }
 .cvContent{
+    display: flex;
+    justify-content: baseline;
     margin-top: 20px;
-    max-height:500px;
-    width: 60%;
-
-margin-left: 70px;
+    max-height:450px;
+    width: 100%;
+    margin-left: 70px;
+}
+.infoCV{
+   width: 60%;
 }
 
 .fullName{
@@ -63,5 +66,27 @@ margin-left: 70px;
     overflow: scroll;
     font-family: HelveticaNeue;
     font-weight: 400;
+}
+
+/* Styling experience */
+.experienceCV{
+    width: 90%;
+    margin-left: 70px;
+}
+.experienceCV>h2{
+    color: #F93B1D;
+}
+.experienceCV>p{
+    font-weight: 500;
+}
+.startEnd{
+    margin-top:-10px;
+    font-style: italic;
+    font-weight: 400;
+}
+.descriptionCV{
+font-weight: 400;
+height: 66px;
+width: 100%;
 }
 

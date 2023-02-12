@@ -18,35 +18,63 @@ const aboutCV = document.querySelector('.resumeDetails');
 const emailCV = document.querySelector('.resumeEmail');
 const numberCV = document.querySelector('.resumeNumber');
 const imgCV = document.querySelector('.resumeImg');
-
+const positionCV = document.querySelector('.positionCV')
+const jobDesc = document.querySelector('.descriptionCV');
+const jobtDate = document.querySelector('.startEnd');
 //retrieving data from localSTorage
-const retrieveData = function(){    
-    
-    //Retrieving name and lastname, then creating fullname
-    fullname.textContent = 
-    (sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
-    + ' ' + 
-    (sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
+const retrieveData = function(){  
+  
+  const retrieveInfo = function(){
+//Retrieving name and lastname, then creating fullname
+fullname.textContent = 
+(sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
++ ' ' + 
+(sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
 
-    //Retrieve image
+//Retrieve image
 if(sessionStorage.getItem('src')) {
-    imgCV.classList.remove('hidden');
-    imgCV.src=sessionStorage.getItem('src');
+imgCV.classList.remove('hidden');
+imgCV.src=sessionStorage.getItem('src');
 }
 
-    //Show/hide about me section
-    if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
-    aboutCV.textContent = sessionStorage.getItem('about'); 
+//Show/hide about me section
+if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
+aboutCV.textContent = sessionStorage.getItem('about'); 
 
-    //Fontawesome icons
-        const emailIcon = '<i class="fa-solid fa-at"></i>';
-        const dialIcon = '<i class="fa-solid fa-phone"></i>';
+//Fontawesome icons
+    const emailIcon = '<i class="fa-solid fa-at"></i>';
+    const dialIcon = '<i class="fa-solid fa-phone"></i>';
 
-    if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
-    else emailCV.textContent ='';
+if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
+else emailCV.textContent ='';
+
+if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
+else numberCV.textContent = '';
+
+  }  
+  retrieveInfo();
     
-    if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
-    else numberCV.textContent = '';
+const retrieveExperience = function(){
+  if(sessionStorage.getItem('position')||
+  sessionStorage.getItem('employer')||
+  sessionStorage.getItem('jobDescription')  
+  ){
+    document.querySelector('.experienceCV').classList.remove('hide')
+  }
+  if(sessionStorage.getItem('position')&&
+  sessionStorage.getItem('employer')){
+    positionCV.textContent = sessionStorage.getItem('position')
+    + ', ' +sessionStorage.getItem('employer') ;
+  }
+  if(sessionStorage.getItem('jobDescription'))
+   jobDesc.textContent = sessionStorage.getItem('jobDescription');
+
+   if(sessionStorage.getItem("start")&&
+   sessionStorage.getItem("start")
+   )jobtDate.textContent = sessionStorage.getItem('start') +
+   " - " + sessionStorage.getItem('end');
+}
+retrieveExperience();
 
 }
 retrieveData();
@@ -151,8 +179,8 @@ btnEnabler();
 document.querySelector('.experience').addEventListener('input',function(e){
 validation(e.target);
 btnEnabler();
+retrieveData();
 if(e.target.checkValidity()){
-  console.log('valid');
   sessionStorage.setItem(e.target.id, e.target.value);
 }
 })
