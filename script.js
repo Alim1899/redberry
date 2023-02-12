@@ -284,6 +284,27 @@ const pagesNavigation = function(){
 const submit =  document.querySelector('.submit');
 //Next page button 
 submit.addEventListener('click',function(e){
+
+  ////Render Resume
+  if(document.location.hash === '#education'){
+    document.querySelector('.submit').addEventListener('click',function(){
+      document.location.hash = "#resume";
+      document.querySelector('.inputDetails').style.display = "none";
+      document.querySelector('.experience').style.display = "none";
+      document.querySelector('.education').style.display = "none";
+      document.querySelector('.infoHead').style.display="none";
+      
+      document.querySelector('.resume').style.marginTop="0px";
+      document.querySelector('.resume').style.marginLeft="550px";
+      document.querySelector('.succes').classList.remove('hidden');
+      document.querySelector(".remove").addEventListener('click',function(){
+        document.querySelector('.succes').classList.add('hidden');
+        
+      })
+    })
+  
+    
+  }
     //Selections for navigation
     const div1 = document.querySelector('.inputDetails');
     const info = document.querySelector('.infoHead');
@@ -302,6 +323,8 @@ document.querySelector('.backWard').style.visibility = "visible";
     span1.classList.add('infoSpan');
 
     if(page.textContent === '1/3'){
+      submit.disabled = true;
+      submit.style.cursor = "not-allowed";
         document.location.hash = '#experience';
         document.querySelector('.backWard').style.visibility = "visible";
         div1.classList.add('hidden');
@@ -311,6 +334,9 @@ document.querySelector('.backWard').style.visibility = "visible";
         info.appendChild(span);
     }
     if(page.textContent === '2/3'){
+      submit.disabled = true;
+      submit.style.cursor = "not-allowed";
+
         document.location.hash = '#education';
         div1.classList.add('hidden');
         info.textContent = 'განათლება';
@@ -319,21 +345,7 @@ document.querySelector('.backWard').style.visibility = "visible";
         document.querySelector('.experience').classList.add('hide');
         document.querySelector('.education').classList.remove('hide');
     }
-    if( document.querySelector('.submit').textContent = "დასრულება"
-    ||document.location.hash === '#education'){
-      document.querySelector('.inputDetails').style.display = "none";
-      document.querySelector('.experience').style.display = "none";
-      document.querySelector('.education').style.display = "none";
-      info.style.display="none";
-      document.location.hash = "#resume";
-      document.querySelector('.resume').style.marginTop="0px";
-      document.querySelector('.resume').style.marginLeft="550px";
-      document.querySelector('.succes').classList.remove('hidden');
-      document.querySelector(".remove").addEventListener('click',function(){
-        document.querySelector('.succes').classList.add('hidden');
-        
-      })
-    }
+   
 })
 
 
@@ -456,6 +468,11 @@ window.addEventListener('load',function(e){
         document.querySelector('.experience').classList.add('hide');
         document.querySelector('.submit').textContent = "დასრულება";
     }
+    if(document.location.hash ==="#resume"){
+     document.location.hash = "#firstpage";
+     sessionStorage.clear();
+     location.reload();
+    }
 
 
 
@@ -547,6 +564,8 @@ window.addEventListener('load',function(e){
     })
 
 })
+
+
 }
 buttonFunctions();
 
@@ -567,3 +586,7 @@ const degree = document.querySelector('.degree');
 
 
 
+// console.log(sessionStorage);
+// if(document.location.hash === "#resume"){
+//   const formData = new FormData(se)
+// }
