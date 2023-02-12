@@ -68,12 +68,23 @@ const btnEnabler = function(){
 //Checking inputted fields validation
 const validation = function(field){
     //Restriction for space character in number input field
+    //Vlidate number
     if(field.id==='number'){
         if(field.value.match(/\s/g)){
       field.value=field.value.replace(/\s/g,'');      
 }
     }
-
+    //validate job description
+    if(field.id === "jobDescription"){
+      if(!field.checkValidity()){
+        field.style.border = '2px solid #EF5050'
+      }
+      if(field.checkValidity()){
+        field.style.border = '2px solid #98E37E'
+      }
+      return;
+    }
+   //validate dates
     if(field.id ==="start"||field.id==="end"){
       field.style.border = '2px solid #98E37E'
       const date = new Date(field.value)
@@ -84,7 +95,7 @@ const validation = function(field){
     }
 
 
-    
+    //validate fields with show/hide icon
     const show = document.querySelector(`.show-${field.id}`);
     const hide = document.querySelector(`.hide-${field.id}`);
     
@@ -140,7 +151,6 @@ btnEnabler();
 document.querySelector('.experience').addEventListener('input',function(e){
 validation(e.target);
 btnEnabler();
-console.log(e.target.checkValidity());
 if(e.target.checkValidity()){
   console.log('valid');
   sessionStorage.setItem(e.target.id, e.target.value);
@@ -364,8 +374,8 @@ window.addEventListener('load',function(e){
             
         <h2 class="positionHead">თანამდებობა</h2>
         <input id="position" class="position" minlength="2" placeholder="დეველოპერი, დიზაინერი, ა.შ" required>
-        <i style="margin-top: 14px;" class="fa-solid fa-circle-check show-number "></i>
-        <i class="fa-solid fa-triangle-exclamation hide-number "></i>
+        <i style="margin-top: 14px;" class="fa-solid fa-circle-check show-position hidden"></i>
+        <i class="fa-solid fa-triangle-exclamation hide-position hidden"></i>
         <h6 class="message" style="font-weight: lighter">
           მინიმუმ 2 სიმბოლო
         </h6>
@@ -374,8 +384,8 @@ window.addEventListener('load',function(e){
       <div for="employer" class="employerLabel">
         <h2 class="employerHead">დამსაქმებელი</h2>
         <input id="employer" class="employer" minlength="2" placeholder="დამსაქმებელი" required>
-        <i style="margin-top: 13px;" class="fa-solid fa-circle-check show-number "></i>
-        <i class="fa-solid fa-triangle-exclamation hide-number "></i>
+        <i style="margin-top: 13px;" class="fa-solid fa-circle-check show-employer hidden"></i>
+        <i class="fa-solid fa-triangle-exclamation hide-employer hidden"></i>
         <h6 class="message" style="font-weight: lighter">
           მინიმუმ 2 სიმბოლო
         </h6>
@@ -386,7 +396,7 @@ window.addEventListener('load',function(e){
           <h2 class="dateHead">
             დაწყების რიცხვი
           </h2>
-          <input class="start" id="start" type="date">
+          <input class="start" id="start" type="date required">
         </div>
         
         
@@ -394,12 +404,12 @@ window.addEventListener('load',function(e){
             <h2 class="dateHead">
               დასრულების რიცხვი
             </h2>
-            <input class="end" id="end" type="date">
+            <input class="end" id="end" type="date required">
           </div>
       </div>
       <div class="job">
         <h2 class="dateHead">აღწერა</h2>
-        <textarea class="jobDescription" id="jobDescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"></textarea>
+        <textarea class="jobDescription" id="jobDescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა required"></textarea>
       </div>
       <hr class="underLine">`)
     })
