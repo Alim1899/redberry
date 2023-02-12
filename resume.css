@@ -75,6 +75,7 @@
 }
 .experienceCV>h2{
     color: #F93B1D;
+    font-size: 18px;
 }
 .experienceCV>p{
     font-weight: 500;
@@ -89,4 +90,24 @@ font-weight: 400;
 height: 66px;
 width: 100%;
 }
+
+/* Styling education */
+.educationCV{
+    width: 90%;
+    margin-left: 70px
+}
+.educationCV>h2{
+    color: #F93B1D;
+    font-size: 18px;
+}
+.eduEnd{
+    margin-top:-10px;
+    font-style: italic;
+    font-weight: 400;
+}
+.eduDescription{
+    font-weight: 400;
+    height: 66px;
+    width: 100%;
+    }
 

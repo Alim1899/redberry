@@ -21,6 +21,9 @@ const imgCV = document.querySelector('.resumeImg');
 const positionCV = document.querySelector('.positionCV')
 const jobDesc = document.querySelector('.descriptionCV');
 const jobtDate = document.querySelector('.startEnd');
+const university = document.querySelector('.universityCV');
+const eduEnd = document.querySelector('.eduEnd');
+const eduDesc = document.querySelector('.eduDescriptionCV');
 //retrieving data from localSTorage
 const retrieveData = function(){  
   
@@ -52,8 +55,7 @@ if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessi
 else numberCV.textContent = '';
 
   }  
-  retrieveInfo();
-    
+  retrieveInfo();   
 const retrieveExperience = function(){
   if(sessionStorage.getItem('position')||
   sessionStorage.getItem('employer')||
@@ -75,6 +77,23 @@ const retrieveExperience = function(){
    " - " + sessionStorage.getItem('end');
 }
 retrieveExperience();
+
+const retrieveEducation = function(){
+  document.querySelector('.educationCV')
+if(sessionStorage.getItem('university')) {
+  if(!sessionStorage.getItem('degree')){
+      university.textContent = sessionStorage.getItem('university');
+  }
+  if(sessionStorage.getItem('degree')){
+    university.textContent = sessionStorage.getItem('university')
+    + ", " + sessionStorage.getItem("degree");
+}
+}
+if(sessionStorage.getItem("eduEnd")) eduEnd.textContent = sessionStorage.getItem('eduEnd');
+if(sessionStorage.getItem("eduDescription")) eduDesc.textContent = sessionStorage.getItem("eduDescription");
+
+}
+retrieveEducation();
 
 }
 retrieveData();
@@ -113,7 +132,7 @@ const validation = function(field){
       return;
     }
    //validate dates
-    if(field.id ==="start"||field.id==="end"){
+    if(field.id ==="start"||field.id==="end" || field.id==="eduEnd"){
       field.style.border = '2px solid #98E37E'
       const date = new Date(field.value)
       if(date.getFullYear()<=1970){
@@ -121,12 +140,17 @@ const validation = function(field){
       }
       return;
     }
+    
+    //Validate degrees
+    if(field.id ==="degree"){
+      field.style.border = '2px solid #98E37E'
+      return;
+    }
 
 
     //validate fields with show/hide icon
     const show = document.querySelector(`.show-${field.id}`);
     const hide = document.querySelector(`.hide-${field.id}`);
-    
     if(field.checkValidity()){       
     if(show==null){
         field.style.border = '2px solid #98E37E'
@@ -135,7 +159,9 @@ const validation = function(field){
        ||field.id==='about'
        ||field.id==='start'
        ||field.id==="end"
-       ||field.id==="jobDescription")
+       ||field.id==="jobDescription"
+       ||field.id==="eduEnd"
+       ||field.id==="eduDescription")
        return;
      show.classList.remove('hidden');
      hide.classList.add('hidden');
@@ -149,7 +175,7 @@ const validation = function(field){
 }
 
 //Sending data to seesionStorage
-/////First form
+/////Information form
 document.querySelector('.inputDetails').addEventListener('input',function(e){ 
 validation(e.target);
 btnEnabler();
@@ -175,7 +201,7 @@ btnEnabler();
         }
    retrieveData();
 })
-/////Second form
+/////Experience form
 document.querySelector('.experience').addEventListener('input',function(e){
 validation(e.target);
 btnEnabler();
@@ -184,7 +210,18 @@ if(e.target.checkValidity()){
   sessionStorage.setItem(e.target.id, e.target.value);
 }
 })
-
+////Education form
+document.querySelector('.education').addEventListener('input',function(e){
+  validation(e.target);
+  if(e.target.value !="null"){
+  document.querySelector('.educationCV').classList.remove('hide');
+  }
+  btnEnabler();
+  retrieveData();
+  if(e.target.checkValidity()){
+    sessionStorage.setItem(e.target.id, e.target.value);
+  }
+})
 }
 
 renderInfo();

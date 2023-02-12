@@ -209,7 +209,7 @@
             <h2 class="dateHead">
               ხარისხი
             </h2>
-            <select class="degree">
+            <select class="degree" id="degree">
               <option class="options" selected disabled required>აირჩიეთ ხარისხი</option>
             </select>
             
@@ -218,13 +218,13 @@
             <h2 class="dateHead">
               დასრულების რიცხვი
             </h2>
-            <input class="date" id="end" type="date"  required>
+            <input class="date" id="eduEnd" type="date"  required>
           </div>
         </div>
 
         <div class="edu">
           <h2 class="dateHead">აღწერა</h2>
-          <textarea class="eduDescription" placeholder="განათლების აღწერა" minlength="1" required></textarea>
+          <textarea class="eduDescription" id="eduDescription" placeholder="განათლების აღწერა" minlength="1" required></textarea>
         </div>
 
         <hr class="underLine">
@@ -237,7 +237,7 @@
           <button class="backWard" type="button">უკან</button>
         
         
-
+<!-- Resume markup -->
         <div style="width: 45%" class="resume">
           <div class="cvContent">
             <div class="infoCV">
@@ -261,6 +261,14 @@
             <h5 class="startEnd"></h5>
             <h5 class="descriptionCv"></h5>
           </div>
+          <div class="educationCV hide">
+            <hr>
+            <h2 class="educationHeader">განათლება</h2>
+            <p class="universityCV"></p>
+            <h5 class="eduEnd"></h5>
+            <h5 class="eduDescriptionCV"></h5>
+          </div>
+          
 
           <div class="icon">
             <img class="logoIcon" src="./images/logo-icon.svg" />
