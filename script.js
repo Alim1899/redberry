@@ -73,7 +73,17 @@ const validation = function(field){
       field.value=field.value.replace(/\s/g,'');      
 }
     }
-    
+
+    if(field.id ==="start"||field.id==="end"){
+      field.style.border = '2px solid #98E37E'
+      const date = new Date(field.value)
+      if(date.getFullYear()<=1970){
+        field.style.border = '2px solid #EF5050'
+      }
+      return;
+    }
+
+
     
     const show = document.querySelector(`.show-${field.id}`);
     const hide = document.querySelector(`.hide-${field.id}`);
@@ -82,13 +92,16 @@ const validation = function(field){
     if(show==null){
         field.style.border = '2px solid #98E37E'
     }
-    if(field.id==='image' || field.id==='about')return;
-        
+    if(field.id==='image'
+       ||field.id==='about'
+       ||field.id==='start'
+       ||field.id==="end"
+       ||field.id==="jobDescription")
+       return;
      show.classList.remove('hidden');
      hide.classList.add('hidden');
         field.style.border = '2px solid #98E37E'
     }else{
-       
         show.classList.add('hidden');
         hide.classList.remove('hidden');
         field.style.border = '2px solid #EF5050'
@@ -97,14 +110,10 @@ const validation = function(field){
 }
 
 //Sending data to seesionStorage
-document.addEventListener('input',function(e){ 
-
+/////First form
+document.querySelector('.inputDetails').addEventListener('input',function(e){ 
 validation(e.target);
 btnEnabler();
-
-
-
-    const inputChecker = function(){
         if(e.target.checkValidity()){
              if(e.target.id!=='image'){
             sessionStorage.setItem(e.target.id,e.target.value)
@@ -125,18 +134,18 @@ btnEnabler();
     }
         }
         }
-       
-        
-    }
-    inputChecker();
-
-   
    retrieveData();
 })
-
-
-//Events for submit button
-
+/////Second form
+document.querySelector('.experience').addEventListener('input',function(e){
+validation(e.target);
+btnEnabler();
+console.log(e.target.checkValidity());
+if(e.target.checkValidity()){
+  console.log('valid');
+  sessionStorage.setItem(e.target.id, e.target.value);
+}
+})
 
 }
 
@@ -191,12 +200,13 @@ document.querySelector('.backWard').style.visibility = "visible";
 
 
 
-const navigation = function(){
-    //Selections for navigate
+
+// Event for start filling fields
+const buttonFunctions = function(){
+//Selections for navigate
 const addResume = document.querySelector('.addResume');
 const backWard = document.querySelector('.backWard');
 const back = document.querySelector('.back');
-
 
 // Event listener for returning main page and reset data
 back.addEventListener('click',function(){
@@ -209,11 +219,11 @@ back.addEventListener('click',function(){
     document.querySelector('.backWard').style.visibility = "hidden";
 })
 
-// Event for start filling fields
-addResume.addEventListener('click',function(e){
+
+
+  addResume.addEventListener('click',function(e){
     document.querySelector('.education').classList.add('hide');
     document.querySelector('.experience').classList.add('hide');
-
     document.querySelector('.backWard').classList.add('hidden');
 document.querySelector('.info').classList.remove('hide');
  document.querySelector('.firstPage').classList.add('hide');
@@ -260,9 +270,6 @@ backWard.addEventListener('click',function(e){
         }
     
 })
-
-
-
 //Event for stay in same page when refreshi
 window.addEventListener('load',function(e){
     e.preventDefault();
@@ -306,13 +313,13 @@ window.addEventListener('load',function(e){
         info.appendChild(span);
         document.querySelector('.experience').classList.add('hide');
         document.querySelector('.submit').textContent = "დასრულება";
-
     }
 
 
 
 
-
+   /////////////////////////////////////////////
+   //Adding new experience and new education
     const addExperience = document.querySelector('.addExperience');
     const form2 = document.querySelector('.experience');
     const addEducation  = document.querySelector('.addEducation');
@@ -346,7 +353,7 @@ window.addEventListener('load',function(e){
 
       <div class="edu">
         <h2 class="dateHead">აღწერა</h2>
-        <textarea class="eduDescription" placeholder="განათლების აღწერა"></textarea>
+        <textarea class="eduDescription"  placeholder="განათლების აღწერა"></textarea>
       </div>
 
       <hr class="underLine">`)
@@ -379,7 +386,7 @@ window.addEventListener('load',function(e){
           <h2 class="dateHead">
             დაწყების რიცხვი
           </h2>
-          <input class="start" type="date">
+          <input class="start" id="start" type="date">
         </div>
         
         
@@ -387,30 +394,31 @@ window.addEventListener('load',function(e){
             <h2 class="dateHead">
               დასრულების რიცხვი
             </h2>
-            <input class="end" type="date">
+            <input class="end" id="end" type="date">
           </div>
       </div>
       <div class="job">
         <h2 class="dateHead">აღწერა</h2>
-        <textarea class="jobDescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"></textarea>
+        <textarea class="jobDescription" id="jobDescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"></textarea>
       </div>
       <hr class="underLine">`)
     })
 
 })
+}
+buttonFunctions();
+
+
 
 pagesNavigation();
-}
+
 renderInfo();
 
-navigation();
 
 
 const degree = document.querySelector('.degree');
-console.log(degree);
  fetch( 'https://resume.redberryinternship.ge/api/degrees')
 .then(response=>response.json()
 .then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
   <option class="options">${el.title}</options>`) )
-  
 }))
