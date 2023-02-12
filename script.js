@@ -406,3 +406,11 @@ renderInfo();
 navigation();
 
 
+const degree = document.querySelector('.degree');
+console.log(degree);
+ fetch( 'https://resume.redberryinternship.ge/api/degrees')
+.then(response=>response.json()
+.then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
+  <option class="options">${el.title}</options>`) )
+  
+}))

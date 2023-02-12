@@ -72,3 +72,6 @@
     margin-left: var(--left);
     cursor: pointer;
 }
+.degree{
+    height: 48px;
+}
