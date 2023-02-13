@@ -39,67 +39,67 @@ const retrieveData = function(){
   const retrieveInfo = function(){
 //Retrieving name and lastname, then creating fullname
 fullname.textContent = 
-(sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
+(localStorage.getItem('name') ?localStorage.getItem('name'):'')
 + ' ' + 
-(sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
+(localStorage.getItem('lastname')?localStorage.getItem('lastname'):(''));
 
 //Retrieve image
-if(sessionStorage.getItem('src')) {
+if(localStorage.getItem('src')) {
 imgCV.classList.remove('hidden');
-imgCV.src=sessionStorage.getItem('src');
+imgCV.src=localStorage.getItem('src');
 }
 
 //Show/hide about me section
-if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
-aboutCV.textContent = sessionStorage.getItem('about'); 
+if(localStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
+aboutCV.textContent = localStorage.getItem('about'); 
 
 //Fontawesome icons
     const emailIcon = '<i class="fa-solid fa-at"></i>';
     const dialIcon = '<i class="fa-solid fa-phone"></i>';
 
-if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
+if(localStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + localStorage.getItem('email');
 else emailCV.textContent ='';
 
-if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
+if(localStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + localStorage.getItem('number');
 else numberCV.textContent = '';
 
   }  
   retrieveInfo();   
 const retrieveExperience = function(){
-  if(sessionStorage.getItem('position')||
-  sessionStorage.getItem('employer')||
-  sessionStorage.getItem('jobDescription')  
+  if(localStorage.getItem('position')||
+  localStorage.getItem('employer')||
+  localStorage.getItem('jobDescription')  
   ){
     document.querySelector('.experienceCV').classList.remove('hide')
   }
-  if(sessionStorage.getItem('position')&&
-  sessionStorage.getItem('employer')){
-    positionCV.textContent = sessionStorage.getItem('position')
-    + ', ' +sessionStorage.getItem('employer') ;
+  if(localStorage.getItem('position')&&
+  localStorage.getItem('employer')){
+    positionCV.textContent = localStorage.getItem('position')
+    + ', ' +localStorage.getItem('employer') ;
   }
-  if(sessionStorage.getItem('jobDescription'))
-   jobDesc.textContent = sessionStorage.getItem('jobDescription');
+  if(localStorage.getItem('jobDescription'))
+   jobDesc.textContent = localStorage.getItem('jobDescription');
 
-   if(sessionStorage.getItem("start")&&
-   sessionStorage.getItem("start")
-   )jobtDate.textContent = sessionStorage.getItem('start') +
-   " - " + sessionStorage.getItem('end');
+   if(localStorage.getItem("start")&&
+   localStorage.getItem("start")
+   )jobtDate.textContent = localStorage.getItem('start') +
+   " - " + localStorage.getItem('end');
 }
 retrieveExperience();
 
 const retrieveEducation = function(){
   document.querySelector('.educationCV')
-if(sessionStorage.getItem('university')) {
-  if(!sessionStorage.getItem('degree')){
-      university.textContent = sessionStorage.getItem('university');
+if(localStorage.getItem('university')) {
+  if(!localStorage.getItem('degree')){
+      university.textContent = localStorage.getItem('university');
   }
-  if(sessionStorage.getItem('degree')){
-    university.textContent = sessionStorage.getItem('university')
-    + ", " + sessionStorage.getItem("degree");
+  if(localStorage.getItem('degree')){
+    university.textContent = localStorage.getItem('university')
+    + ", " + localStorage.getItem("degree");
 }
 }
-if(sessionStorage.getItem("eduEnd")) eduEnd.textContent = sessionStorage.getItem('eduEnd');
-if(sessionStorage.getItem("eduDescription")) eduDesc.textContent = sessionStorage.getItem("eduDescription");
+if(localStorage.getItem("eduEnd")) eduEnd.textContent = localStorage.getItem('eduEnd');
+if(localStorage.getItem("eduDescription")) eduDesc.textContent = localStorage.getItem("eduDescription");
 
 }
 retrieveEducation();
@@ -226,11 +226,13 @@ const validation = function(field){
 document.querySelector('.inputDetails').addEventListener('input',function(e){ 
 validation(e.target);
         if(e.target.checkValidity()){
+          
              if(e.target.id!=='image'){
-            sessionStorage.setItem(e.target.id,e.target.value)
+            localStorage.setItem(e.target.id,e.target.value)
         }
         if(e.target.id==='image'){
-
+          console.log(e.target.value.name);
+          localStorage.setItem('image',e.target.value);
              if (img.files && img.files[0]){
             if(img.files[0].size>=2000000){
                 alert('გთხოვთ შეარჩიოთ უფრო მცირე ზომის ფოტო (მაქს:2მბ)');
@@ -238,7 +240,8 @@ validation(e.target);
             }
         var reader = new FileReader();
         reader.onload = function (e) { 
-            sessionStorage.setItem('src',e.target.result);
+         
+            localStorage.setItem('src',e.target.result);
             retrieveData();
         }
         reader.readAsDataURL(img.files[0]);
@@ -257,7 +260,7 @@ document.querySelector('.experience').addEventListener('input',function(e){
 validation(e.target);
 retrieveData();
 if(e.target.checkValidity()){
-  sessionStorage.setItem(e.target.id, e.target.value);
+  localStorage.setItem(e.target.id, e.target.value);
 }
 })
 ////Education form
@@ -270,7 +273,7 @@ document.querySelector('.education').addEventListener('input',function(e){
   }
   
   if(e.target.checkValidity()){
-    sessionStorage.setItem(e.target.id, e.target.value);
+    localStorage.setItem(e.target.id, e.target.value);
   }
  btnEnabler();
   retrieveData();
@@ -368,7 +371,7 @@ back.addEventListener('click',function(){
     document.querySelector('.firstPage').classList.remove('hide');
     document.location.hash = '#firstPage';
     document.querySelector('.info').classList.add('hide');
-    sessionStorage.clear();
+    localStorage.clear();
     location.reload();
     document.querySelector('.backWard').style.visibility = "hidden";
 })
@@ -469,9 +472,9 @@ window.addEventListener('load',function(e){
         document.querySelector('.submit').textContent = "დასრულება";
     }
     if(document.location.hash ==="#resume"){
-     document.location.hash = "#firstpage";
-     sessionStorage.clear();
-     location.reload();
+    //  document.location.hash = "#firstpage";
+    //  localStorage.clear();
+    //  location.reload();
     }
 
 
@@ -586,7 +589,44 @@ const degree = document.querySelector('.degree');
 
 
 
-// console.log(sessionStorage);
+// console.log(localStorage);
 // if(document.location.hash === "#resume"){
-//   const formData = new FormData(se)
+//   const formData = localStorage;
+// console.log(formData);
 // }
+
+
+fetch('https://resume.redberryinternship.ge/api/cvs', {
+    method: 'POST',
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ "name": localStorage.getItem('name'),
+    "surname":localStorage.getItem('lastname'),
+     "email":localStorage.getItem('email'),
+     "phone_number":localStorage.getItem('number'),
+     "experiences":[
+      {
+              "position":localStorage.getItem('position'),
+              "employer":localStorage.getItem('employer'),
+              "start_date":localStorage.getItem('start'),
+              "due_date":localStorage.getItem('end'),
+              "description":localStorage.getItem('jobDescription')
+      }
+     ],
+     "educations":[
+      {
+        "institute":localStorage.getItem('university'),
+        "degree":localStorage.getItem('degree'),
+        "due_date":localStorage.getItem('eduEnd'),
+        "descpription":localStorage.getItem('eduDescription')
+      }
+     ],
+     "image":localStorage.getItem('image'),
+     "about_me":localStorage.getItem('about')
+
+    })
+})
+.then(response => response.json())
+.then(response => console.log(JSON.stringify(response)))
