@@ -635,6 +635,9 @@
 
 
 //Checking inputted fields validation
+
+
+
 const fieldColor = function(field){
     //Restriction for space character in number input field
     //Vlidate number
@@ -704,11 +707,7 @@ const info = document.querySelector('.info');
 const experience = document.querySelector('.experience');
 const education = document.querySelector('.education');
 
-document.querySelector('.addResume').addEventListener('click',function(){
-  firstPage.classList.add('hide');
-  info.classList.remove('hide');
-  counter++;
-})
+
 
 const dataSaver = function(e){
   fieldColor(e.target);
@@ -722,14 +721,131 @@ const dataSaver = function(e){
 
 
   document.addEventListener('input',function(e){
-    if(counter===1){
-
       dataSaver(e);
-    }
-    
     
 })
+window.addEventListener('load',function(){      
+})
 
-console.log(window.performance.getEntriesByType("navigation")[0].type)// if(window.location.reload()){
+
+////Navigation;
+const navigate = function(){
+ const next = document.querySelector('.submit');
+ const back = document.querySelector('.backward');
+ const reset = document.querySelector('.back');
+ const start = document.querySelector('.addResume');
+
+ start.addEventListener('click',function(){
+  back.style.visibility = "hidden";
+  firstPage.classList.add('hide');
+  info.classList.remove('hide');
+  console.log(counter);
+})
+ 
+ reset.addEventListener('click',function(){
+  counter=0;
+  console.log(counter);
+  back.style.visibility = "hidden";
+  next.textContent = "შემდეგი";
+ })
+  next.addEventListener('click',function(){
+    if(counter!==3) counter++;
+    back.style.visibility = "visible";
+    if(counter===3){
+      next.textContent = "დასრულება";
+      return;
+    }
+    console.log(counter);
+       if(counter===0||counter===1)back.style.visibility = "hidden";
+  })
+ 
+    
+  
+  back.addEventListener('click',function(){
+    next.textContent = "შემდეგი";
+   if(counter!==0) counter--;
+   if(counter===0||counter===1)back.style.visibility = "hidden";
+   console.log(counter);
+    console.log(counter);
+
+    next.textContent = "შემდეგი";
+
+  })
+    
+ 
+}
+
+navigate();
+
+//  ///Render page
+//  const renderer =  function(){
+//   document.querySelector('.submit').addEventListener('click',function(){
+//     if(counter<4)counter++;
+//     if(counter>=4)return;
+//   });
+
+//   if(counter===0){
+// document.querySelector('.backward').style.visibility = "hidden";
+//   }else{
+//     document.querySelector('.backward').style.visibility = "visible";
+//   }
+//   document.querySelector('.backward').addEventListener('click',function(){
+//     if(counter===0)document.querySelector('.backward').style.visibility = "hidden";
+//     if(counter>0)counter--;
+//     if(counter<=0)return;
+
+//   });
+
+//  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Stay same page when reload
+// const stayPage = function(pageNumber){
+//   console.log(counter); 
+//        counter++;
+//     firstPage.classList.add('hide');
+//     info.classList.remove('hide');
+// console.log(counter);
 // }
-

@@ -177,7 +177,7 @@ cursor:help;
    color: white;
    margin-left: -275px;
    margin-top: 800px;
-   cursor: not-allowed;
+   cursor: pointer;
 }
 .backWard{
     position: absolute;
