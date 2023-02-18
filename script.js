@@ -728,31 +728,50 @@ const navigate = function(){
  const start = document.querySelector('.addResume');
 
  start.addEventListener('click',function(){ 
-  //back.style.visibility = "hidden";
   counter=1;
   firstPage.classList.add('hide');
   info.classList.remove('hide');
+  console.log("Info", counter);
 })
  
  reset.addEventListener('click',function(){
   counter=0;
   firstPage.classList.remove('hide');
+  info.classList.add('hide');
+  experience.classList.add('hide');
+  education.classList.add('hide');
+  console.log("Resetted", counter);
  })
   next.addEventListener('click',function(){
-
+   
     if(counter===1){
       counter++;
-      info.classList.add('hide');
       experience.classList.remove('hide');
-    } 
-    back.style.visibility = "visible";
-    if(counter===3){
-      
+     info.classList.add('hide');
+      back.style.visibility = "visible";
+      console.log("Experience", counter);
+      return;
+
+    }
+    if(counter===2){
+      counter++;
+      experience.classList.add('hide');
+      education.classList.remove('hide');
+      console.log("Education", counter);
       next.textContent = "დასრულება";
       return;
+
+
     }
-    console.log(counter);
+   
+
+    if(counter>3){ 
+      console.log(counter);
+    }
+
+
        if(counter===0||counter===1)back.style.visibility = "hidden";
+   
   })
   back.addEventListener('click',function(){
     next.textContent = "შემდეგი";
