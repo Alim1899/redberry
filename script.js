@@ -703,12 +703,9 @@ const fieldColor = function(field){
 
 let counter = 0;
 const firstPage = document.querySelector('.firstPage');
-const info = document.querySelector('.info');
+const info = document.querySelector('.inputDetails');
 const experience = document.querySelector('.experience');
 const education = document.querySelector('.education');
-
-
-
 const dataSaver = function(e){
   fieldColor(e.target);
   if(e.target.checkValidity()){
@@ -718,25 +715,21 @@ const dataSaver = function(e){
 }
   }
 }
-
-
   document.addEventListener('input',function(e){
-      dataSaver(e);
-    
+      dataSaver(e);  
 })
 window.addEventListener('load',function(){      
 })
-
-
-////Navigation;
+////Navigation
 const navigate = function(){
  const next = document.querySelector('.submit');
  const back = document.querySelector('.backward');
  const reset = document.querySelector('.back');
  const start = document.querySelector('.addResume');
 
- start.addEventListener('click',function(){
+ start.addEventListener('click',function(){ 
   back.style.visibility = "hidden";
+  counter=1;
   firstPage.classList.add('hide');
   info.classList.remove('hide');
   console.log(counter);
@@ -744,62 +737,33 @@ const navigate = function(){
  
  reset.addEventListener('click',function(){
   counter=0;
+  firstPage.classList.remove('hide');
   console.log(counter);
-  back.style.visibility = "hidden";
-  next.textContent = "შემდეგი";
  })
   next.addEventListener('click',function(){
     if(counter!==3) counter++;
+    renderer();
     back.style.visibility = "visible";
     if(counter===3){
+      
       next.textContent = "დასრულება";
       return;
     }
     console.log(counter);
        if(counter===0||counter===1)back.style.visibility = "hidden";
   })
- 
-    
-  
   back.addEventListener('click',function(){
     next.textContent = "შემდეგი";
    if(counter!==0) counter--;
    if(counter===0||counter===1)back.style.visibility = "hidden";
    console.log(counter);
     console.log(counter);
-
     next.textContent = "შემდეგი";
-
   })
-    
- 
+   
 }
 
 navigate();
-
-//  ///Render page
-//  const renderer =  function(){
-//   document.querySelector('.submit').addEventListener('click',function(){
-//     if(counter<4)counter++;
-//     if(counter>=4)return;
-//   });
-
-//   if(counter===0){
-// document.querySelector('.backward').style.visibility = "hidden";
-//   }else{
-//     document.querySelector('.backward').style.visibility = "visible";
-//   }
-//   document.querySelector('.backward').addEventListener('click',function(){
-//     if(counter===0)document.querySelector('.backward').style.visibility = "hidden";
-//     if(counter>0)counter--;
-//     if(counter<=0)return;
-
-//   });
-
-//  }
-
-
-
 
 
 
