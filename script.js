@@ -728,21 +728,23 @@ const navigate = function(){
  const start = document.querySelector('.addResume');
 
  start.addEventListener('click',function(){ 
-  back.style.visibility = "hidden";
+  //back.style.visibility = "hidden";
   counter=1;
   firstPage.classList.add('hide');
   info.classList.remove('hide');
-  console.log(counter);
 })
  
  reset.addEventListener('click',function(){
   counter=0;
   firstPage.classList.remove('hide');
-  console.log(counter);
  })
   next.addEventListener('click',function(){
-    if(counter!==3) counter++;
-    renderer();
+
+    if(counter===1){
+      counter++;
+      info.classList.add('hide');
+      experience.classList.remove('hide');
+    } 
     back.style.visibility = "visible";
     if(counter===3){
       

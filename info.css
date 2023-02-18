@@ -168,30 +168,21 @@ cursor:help;
 }
 /* Styling button */
 
-.submit{
-    position: absolute;
-   width: 151px;
-   height: 48px;
-   background-color: #6B40E3;
-   border: none;
-   border-radius: 5px;
-   color: white;
-   margin-left: -275px;
-   margin-top: 800px;
-   cursor: pointer;
-}
-.backWard{
-    position: absolute;
+
+.backWard, .submit{
     width: 151px;
     height: 48px;
     background-color: #6B40E3;
     border: none;
     border-radius: 5px;
     color: white;
-    margin-left: -50%;
-    margin-top: 800px;
     cursor: pointer;
-}
+} 
 .navigation{
-   
+   position: absolute;
+   margin-top: 45%;
+   width: 798px;
+   margin-left: 130px;
+   display: flex;
+   justify-content: space-between;
 }
