@@ -721,23 +721,33 @@ const dataSaver = function(e){
 
 
 const render = function(){
+  const header = document.querySelector('.pageHead');
+  const number = document.querySelector('.pageNumber');
+  header.textContent = "პირადი ინფო";
+  number.textContent = "1/3";
   if(counter===0){
+     header.textContent = "პირადი ინფო";
+     number.textContent = "1/3";
     firstPage.classList.add('hide');
     info.classList.remove('hide');
     education.classList.add('hide');
     experience.classList.add('hide');
   }
   if(counter===1){
-    firstPage.classList.add('hide');
-    info.classList.add('hide');
-    education.classList.remove('hide');
-    experience.classList.add('hide');
-  }
-  if(counter===2){
+    header.textContent = "გამოცდილება";
+    number.textContent = "2/3";
     firstPage.classList.add('hide');
     info.classList.add('hide');
     education.classList.add('hide');
     experience.classList.remove('hide');
+  }
+  if(counter===2){
+    header.textContent = "განათლება";
+    number.textContent = "3/3";
+    firstPage.classList.add('hide');
+    info.classList.add('hide');
+    education.classList.remove('hide');
+    experience.classList.add('hide');
   }
 }
 
