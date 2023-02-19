@@ -4,15 +4,9 @@
     src: url('./fonts/HelveticaNeue.ttc') format('truetype');
     font-weight: normal;
 }
-/* overall */
-*{
-    font-family: 'HelveticaNeue';
-    box-sizing: border-box;
-    padding: 0;
-}
 
 .info{
-    background-color:#f7f7f7 ;
+    background-color:#f3eeee ;
     width: 1920px;
     height: 1080px;
 }
@@ -21,7 +15,7 @@ textarea:focus,input:focus{
 }
 /* styling both containers */
 .container{
-    margin: auto;
+
     width: 100vw;
     height: 100vh;
     overflow-y: scroll;
@@ -179,7 +173,8 @@ cursor:help;
     cursor: pointer;
 } 
 .navigation{
-   position: absolute;
+    position: fixed;
+    margin: 0;
    margin-top: 38%;
    width: 798px;
    margin-left: 130px;
