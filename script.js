@@ -718,119 +718,68 @@ const dataSaver = function(e){
   document.addEventListener('input',function(e){
       dataSaver(e);  
 })
-window.addEventListener('load',function(){      
-})
-////Navigation
-const navigate = function(){
- const next = document.querySelector('.submit');
- const back = document.querySelector('.backward');
- const reset = document.querySelector('.back');
- const start = document.querySelector('.addResume');
-
- start.addEventListener('click',function(){ 
-  counter=1;
-  firstPage.classList.add('hide');
-  info.classList.remove('hide');
-  console.log("Info", counter);
-})
- 
- reset.addEventListener('click',function(){
-  counter=0;
-  firstPage.classList.remove('hide');
-  info.classList.add('hide');
-  experience.classList.add('hide');
-  education.classList.add('hide');
-  console.log("Resetted", counter);
- })
-  next.addEventListener('click',function(){
-   
-    if(counter===1){
-      counter++;
-      experience.classList.remove('hide');
-     info.classList.add('hide');
-      back.style.visibility = "visible";
-      console.log("Experience", counter);
-      return;
-
-    }
-    if(counter===2){
-      counter++;
-      experience.classList.add('hide');
-      education.classList.remove('hide');
-      console.log("Education", counter);
-      next.textContent = "დასრულება";
-      return;
 
 
-    }
-   
-
-    if(counter>3){ 
-      console.log(counter);
-    }
-
-
-       if(counter===0||counter===1)back.style.visibility = "hidden";
-   
-  })
-  back.addEventListener('click',function(){
-    next.textContent = "შემდეგი";
-   if(counter!==0) counter--;
-   if(counter===0||counter===1)back.style.visibility = "hidden";
-   console.log(counter);
-    console.log(counter);
-    next.textContent = "შემდეგი";
-  })
-   
+const render = function(){
+  if(counter===0){
+    firstPage.classList.add('hide');
+    info.classList.remove('hide');
+    education.classList.add('hide');
+    experience.classList.add('hide');
+  }
+  if(counter===1){
+    firstPage.classList.add('hide');
+    info.classList.add('hide');
+    education.classList.remove('hide');
+    experience.classList.add('hide');
+  }
+  if(counter===2){
+    firstPage.classList.add('hide');
+    info.classList.add('hide');
+    education.classList.add('hide');
+    experience.classList.remove('hide');
+  }
 }
 
-navigate();
+
+const buttons = function(){
+  const next = document.querySelector('.submit');
+  const back = document.querySelector('.backward');
+  const reset = document.querySelector('.back');
+  const add = document.querySelector('.addResume');
+  reset.addEventListener('click',function(){
+    counter = 0;
+    firstPage.classList.remove('hide');
+    info.classList.add('hide');
+    education.classList.add('hide');
+    experience.classList.add('hide');
+  })
+  add.addEventListener('click',function(){
+    firstPage.classList.add('hide');
+    info.classList.remove('hide');
+    education.classList.add('hide');
+    experience.classList.add('hide');
+  })
 
 
+  next.addEventListener('click',function(){
+    if(counter<2) {
+      counter++;
+      if(counter===1)back.classList.remove('hidden');
+      if(counter===2)next.textContent = "დასრულება";
+    }  
+    console.log(counter);
+    render();
+    
+  })
+  back.addEventListener('click',function(){
+    if(counter===2)next.textContent = "შემდეგი";
+    if(counter>0)    counter--;
+    if(counter===0) back.classList.add('hidden');
+    console.log(counter);
+      render();
+  })
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Stay same page when reload
-// const stayPage = function(pageNumber){
-//   console.log(counter); 
-//        counter++;
-//     firstPage.classList.add('hide');
-//     info.classList.remove('hide');
-// console.log(counter);
-// }
+buttons();
