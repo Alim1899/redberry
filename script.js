@@ -706,6 +706,9 @@ const firstPage = document.querySelector('.firstPage');
 const info = document.querySelector('.inputDetails');
 const experience = document.querySelector('.experience');
 const education = document.querySelector('.education');
+
+
+//Saving data in sessionStorage
 const dataSaver = function(e){
   fieldColor(e.target);
   if(e.target.checkValidity()){
@@ -719,7 +722,7 @@ const dataSaver = function(e){
       dataSaver(e);  
 })
 
-
+//redering pages according to counter variable
 const render = function(){
   const header = document.querySelector('.pageHead');
   const number = document.querySelector('.pageNumber');
@@ -751,13 +754,14 @@ const render = function(){
   }
 }
 
-
+//Changing counter variable and rendering pages
 const buttons = function(){
   const next = document.querySelector('.submit');
   const back = document.querySelector('.backward');
   const reset = document.querySelector('.back');
   const add = document.querySelector('.addResume');
   reset.addEventListener('click',function(){
+    reset.classList.add('hidden');
     counter = 0;
     firstPage.classList.remove('hide');
     info.classList.add('hide');
@@ -765,13 +769,12 @@ const buttons = function(){
     experience.classList.add('hide');
   })
   add.addEventListener('click',function(){
+    reset.classList.remove('hidden');
     firstPage.classList.add('hide');
     info.classList.remove('hide');
     education.classList.add('hide');
     experience.classList.add('hide');
   })
-
-
   next.addEventListener('click',function(){
     if(counter<2) {
       counter++;
@@ -780,7 +783,6 @@ const buttons = function(){
     }  
     console.log(counter);
     render();
-    
   })
   back.addEventListener('click',function(){
     if(counter===2)next.textContent = "შემდეგი";
@@ -789,7 +791,6 @@ const buttons = function(){
     console.log(counter);
       render();
   })
-
 }
 
 buttons();
