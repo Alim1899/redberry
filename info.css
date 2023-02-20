@@ -5,6 +5,9 @@
     font-weight: normal;
 }
 
+.lazy{
+    filter: blur(20px);
+}
 .info{
     background-color:#f3eeee ;
     width: 1920px;

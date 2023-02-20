@@ -634,10 +634,27 @@
 
 
 
+//Render first pages image
+const img =  document.querySelectorAll('img[data-src]');
+
+const loadimg = function(entries,observer){
+  const [entry] = entries;
+  
+  entry.target.src = entry.target.dataset.src
+  entry.target.addEventListener('load',function(){
+    entry.target.classList.remove('lazy')
+  })
+};
+const observer = new IntersectionObserver(loadimg,
+  {
+    root:null,
+    treshold: 0
+  })
+
+  img.forEach(img=>observer.observe(img));
+
+
 //Checking inputted fields validation
-
-
-
 const fieldColor = function(field){
     //Restriction for space character in number input field
     //Vlidate number
@@ -792,5 +809,4 @@ const buttons = function(){
       render();
   })
 }
-
 buttons();
