@@ -635,6 +635,7 @@
 
 
 //Render first pages image
+const observe = function(){
 const img =  document.querySelectorAll('img[data-src]');
 
 const loadimg = function(entries,observer){
@@ -652,6 +653,9 @@ const observer = new IntersectionObserver(loadimg,
   })
 
   img.forEach(img=>observer.observe(img));
+}
+observe();
+
 
 
 //Checking inputted fields validation
@@ -739,13 +743,15 @@ const dataSaver = function(e){
       dataSaver(e);  
 })
 
+
+
 //redering pages according to counter variable
-const render = function(){
+const render = function(page){
   const header = document.querySelector('.pageHead');
   const number = document.querySelector('.pageNumber');
   header.textContent = "პირადი ინფო";
   number.textContent = "1/3";
-  if(counter===0){
+  if(page===0){
      header.textContent = "პირადი ინფო";
      number.textContent = "1/3";
     firstPage.classList.add('hide');
@@ -753,7 +759,7 @@ const render = function(){
     education.classList.add('hide');
     experience.classList.add('hide');
   }
-  if(counter===1){
+  if(page===1){
     header.textContent = "გამოცდილება";
     number.textContent = "2/3";
     firstPage.classList.add('hide');
@@ -761,7 +767,7 @@ const render = function(){
     education.classList.add('hide');
     experience.classList.remove('hide');
   }
-  if(counter===2){
+  if(page===2){
     header.textContent = "განათლება";
     number.textContent = "3/3";
     firstPage.classList.add('hide');
@@ -770,6 +776,19 @@ const render = function(){
     experience.classList.add('hide');
   }
 }
+//Stay same page when reload
+const catchReload = function(){
+  window.addEventListener('load',function(){
+ 
+  if(localStorage.getItem('counter')==0)render(0);
+  if(localStorage.getItem('counter')==1)render(1);
+  if(localStorage.getItem('counter')==2)render(2);
+  console.log(counter);
+} 
+)
+}
+
+
 
 //Changing counter variable and rendering pages
 const buttons = function(){
@@ -780,12 +799,14 @@ const buttons = function(){
   reset.addEventListener('click',function(){
     reset.classList.add('hidden');
     counter = 0;
+    localStorage.clear();
     firstPage.classList.remove('hide');
     info.classList.add('hide');
     education.classList.add('hide');
     experience.classList.add('hide');
   })
   add.addEventListener('click',function(){
+    localStorage.setItem('counter',counter);
     reset.classList.remove('hidden');
     firstPage.classList.add('hide');
     info.classList.remove('hide');
@@ -795,18 +816,24 @@ const buttons = function(){
   next.addEventListener('click',function(){
     if(counter<2) {
       counter++;
+      localStorage.setItem('counter',counter);
       if(counter===1)back.classList.remove('hidden');
       if(counter===2)next.textContent = "დასრულება";
-    }  
-    console.log(counter);
-    render();
+    }
+    render(counter);
   })
   back.addEventListener('click',function(){
     if(counter===2)next.textContent = "შემდეგი";
     if(counter>0)    counter--;
+    localStorage.setItem('counter',counter);
     if(counter===0) back.classList.add('hidden');
-    console.log(counter);
-      render();
+      render(counter);
   })
 }
 buttons();
+
+
+
+
+
+catchReload();
