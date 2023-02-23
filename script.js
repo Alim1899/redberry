@@ -580,12 +580,12 @@
 
 
 
-// // const degree = document.querySelector('.degree');
-// //  fetch( 'https://resume.redberryinternship.ge/api/degrees')
-// // .then(response=>response.json()
-// // .then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
-// //   <option class="options">${el.title}</options>`) )
-// // }))
+// const degree = document.querySelector('.degree');
+//  fetch( 'https://resume.redberryinternship.ge/api/degrees')
+// .then(response=>response.json()
+// .then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
+//   <option class="options">${el.title}</options>`) )
+// }))
 
 
 
@@ -747,11 +747,15 @@ const dataSaver = function(e){
 
 //redering pages according to counter variable
 const render = function(page){
+  const next = document.querySelector('.submit');
+  const back = document.querySelector('.backward');
+  const reset = document.querySelector('.back');
   const header = document.querySelector('.pageHead');
   const number = document.querySelector('.pageNumber');
   header.textContent = "პირადი ინფო";
   number.textContent = "1/3";
   if(page===0){
+    reset.classList.remove('hidden');
      header.textContent = "პირადი ინფო";
      number.textContent = "1/3";
     firstPage.classList.add('hide');
@@ -760,30 +764,36 @@ const render = function(page){
     experience.classList.add('hide');
   }
   if(page===1){
+    reset.classList.remove('hidden');
     header.textContent = "გამოცდილება";
     number.textContent = "2/3";
     firstPage.classList.add('hide');
     info.classList.add('hide');
     education.classList.add('hide');
     experience.classList.remove('hide');
+    back.classList.remove('hidden');
   }
   if(page===2){
+    reset.classList.remove('hidden');
     header.textContent = "განათლება";
     number.textContent = "3/3";
     firstPage.classList.add('hide');
     info.classList.add('hide');
     education.classList.remove('hide');
     experience.classList.add('hide');
+    next.textContent = "დასრულება";
+    back.classList.remove('hidden');
   }
 }
 //Stay same page when reload
 const catchReload = function(){
   window.addEventListener('load',function(){
- 
   if(localStorage.getItem('counter')==0)render(0);
   if(localStorage.getItem('counter')==1)render(1);
-  if(localStorage.getItem('counter')==2)render(2);
-  console.log(counter);
+  if(localStorage.getItem('counter')==2){
+    render(2)};
+    this.localStorage.setItem('counter',2);
+
 } 
 )
 }
@@ -817,8 +827,6 @@ const buttons = function(){
     if(counter<2) {
       counter++;
       localStorage.setItem('counter',counter);
-      if(counter===1)back.classList.remove('hidden');
-      if(counter===2)next.textContent = "დასრულება";
     }
     render(counter);
   })
