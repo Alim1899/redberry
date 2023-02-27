@@ -565,7 +565,89 @@
 //catchReload();
 
 
-
+const retrieveData = function(){  
+  // // Selections for rendered cv
+const fullname = document.querySelector('.fullName');
+const aboutCV = document.querySelector('.resumeDetails');
+const emailCV = document.querySelector('.resumeEmail');
+const numberCV = document.querySelector('.resumeNumber');
+const imgCV = document.querySelector('.resumeImg');
+const positionCV = document.querySelector('.positionCV')
+const jobDesc = document.querySelector('.descriptionCV');
+const jobtDate = document.querySelector('.startEnd');
+const university = document.querySelector('.universityCV');
+const eduEnd = document.querySelector('.eduEnd');
+const eduDesc = document.querySelector('.eduDescriptionCV');
+//retrieving data from sessionStorage
+    const retrieveInfo = function(){
+  //Retrieving name and lastname, then creating fullname
+  fullname.textContent = 
+  (sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
+  + ' ' + 
+  (sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
+  
+  //Retrieve image
+  if(sessionStorage.getItem('src')) {
+  imgCV.classList.remove('hidden');
+  imgCV.src=sessionStorage.getItem('src');
+  }
+  
+  //Show/hide about me section
+  if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
+  aboutCV.textContent = sessionStorage.getItem('about'); 
+  
+  //Fontawesome icons
+      const emailIcon = '<i class="fa-solid fa-at"></i>';
+      const dialIcon = '<i class="fa-solid fa-phone"></i>';
+  
+  if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
+  else emailCV.textContent ='';
+  
+  if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
+  else numberCV.textContent = '';
+  
+    }  
+    retrieveInfo();   
+  const retrieveExperience = function(){
+    if(sessionStorage.getItem('position')||
+    sessionStorage.getItem('employer')||
+    sessionStorage.getItem('jobDescription')  
+    ){
+      document.querySelector('.experienceCV').classList.remove('hide')
+    }
+    if(sessionStorage.getItem('position')&&
+    sessionStorage.getItem('employer')){
+      positionCV.textContent = sessionStorage.getItem('position')
+      + ', ' +sessionStorage.getItem('employer') ;
+    }
+    if(sessionStorage.getItem('jobDescription'))
+     jobDesc.textContent = sessionStorage.getItem('jobDescription');
+  
+     if(sessionStorage.getItem("start")&&
+     sessionStorage.getItem("start")
+     )jobtDate.textContent = sessionStorage.getItem('start') +
+     " - " + sessionStorage.getItem('end');
+  }
+  retrieveExperience();
+  
+  const retrieveEducation = function(){
+    document.querySelector('.educationCV')
+  if(sessionStorage.getItem('university')) {
+    if(!sessionStorage.getItem('degree')){
+        university.textContent = sessionStorage.getItem('university');
+    }
+    if(sessionStorage.getItem('degree')){
+      university.textContent = sessionStorage.getItem('university')
+      + ", " + sessionStorage.getItem("degree");
+  }
+  }
+  if(sessionStorage.getItem("eduEnd")) eduEnd.textContent = sessionStorage.getItem('eduEnd');
+  if(sessionStorage.getItem("eduDescription")) eduDesc.textContent = sessionStorage.getItem("eduDescription");
+  
+  }
+  retrieveEducation();
+  
+  }
 
 
 
@@ -661,6 +743,7 @@ const fieldColor = function(field){
         field.style.border = '2px solid #EF5050'
     }
 
+    
 }
 
 let counter = 0;
@@ -673,17 +756,35 @@ const education = document.querySelector('.education');
 //Saving data in sessionStorage
 const dataSaver = function(e){
   fieldColor(e.target);
-  if(e.target.checkValidity()){
+  if(e.target.id!=='image'){
+    if(e.target.checkValidity()){
       sessionStorage.setItem(e.target.id,e.target.value);
   }else{
     sessionStorage.removeItem(e.target.id);
   }
 }
+  if(e.target.id==='image'){
+    const img = document.querySelector('.imageInput');
+    if (img.files && img.files[0]){
+   if(img.files[0].size>=2000000){
+       alert('გთხოვთ შეარჩიოთ უფრო მცირე ზომის ფოტო (მაქს:2მბ)');
+       return;
+   }
+var reader = new FileReader();
+reader.onload = function (e) { 
+
+   sessionStorage.setItem('src',e.target.result);
+   retrieveData();
+}
+reader.readAsDataURL(img.files[0]);
+}
+}
+  }
+  
   document.addEventListener('input',function(e){
       dataSaver(e);  
       retrieveData();
 })
-
 
 
 //redering pages according to counter variable
@@ -770,95 +871,6 @@ const buttons = function(){
 buttons();
 
 
-
-const retrieveData = function(){  
-  const fullname = document.querySelector('.fullName');
-  // // Selections for rendered cv
-
-const aboutCV = document.querySelector('.resumeDetails');
-const emailCV = document.querySelector('.resumeEmail');
-const numberCV = document.querySelector('.resumeNumber');
-const imgCV = document.querySelector('.resumeImg');
-const positionCV = document.querySelector('.positionCV')
-const jobDesc = document.querySelector('.descriptionCV');
-const jobtDate = document.querySelector('.startEnd');
-const university = document.querySelector('.universityCV');
-const eduEnd = document.querySelector('.eduEnd');
-const eduDesc = document.querySelector('.eduDescriptionCV');
-//retrieving data from sessionStorage
-    const retrieveInfo = function(){
-  //Retrieving name and lastname, then creating fullname
-  fullname.textContent = 
-  (sessionStorage.getItem('name') ?sessionStorage.getItem('name'):'')
-  + ' ' + 
-  (sessionStorage.getItem('lastname')?sessionStorage.getItem('lastname'):(''));
-  
-  //Retrieve image
-  if(sessionStorage.getItem('src')) {
-  imgCV.classList.remove('hidden');
-  imgCV.src=sessionStorage.getItem('src');
-  }
-  
-  //Show/hide about me section
-  if(sessionStorage.getItem('about')) document.querySelector('.aboutMeCv').classList.remove('hidden');
-  aboutCV.textContent = sessionStorage.getItem('about'); 
-  
-  //Fontawesome icons
-      const emailIcon = '<i class="fa-solid fa-at"></i>';
-      const dialIcon = '<i class="fa-solid fa-phone"></i>';
-  
-  if(sessionStorage.getItem('email')) emailCV.innerHTML = emailIcon + ' ' + sessionStorage.getItem('email');
-  else emailCV.textContent ='';
-  
-  if(sessionStorage.getItem('number')) numberCV.innerHTML = dialIcon + ' ' + sessionStorage.getItem('number');
-  else numberCV.textContent = '';
-  
-    }  
-    retrieveInfo();   
-  const retrieveExperience = function(){
-    if(sessionStorage.getItem('position')||
-    sessionStorage.getItem('employer')||
-    sessionStorage.getItem('jobDescription')  
-    ){
-      document.querySelector('.experienceCV').classList.remove('hide')
-    }
-    if(sessionStorage.getItem('position')&&
-    sessionStorage.getItem('employer')){
-      positionCV.textContent = sessionStorage.getItem('position')
-      + ', ' +sessionStorage.getItem('employer') ;
-    }
-    if(sessionStorage.getItem('jobDescription'))
-     jobDesc.textContent = sessionStorage.getItem('jobDescription');
-  
-     if(sessionStorage.getItem("start")&&
-     sessionStorage.getItem("start")
-     )jobtDate.textContent = sessionStorage.getItem('start') +
-     " - " + sessionStorage.getItem('end');
-  }
-  retrieveExperience();
-  
-  const retrieveEducation = function(){
-    document.querySelector('.educationCV')
-  if(sessionStorage.getItem('university')) {
-    if(!sessionStorage.getItem('degree')){
-        university.textContent = sessionStorage.getItem('university');
-    }
-    if(sessionStorage.getItem('degree')){
-      university.textContent = sessionStorage.getItem('university')
-      + ", " + sessionStorage.getItem("degree");
-  }
-  }
-  if(sessionStorage.getItem("eduEnd")) eduEnd.textContent = sessionStorage.getItem('eduEnd');
-  if(sessionStorage.getItem("eduDescription")) eduDesc.textContent = sessionStorage.getItem("eduDescription");
-  
-  }
-  retrieveEducation();
-  
-  }
-
-
-
-
   window.addEventListener('load',function(){
     sessionStorage.clear();
-  })
+  });
