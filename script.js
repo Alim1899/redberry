@@ -495,17 +495,6 @@
 
 // //renderInfo();
 
-
-
-// const degree = document.querySelector('.degree');
-//  fetch( 'https://resume.redberryinternship.ge/api/degrees')
-// .then(response=>response.json()
-// .then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
-//   <option class="options">${el.title}</options>`) )
-// }))
-
-
-
 // // console.log(sessionStorage);
 // // if(document.location.hash === "#resume"){
 // //   const formData = sessionStorage;
@@ -563,6 +552,15 @@
 // )
 // }
 //catchReload();
+
+
+//Getting degrees from API
+const degree = document.querySelector('.degree');
+ fetch( 'https://resume.redberryinternship.ge/api/degrees')
+.then(response=>response.json()
+.then(data=>{data.forEach(el =>degree.insertAdjacentHTML("afterbegin",`
+  <option class="options">${el.title}</options>`) )
+}))
 
 
 const retrieveData = function(){  
@@ -683,7 +681,7 @@ observe();
 
 //Checking inputted fields validation
 const fieldColor = function(field){
-    //Restriction for space character in number input field
+    //Restrict space character in number input field
     //Vlidate number
     if(field.id==='number'){
         if(field.value.match(/\s/g)){
@@ -823,7 +821,10 @@ const render = function(page){
     info.classList.add('hide');
     education.classList.remove('hide');
     experience.classList.add('hide');
+    next.disabled = false;
     next.textContent = "დასრულება";
+    next.style.cursor = "not-allowed";
+    next.disabled = true;
     back.classList.remove('hidden');
   }
 }
@@ -862,6 +863,8 @@ const buttons = function(){
   })
   back.addEventListener('click',function(){
     if(counter===2)next.textContent = "შემდეგი";
+    next.style.cursor = "pointer";
+    next.disabled = false;
     if(counter>0)    counter--;
     sessionStorage.setItem('counter',counter);
     if(counter===0) back.classList.add('hidden');
