@@ -21,53 +21,6 @@
 // const eduEndDate = document.querySelector('.eduDate');
 // const aboutEdu = document.querySelector('.eduDescription');
 
-
-// 
-
-// //Enable/disable nextPage button
-// const btnEnabler = function(){
-//   const checkInfo = function(){
-//     if(
-//         name.checkValidity() &&
-//         lastname.checkValidity() &&
-//         email.checkValidity() &&
-//         number.checkValidity()
-//     ){
-//       submit.style.cursor = "pointer";
-//       submit.disabled = false;
-//     }else{
-//       submit.disabled = true;
-//     }
-
-//   }
-//   const checkExperience = function(){
-//     if(
-//       position.checkValidity()&&
-//       employer.checkValidity()&&
-//       startDate.checkValidity()&&
-//       endDate.checkValidity()&&
-//       JobDescription.checkValidity()
-//     ){
-//       submit.style.cursor = "pointer";
-//       submit.disabled = false;
-//     }else{
-//       submit.style.cursor = "not-allowed";
-//       submit.disabled = true;
-//     }
-//   }
-//   const checkEducation = function(){
-// if(uni.checkValidity()&&
-// uniDegree.checkValidity()&&
-// aboutEdu.checkValidity()
-// ){
-//   submit.style.cursor = "pointer";
-//   submit.disabled = false;
-// }else{
-//   submit.style.cursor = "not-allowed";
-//       submit.disabled = true;
-// }
-//   }
-
 //   if(document.location.hash ==="#info") checkInfo();
 //   if(document.location.hash ==="#experience") checkExperience();
 //   if(document.location.hash ==="#education") checkEducation();
@@ -778,11 +731,7 @@ reader.readAsDataURL(img.files[0]);
 }
 }
   }
-  
-  document.addEventListener('input',function(e){
-      dataSaver(e);  
-      retrieveData();
-})
+
 
 
 //redering pages according to counter variable
@@ -855,6 +804,8 @@ const buttons = function(){
     experience.classList.add('hide');
   })
   next.addEventListener('click',function(){
+    next.style.cursor = "not-allowed";
+    next.disabled = true;
     if(counter<2) {
       counter++;
       sessionStorage.setItem('counter',counter);
@@ -874,6 +825,59 @@ const buttons = function(){
 buttons();
 
 
-  window.addEventListener('load',function(){
-    sessionStorage.clear();
-  });
+  // window.addEventListener('load',function(){
+  //   sessionStorage.clear();
+  // });
+
+
+  //Enable/disable nextPage button
+const btnEnabler = function(){
+  const next = document.querySelector('.submit');
+  const back = document.querySelector('.backward');
+  const checkInfo = function(){
+  if(sessionStorage.getItem('name')&&
+   sessionStorage.getItem('lastname')
+  // &&sessionStorage.getItem(src)&&
+  // sessionStorage.getItem(email)&&
+  // sessionStorage.getItem(number)
+  ){
+  next.style.cursor = "pointer";
+  next.disabled = false;
+  }
+  }
+  const checkExperience = function(){
+    if(
+      sessionStorage.getItem('position')&&
+      sessionStorage.getItem('employer')&&
+      sessionStorage.getItem('start')&&
+      sessionStorage.getItem('end')&&
+      sessionStorage.getItem('jobDescription')
+    ){
+      console.log('true');
+      next.style.cursor = "pointer";
+      next.disabled = false;
+    }else{
+      next.disabled = true;
+      console.log('false');
+    }
+  }
+  const checkEducation = function(){
+if(uni.checkValidity()&&
+uniDegree.checkValidity()&&
+aboutEdu.checkValidity()
+){
+  submit.style.cursor = "pointer";
+  submit.disabled = false;
+}else{
+  submit.style.cursor = "not-allowed";
+      submit.disabled = true;
+}
+  }
+  if(counter===0)checkInfo();
+  if(counter===1)checkExperience();
+}
+document.addEventListener('input',function(e){
+  btnEnabler();
+    dataSaver(e);  
+    retrieveData();
+})

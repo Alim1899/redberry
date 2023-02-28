@@ -173,8 +173,14 @@ cursor:help;
     border: none;
     border-radius: 5px;
     color: white;
-    cursor: pointer;
+    cursor: not-allowed;
 } 
+.backWard{
+    cursor: pointer;
+}
+.submit{
+    cursor: not-allowed;
+}
 .navigation{
     position: fixed;
     margin: 0;
