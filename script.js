@@ -807,6 +807,8 @@ const buttons = function(){
     }
     render(counter);
   })
+ 
+  
   back.addEventListener('click',function(){
     if(counter===2)next.textContent = "შემდეგი";
     next.style.cursor = "pointer";
@@ -843,11 +845,11 @@ const btnEnabler = function(){
   }
   const checkExperience = function(){
     if(
-      sessionStorage.getItem('position')&&
-      sessionStorage.getItem('employer')&&
-      sessionStorage.getItem('start')&&
-      sessionStorage.getItem('end')&&
-      sessionStorage.getItem('jobDescription')
+      sessionStorage.getItem('position')
+      // &&sessionStorage.getItem('employer')&&
+      // sessionStorage.getItem('start')&&
+      // sessionStorage.getItem('end')&&
+      // sessionStorage.getItem('jobDescription')
     ){
       next.style.cursor = "pointer";
       next.disabled = false;
@@ -877,3 +879,29 @@ document.addEventListener('input',function(e){
   retrieveData();
   btnEnabler();
 })
+
+document.addEventListener('change',function(){
+ 
+  if(document.querySelector('.pageHead').textContent==="განათლება"){
+  document.querySelector('.submit').addEventListener('click',function(){
+    console.log('ესაა');
+    info.classList.add('hide');
+    firstPage.classList.add('hide');
+    experience.classList.add('hide');
+    education.classList.add('hide');
+    document.querySelector('.succes').classList.remove('hidden');
+    document.querySelector('.navigation').classList.add('hide');
+    document.querySelector('.start').classList.add('hide');
+    document.querySelector('.heading').classList.add('hide');
+    document.querySelector('.infoHead').classList.add('hide');
+    document.querySelector('.backward').classList.add('hide');
+    document.querySelector('.submit').classList.add('hide');
+    document.querySelector('.resume').style.marginLeft = "550px";
+  })
+}
+})
+
+
+window.addEventListener('load',()=>{
+ document.reset();
+});
