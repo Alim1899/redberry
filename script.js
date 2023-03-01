@@ -507,6 +507,14 @@
 //catchReload();
 
 
+
+//Constants for whole application
+let counter = 0;
+const firstPage = document.querySelector('.firstPage');
+const info = document.querySelector('.inputDetails');
+const experience = document.querySelector('.experience');
+const education = document.querySelector('.education');
+
 //Getting degrees from API
 const degree = document.querySelector('.degree');
  fetch( 'https://resume.redberryinternship.ge/api/degrees')
@@ -582,7 +590,9 @@ const eduDesc = document.querySelector('.eduDescriptionCV');
   retrieveExperience();
   
   const retrieveEducation = function(){
-    document.querySelector('.educationCV')
+    if(sessionStorage.getItem('university')||
+    sessionStorage.getItem('degree')
+    ) document.querySelector('.educationCV').classList.remove('hide');
   if(sessionStorage.getItem('university')) {
     if(!sessionStorage.getItem('degree')){
         university.textContent = sessionStorage.getItem('university');
@@ -600,15 +610,7 @@ const eduDesc = document.querySelector('.eduDescriptionCV');
   
   }
 
-
-
-
-
-
-
-
-
-//Render first pages image
+//Render first page image
 const observe = function(){
 const img =  document.querySelectorAll('img[data-src]');
 
@@ -697,11 +699,6 @@ const fieldColor = function(field){
     
 }
 
-let counter = 0;
-const firstPage = document.querySelector('.firstPage');
-const info = document.querySelector('.inputDetails');
-const experience = document.querySelector('.experience');
-const education = document.querySelector('.education');
 
 
 //Saving data in sessionStorage
@@ -731,7 +728,6 @@ reader.readAsDataURL(img.files[0]);
 }
 }
   }
-
 
 
 //redering pages according to counter variable
@@ -778,7 +774,6 @@ const render = function(page){
   }
 }
 
-
 //Changing counter variable and rendering pages
 const buttons = function(){
   const next = document.querySelector('.submit');
@@ -824,11 +819,9 @@ const buttons = function(){
 }
 buttons();
 
-
   window.addEventListener('load',function(){
     sessionStorage.clear();
   });
-
 
   //Enable/disable nextPage button
 const btnEnabler = function(){
@@ -856,13 +849,11 @@ const btnEnabler = function(){
       sessionStorage.getItem('end')&&
       sessionStorage.getItem('jobDescription')
     ){
-      console.log('true');
       next.style.cursor = "pointer";
       next.disabled = false;
     }else{
       next.style.cursor = "not-allowed";
       next.disabled = true;
-      
     }
   }
   const checkEducation = function(){
