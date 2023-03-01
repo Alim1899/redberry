@@ -825,9 +825,9 @@ const buttons = function(){
 buttons();
 
 
-  // window.addEventListener('load',function(){
-  //   sessionStorage.clear();
-  // });
+  window.addEventListener('load',function(){
+    sessionStorage.clear();
+  });
 
 
   //Enable/disable nextPage button
@@ -843,6 +843,9 @@ const btnEnabler = function(){
   ){
   next.style.cursor = "pointer";
   next.disabled = false;
+  }else{
+    next.style.cursor = "not-allowed";
+  next.disabled = true;
   }
   }
   const checkExperience = function(){
@@ -857,27 +860,29 @@ const btnEnabler = function(){
       next.style.cursor = "pointer";
       next.disabled = false;
     }else{
+      next.style.cursor = "not-allowed";
       next.disabled = true;
-      console.log('false');
+      
     }
   }
   const checkEducation = function(){
-if(uni.checkValidity()&&
-uniDegree.checkValidity()&&
-aboutEdu.checkValidity()
+if(sessionStorage.getItem('university')&&
+sessionStorage.getItem('degree')&&
+sessionStorage.getItem('eduEnd')
 ){
-  submit.style.cursor = "pointer";
-  submit.disabled = false;
+  next.style.cursor = "pointer";
+  next.disabled = false;
 }else{
-  submit.style.cursor = "not-allowed";
-      submit.disabled = true;
+  next.style.cursor = "not-allowed";
+      next.disabled = true;
 }
   }
   if(counter===0)checkInfo();
   if(counter===1)checkExperience();
+  if(counter===2)checkEducation();
 }
 document.addEventListener('input',function(e){
+  dataSaver(e);  
+  retrieveData();
   btnEnabler();
-    dataSaver(e);  
-    retrieveData();
 })
