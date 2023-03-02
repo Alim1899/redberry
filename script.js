@@ -821,9 +821,7 @@ const buttons = function(){
 }
 buttons();
 
-  window.addEventListener('load',function(){
-    sessionStorage.clear();
-  });
+  
 
   //Enable/disable nextPage button
 const btnEnabler = function(){
@@ -859,9 +857,9 @@ const btnEnabler = function(){
     }
   }
   const checkEducation = function(){
-if(sessionStorage.getItem('university')&&
-sessionStorage.getItem('degree')&&
-sessionStorage.getItem('eduEnd')
+if(sessionStorage.getItem('university')
+// &&sessionStorage.getItem('degree')&&
+// sessionStorage.getItem('eduEnd')
 ){
   next.style.cursor = "pointer";
   next.disabled = false;
@@ -880,6 +878,7 @@ document.addEventListener('input',function(e){
   btnEnabler();
 })
 
+
 document.addEventListener('change',function(){
  
   if(document.querySelector('.pageHead').textContent==="განათლება"){
@@ -897,11 +896,13 @@ document.addEventListener('change',function(){
     document.querySelector('.backward').classList.add('hide');
     document.querySelector('.submit').classList.add('hide');
     document.querySelector('.resume').style.marginLeft = "550px";
+    document.querySelector('.resume').style.marginTop = "20px";
   })
 }
+window.addEventListener('load',function(){
+  sessionStorage.clear();
+  render(0);
+});
 })
 
 
-window.addEventListener('load',()=>{
- document.reset();
-});
