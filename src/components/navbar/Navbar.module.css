@@ -1,21 +1,25 @@
 .navbar {
   height: 80px;
-  width: var(--content-width);
-  margin: auto;
   display: flex;
   justify-content: space-between;
+  color: var(--dark-blue);
 }
 .logo,
 .cart {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  width: 20%;
+}
+.logo > h2 {
+  margin-left: 10px;
+}
+.cart {
+  justify-content: flex-end;
 }
 .icon {
   height: 35px;
-  padding: 10px;
 }
 .icona {
   height: 50px;
-  padding: 10px;
+  margin: 25px;
 }

@@ -1,0 +1,54 @@
+.listings {
+  width: 100%;
+  color: var(--dark-blue);
+  margin-top: 52px;
+}
+.head {
+  font-size: 42px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+.controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 40%;
+}
+.filter {
+  display: flex;
+}
+.filter > h4 {
+  font-weight: 400;
+}
+.border {
+  margin: 0 40px;
+}
+.filter > h4:nth-child(2) {
+  margin: 0 15px;
+}
+.controls > h6 {
+  font-weight: 400;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* ONE SINGLE CARD STYLES */
+.card {
+  height: 614px;
+  width: 412px;
+
+  font-weight: 500;
+}
+.card > img {
+  height: 549px;
+  border-radius: 10px;
+}
+.card > h3 {
+  color: var(--dark-blue);
+  font-weight: 500;
+}
