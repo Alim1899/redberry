@@ -1,10 +1,10 @@
 import "./App.css";
-
+import Layout from "./components/layout/Layout";
 function App() {
   return (
-    <h1 style={{ margin: "auto", width: "100%", textAlign: "center" }}>
-      Redberry
-    </h1>
+    <div className="app">
+      <Layout />
+    </div>
   );
 }
 
