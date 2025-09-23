@@ -33,15 +33,15 @@
 }
 
 .cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  width: var(--content-width);
+
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
 }
 
 /* ONE SINGLE CARD STYLES */
 .card {
-  height: 614px;
-  width: 412px;
-
   font-weight: 500;
 }
 .card > img {

@@ -10,9 +10,7 @@ function App() {
       <div className="app">
         <BrowserRouter>
           <Routes>
-            {/* Layout wraps all pages that share the Navbar */}
             <Route path="/" element={<Layout />}>
-              {/* Only Listings page for now */}
               <Route index element={<Listings />} />
             </Route>
           </Routes>

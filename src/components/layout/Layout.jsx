@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div className={classes.layout}>
       <Navbar />
-      <Outlet /> {/* This will be replaced with the active route content */}
+      <Outlet />
     </div>
   );
 };
