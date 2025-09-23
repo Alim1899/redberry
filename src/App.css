@@ -10,5 +10,6 @@
 }
 .app {
   width: 1920px;
+  margin: auto;
   height: 1080px;
 }
