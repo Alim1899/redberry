@@ -1,8 +1,9 @@
 :root {
   --content-width: 1720px;
   --dark-blue: #10151f;
-  --blue2: #3e424a;
+  --blue: #3e424a;
   --border: #e1dfe1;
+  --red: #ff4000;
 }
 * {
   margin: 0;

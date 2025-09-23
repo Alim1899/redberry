@@ -1,4 +1,5 @@
 import "./App.css";
+import Login from "./components/Auth/login/Login";
 import UserProvider from "./components/context/UserProvider";
 import Layout from "./components/layout/Layout";
 import Listings from "./components/listings/Listings";
@@ -12,6 +13,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Listings />} />
+              <Route path="/login" element={<Login />}></Route>
             </Route>
           </Routes>
         </BrowserRouter>
