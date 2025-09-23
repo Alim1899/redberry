@@ -1,11 +1,12 @@
 import Navbar from "../navbar/Navbar";
 import classes from "./Layout.module.css";
-import Listings from "../listings/Listings";
+import { Outlet } from "react-router-dom";
+
 const Layout = () => {
   return (
     <div className={classes.layout}>
       <Navbar />
-      <Listings />
+      <Outlet /> {/* This will be replaced with the active route content */}
     </div>
   );
 };
