@@ -1,0 +1,103 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  width: var(--content-width);
+  height: 111px;
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--white);
+  background-color: #10161d;
+}
+
+.leftBar,
+.rightBar {
+  display: flex;
+  align-items: center;
+  
+}
+
+.leftBar {
+  gap: 32px;
+  margin-left: 120px;
+}
+
+.rightBar {
+  gap: 16px;
+  margin-right: 120px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.logo span {
+  color: var(--orange);
+}
+
+.sessions {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+/* search */
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  padding: 10px 16px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+}
+
+.searchIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.search {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--white);
+  font-size: 12px;
+}
+
+.search::placeholder {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* buttons */
+.signup,
+.login {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signup {
+  background: var(--orange);
+  color: var(--white);
+}
+
+.login {
+  background: var(--white);
+  color: #10161d;
+}

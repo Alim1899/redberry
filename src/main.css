@@ -1,0 +1,11 @@
+:root {
+  --content-width: 1920px;
+  --content-height: 1080px;
+  --white: #fffeff;
+  --orange: #c43d26;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}

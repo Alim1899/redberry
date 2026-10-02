@@ -1,10 +1,12 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
-
-createRoot(document.getElementById('root')).render(
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import Layout from "./components/Layout/Layout.jsx";
+import MovieProvider from "./Context/MovieProvider.jsx";
+import "./main.css"
+createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <MovieProvider>
+      <Layout />
+    </MovieProvider>
   </StrictMode>,
-)
+);
