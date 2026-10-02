@@ -1,0 +1,65 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  padding: 16px;
+  backdrop-filter: blur(4px);
+  overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+/* განლაგება: ნაგულისხმევად ცენტრში */
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* მაგ. Search overlay-სთვის: ზემოთ, ნავბარის ქვემოთ */
+.top {
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 120px;
+}
+
+.card {
+  position: relative;
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--modal-background);
+  border: 1px solid var(--border-color);
+  color: var(--white);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: var(--white);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.close:hover {
+  opacity: 0.7;
+}
+
+.title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  font-size: 11px;
+  color: var(--white);
+}

@@ -1,13 +1,15 @@
 import classes from "./Navbar.module.css";
 import useMovies from "../../Context/useReducer";
 import searchIcon from "../../assets/search.svg";
-
 const Navbar = () => {
   const { state, dispatch } = useMovies();
   const { searchQuery } = state;
 
   const searchHandler = (e) => {
     dispatch({ type: "SEARCHING", payload: e.target.value });
+  };
+  const modalHandler = (name) => {
+    dispatch({ type: "OPEN_MODAL", payload: name });
   };
 
   return (
@@ -30,10 +32,18 @@ const Navbar = () => {
             className={classes.search}
           />
         </label>
-        <button type="button" className={classes.signup}>
+        <button
+          type="button"
+          className={classes.signup}
+          onClick={() => modalHandler("signup")}
+        >
           Sign up
         </button>
-        <button type="button" className={classes.login}>
+        <button
+          type="button"
+          className={classes.login}
+          onClick={() => modalHandler("login")}
+        >
           Log in
         </button>
       </section>

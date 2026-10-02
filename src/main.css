@@ -1,8 +1,13 @@
 :root {
-  --content-width: 1920px;
+  --content-width: 1000px;
   --content-height: 1080px;
   --white: #fffeff;
+  --modal-background:#060c1c;
   --orange: #c43d26;
+  --gray:rgba(255, 255, 255, 0.3);
+  --border-color:rgba(255, 255, 255, 0.08);
+  --btnDisabled:rgba(255, 255, 255, 0.6);
+  --field-background:rgba(255, 255, 255, 0.1);
 }
 
 *{

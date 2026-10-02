@@ -11,6 +11,7 @@ export const initialState = {
   token,
   isCheckingDetails: false,
   error: null,
+  activeModal: "null",
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -40,6 +41,10 @@ const movieReducer = (state = initialState, action) => {
     case "LOGOUT":
       return { ...state, token: null, isCheckingDetails: false, error: null };
 
+    case "OPEN_MODAL":
+      return { ...state, activeModal: action.payload };
+    case "CLOSE_MODAL":
+      return { ...state, activeModal: null };
     default:
       return state;
   }
@@ -52,7 +57,7 @@ export const selectStep = (state) =>
   state.isCheckingDetails
     ? STEPS.CHECKING_DETAILS
     : state.token
-    ? STEPS.AUTHORIZED
-    : STEPS.ENTER_DETAILS;
+      ? STEPS.AUTHORIZED
+      : STEPS.ENTER_DETAILS;
 
 export default movieReducer;
