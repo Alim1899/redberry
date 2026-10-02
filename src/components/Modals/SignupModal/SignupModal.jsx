@@ -1,8 +1,10 @@
 import { useFormik } from "formik";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import useMovies from "../../../Context/useReducer";
 import Modal from "../Modal";
 import classes from "./SignupModal.module.css";
+import upload from '../../../assets/upload.svg'
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -53,6 +55,8 @@ const TextField = ({ formik, name, label, type = "text", ...rest }) => {
 };
 
 const SignupModal = () => {
+  const [preview, setPreview] = useState(null);
+
   const { dispatch } = useMovies();
 
   const close = () => dispatch({ type: "CLOSE_MODAL" });
@@ -76,9 +80,22 @@ const SignupModal = () => {
 
   const { values, errors, setFieldValue } = formik;
 
-  const avatarHandler = (e) => {
-    setFieldValue("avatar", e.target.files[0] ?? null);
+
+
+
+ useEffect(() => {
+  return () => {
+    if (preview) URL.revokeObjectURL(preview);
   };
+}, [preview]);
+
+const avatarHandler = (e) => {
+  const file = e.target.files[0] ?? null;
+  setFieldValue("avatar", file);
+
+  const isValid = file && ALLOWED_IMAGE_TYPES.includes(file.type);
+  setPreview(isValid ? URL.createObjectURL(file) : null);
+};
 
   return (
     <Modal title="Sign up" subtitle="Welcome to Kino XII" onClose={close}>
@@ -88,14 +105,19 @@ const SignupModal = () => {
         noValidate
       >
         <div className={classes.field}>
-          <label htmlFor="avatar" className={classes.avatar}>
-            <span>
-              <span className={classes.avatarTitle}>
-                Upload avatar (optional)
-              </span>
-              <span className={classes.avatarHint}>JPG, PNG or WEBP</span>
-            </span>
-          </label>
+         <label htmlFor="avatar" className={classes.avatar}>
+ <span className={`${classes.avatarPreview} ${preview ? classes.hasPreview : ""}`}>
+    {preview ? (
+      <img src={preview} alt="avatar" />
+    ) : (
+      <img src={upload} alt="" className={classes.uploadIcon} />
+    )}
+  </span>
+  <span>
+    <span className={classes.avatarTitle}>Upload avatar (optional)</span>
+    <span className={classes.avatarHint}>JPG, PNG or WEBP</span>
+  </span>
+</label>
           <input
             id="avatar"
             name="avatar"
