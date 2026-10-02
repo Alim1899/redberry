@@ -1,13 +1,25 @@
-import classes from "./Layout.module.css"
-import Navbar from "../Navbar/Navbar"
-import ModalRoot from "../Modals/ModalRoot"
+import classes from "./Layout.module.css";
+import Navbar from "../Navbar/Navbar";
+// Layout.jsx-ში (ან main.jsx-ში)
+import { Toaster } from "react-hot-toast";
+
+import ModalRoot from "../Modals/ModalRoot";
 const Layout = () => {
   return (
     <div className={classes.layout}>
-      <Navbar/>
-      <ModalRoot/>
+      <Navbar />
+      <ModalRoot />
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          style: {
+            background: "var(--white)",
+            color: "var(--modal-background)",
+          },
+        }}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

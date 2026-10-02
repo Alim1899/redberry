@@ -4,7 +4,10 @@ import * as Yup from "yup";
 import useMovies from "../../../Context/useReducer";
 import Modal from "../Modal";
 import classes from "./SignupModal.module.css";
-import upload from '../../../assets/upload.svg'
+import upload from "../../../assets/upload.svg";
+import { register } from "../../../api/Auth";
+import toast from "react-hot-toast";
+
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -72,52 +75,70 @@ const SignupModal = () => {
     },
     validationSchema,
     validateOnMount: true,
-    onSubmit: (values) => {
-      // TODO: API-ზე მოთხოვნა. ფაილის გასაგზავნად გამოიყენე FormData
-      console.log(values);
+    onSubmit: async (values, { setErrors, setTouched, setStatus }) => {
+      setStatus(null);
+      try {
+        await register(values);
+        toast.success("Account has beed created")
+        openLogin(); 
+      } catch (err) {
+        console.log(err);
+        if (err.errors) {
+          const fieldErrors = {};
+          Object.entries(err.errors).forEach(([field, messages]) => {
+            const name =
+              field === "password_confirmation" ? "confirmPassword" : field;
+            fieldErrors[name] = messages[0];
+          });
+          setErrors(fieldErrors);
+          setTouched(
+            Object.fromEntries(Object.keys(fieldErrors).map((k) => [k, true])),
+            false,
+          );
+        } else {
+          setStatus(err.message); 
+        }
+      }
     },
   });
 
-  const { values, errors, setFieldValue } = formik;
+  const { errors, setFieldValue } = formik;
 
+  useEffect(() => {
+    return () => {
+      if (preview) URL.revokeObjectURL(preview);
+    };
+  }, [preview]);
 
+  const avatarHandler = (e) => {
+    const file = e.target.files[0] ?? null;
+    setFieldValue("avatar", file);
 
-
- useEffect(() => {
-  return () => {
-    if (preview) URL.revokeObjectURL(preview);
+    const isValid = file && ALLOWED_IMAGE_TYPES.includes(file.type);
+    setPreview(isValid ? URL.createObjectURL(file) : null);
   };
-}, [preview]);
-
-const avatarHandler = (e) => {
-  const file = e.target.files[0] ?? null;
-  setFieldValue("avatar", file);
-
-  const isValid = file && ALLOWED_IMAGE_TYPES.includes(file.type);
-  setPreview(isValid ? URL.createObjectURL(file) : null);
-};
 
   return (
     <Modal title="Sign up" subtitle="Welcome to Kino XII" onClose={close}>
-      <form
-        className={classes.form}
-        onSubmit={() => console.log(values)}
-        noValidate
-      >
+      <form className={classes.form} onSubmit={formik.handleSubmit} noValidate>
         <div className={classes.field}>
-         <label htmlFor="avatar" className={classes.avatar}>
- <span className={`${classes.avatarPreview} ${preview ? classes.hasPreview : ""}`}>
-    {preview ? (
-      <img src={preview} alt="avatar" />
-    ) : (
-      <img src={upload} alt="" className={classes.uploadIcon} />
-    )}
-  </span>
-  <span>
-    <span className={classes.avatarTitle}>Upload avatar (optional)</span>
-    <span className={classes.avatarHint}>JPG, PNG or WEBP</span>
-  </span>
-</label>
+          <label htmlFor="avatar" className={classes.avatar}>
+            <span
+              className={`${classes.avatarPreview} ${preview ? classes.hasPreview : ""}`}
+            >
+              {preview ? (
+                <img src={preview} alt="avatar" />
+              ) : (
+                <img src={upload} alt="" className={classes.uploadIcon} />
+              )}
+            </span>
+            <span>
+              <span className={classes.avatarTitle}>
+                Upload avatar (optional)
+              </span>
+              <span className={classes.avatarHint}>JPG, PNG or WEBP</span>
+            </span>
+          </label>
           <input
             id="avatar"
             name="avatar"
@@ -167,10 +188,14 @@ const avatarHandler = (e) => {
           />
         </div>
 
+        {formik.status && (
+          <span className={classes.error}>{formik.status}</span>
+        )}
+
         <button
           type="submit"
           className={classes.submit}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid || formik.isSubmitting}
         >
           Sign up
         </button>

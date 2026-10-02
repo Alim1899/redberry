@@ -3,6 +3,8 @@ import * as Yup from "yup";
 import useMovies from "../../../Context/useReducer";
 import Modal from "../Modal";
 import classes from "./LoginModal.module.css";
+import { login } from "../../../api/Auth";
+import toast from "react-hot-toast";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -26,8 +28,19 @@ const LoginModal = () => {
     initialValues: { email: "", password: "" },
     validationSchema,
     validateOnMount: true,
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      try {
+        const data = await login(values);
+
+        console.log(data);
+      } catch (err) {
+        console.error(err.message);
+        if (err.message === "Invalid credentials.") {
+          toast.error("Invalid email or password");
+        } else {
+          toast.error("Something went wrong");
+        }
+      }
     },
   });
 
