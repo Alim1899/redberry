@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import ModalRoot from "../Modals/ModalRoot";
 import useMovies from "../../Context/useReducer";
 import Loader from "../../UI/Loader";
+import { Outlet } from "react-router-dom";
 const Layout = () => {
   const { state } = useMovies();
   if (state.isLoadingUser) {
@@ -12,6 +13,7 @@ const Layout = () => {
   return (
     <div className={classes.layout}>
       <Navbar />
+      <Outlet/>
       <ModalRoot />
       <Toaster
         position="top-center"

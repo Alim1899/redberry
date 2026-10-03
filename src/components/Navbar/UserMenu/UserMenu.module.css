@@ -137,6 +137,7 @@
   font-weight: 600;
   text-align: left;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .item img {

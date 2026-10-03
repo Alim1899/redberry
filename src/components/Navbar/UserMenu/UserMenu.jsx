@@ -6,7 +6,8 @@ import arrowDown from "../../../assets/arrowDown.svg";
 import logoutIcon from "../../../assets/logout.svg";
 import ticketsIcon from "../../../assets/tickets.svg";
 import userIcon from "../../../assets/user.svg";
-
+import { logout } from "../../../api/Auth";
+import { Link } from "react-router-dom";
 
 const getInitials = (fullName) =>
   fullName
@@ -25,7 +26,7 @@ const Avatar = ({ src, initials, showDot }) => (
 
 const UserMenu = () => {
   const { state, dispatch } = useMovies();
-  const {user} = state
+  const { user } = state;
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const currentUser = state.user;
@@ -52,10 +53,16 @@ const UserMenu = () => {
     };
   }, [open]);
 
-  const logoutHandler = () => {
-    localStorage.removeItem("token");
-    dispatch({ type: "LOGOUT" });
-    setOpen(false);
+  const logoutHandler = async () => {
+    try {
+      await logout(state.token);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      localStorage.removeItem("token");
+      dispatch({ type: "LOGOUT" });
+      setOpen(false);
+    }
   };
 
   return (
@@ -106,15 +113,23 @@ const UserMenu = () => {
             </div>
           )}
 
-          {/* TODO: router დამატებისას Link-ებით ჩაანაცვლე */}
-          <button type="button" className={classes.item}>
+          <Link
+            to="/profile"
+            className={classes.item}
+            onClick={() => setOpen(false)}
+          >
             <img src={userIcon} alt="" />
             My Profile
-          </button>
-          <button type="button" className={classes.item}>
+          </Link>
+
+          <Link
+            to="/profile/tickets"
+            className={classes.item}
+            onClick={() => setOpen(false)}
+          >
             <img src={ticketsIcon} alt="" />
             My Tickets
-          </button>
+          </Link>
 
           <div className={classes.divider} />
 
