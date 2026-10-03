@@ -19,20 +19,28 @@ const validationSchema = Yup.object({
 });
 
 const LoginModal = () => {
-  const { dispatch } = useMovies();
+  const { state, dispatch } = useMovies();
 
   const close = () => dispatch({ type: "CLOSE_MODAL" });
   const openSignup = () => dispatch({ type: "OPEN_MODAL", payload: "signup" });
 
+  const { isCheckingDetails } = state;
   const formik = useFormik({
     initialValues: { email: "", password: "" },
     validationSchema,
     validateOnMount: true,
     onSubmit: async (values) => {
+      dispatch({ type: "LOGIN_START" });
+
       try {
         const data = await login(values);
-
-        console.log(data);
+        const { user, token } = data.data;
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: { token: token, user: user },
+        });
+        toast.success("Success")
+        localStorage.setItem("token",token)
       } catch (err) {
         console.error(err.message);
         if (err.message === "Invalid credentials.") {
@@ -91,7 +99,7 @@ const LoginModal = () => {
         <button
           type="submit"
           className={classes.submit}
-          disabled={!formik.isValid}
+          disabled={!formik.isValid||isCheckingDetails}
         >
           Log in
         </button>

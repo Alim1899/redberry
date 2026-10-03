@@ -9,9 +9,9 @@ const request = async (path, options = {}) => {
 
   const data = await res.json().catch(() => null);
   if (!res.ok) {
-  const error = new Error(data?.message || "Something went wrong");
-  error.errors = data?.errors; 
-  throw error;
+    const error = new Error(data?.message || "Something went wrong");
+    error.errors = data?.errors;
+    throw error;
   }
 
   return data;
@@ -31,7 +31,6 @@ export const register = ({
   password,
   confirmPassword,
 }) => {
- 
   const formData = new FormData();
   formData.append("username", username);
   formData.append("email", email);
@@ -41,3 +40,5 @@ export const register = ({
 
   return request("/register", { method: "POST", body: formData });
 };
+export const getCurrentUser = (token) =>
+  request("/me", { headers: { Authorization: `Bearer ${token}` } });

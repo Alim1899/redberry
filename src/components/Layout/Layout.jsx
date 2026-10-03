@@ -1,6 +1,5 @@
 import classes from "./Layout.module.css";
 import Navbar from "../Navbar/Navbar";
-// Layout.jsx-ში (ან main.jsx-ში)
 import { Toaster } from "react-hot-toast";
 
 import ModalRoot from "../Modals/ModalRoot";

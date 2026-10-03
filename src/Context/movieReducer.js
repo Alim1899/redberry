@@ -9,9 +9,10 @@ const token = localStorage.getItem("token");
 export const initialState = {
   searchQuery: "",
   token,
-  isCheckingDetails: false,
+  isCheckingDetails: !!token,
   error: null,
   activeModal: "null",
+  user: null,
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -25,21 +26,27 @@ const movieReducer = (state = initialState, action) => {
     case "LOGIN_SUCCESS":
       return {
         ...state,
-        token: action.payload,
+        token: action.payload.token,
+        user: action.payload.user,
         isCheckingDetails: false,
         error: null,
+        activeModal: null,
       };
 
-    case "LOGIN_FAILURE":
-      return {
-        ...state,
-        token: null,
-        isCheckingDetails: false,
-        error: action.payload,
-      };
+    case "USER_LOADED":
+      return { ...state, user: action.payload, isCheckingDetails: false };
+
+    // case "LOGIN_FAILURE":
+    //   return {
+    //     ...state,
+    //     token: null,
+    //     user:null,
+    //     isCheckingDetails: false,
+    //     error: action.payload,
+    //   };
 
     case "LOGOUT":
-      return { ...state, token: null, isCheckingDetails: false, error: null };
+      return { ...state, token: null, user:null, isCheckingDetails: false, error: null };
 
     case "OPEN_MODAL":
       return { ...state, activeModal: action.payload };
@@ -50,7 +57,7 @@ const movieReducer = (state = initialState, action) => {
   }
 };
 
-// Selectors: step და isLoggedIn ტოკენიდან გამოითვლება
+
 export const selectIsLoggedIn = (state) => !!state.token;
 
 export const selectStep = (state) =>
