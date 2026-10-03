@@ -1,9 +1,10 @@
 import classes from "./Navbar.module.css";
 import useMovies from "../../Context/useReducer";
 import searchIcon from "../../assets/search.svg";
+import UserMenu from "./UserMenu/UserMenu";
 const Navbar = () => {
   const { state, dispatch } = useMovies();
-  const { searchQuery } = state;
+  const { searchQuery, token } = state;
 
   const searchHandler = (e) => {
     dispatch({ type: "SEARCHING", payload: e.target.value });
@@ -11,7 +12,6 @@ const Navbar = () => {
   const modalHandler = (name) => {
     dispatch({ type: "OPEN_MODAL", payload: name });
   };
-
   return (
     <nav className={classes.navbar}>
       <section className={classes.leftBar}>
@@ -32,20 +32,27 @@ const Navbar = () => {
             className={classes.search}
           />
         </label>
-        <button
-          type="button"
-          className={classes.signup}
-          onClick={() => modalHandler("signup")}
-        >
-          Sign up
-        </button>
-        <button
-          type="button"
-          className={classes.login}
-          onClick={() => modalHandler("login")}
-        >
-          Log in
-        </button>
+
+        {!token && (
+          <div className={classes.buttons}>
+            <button
+              type="button"
+              className={classes.signup}
+              onClick={() => modalHandler("signup")}
+            >
+              Sign up
+            </button>
+            <button
+              type="button"
+              className={classes.login}
+              onClick={() => modalHandler("login")}
+            >
+              Log in
+            </button>
+          </div>
+        )}
+
+        {token && <UserMenu />}
       </section>
     </nav>
   );

@@ -39,7 +39,6 @@ const LoginModal = () => {
           type: "LOGIN_SUCCESS",
           payload: { token: token, user: user },
         });
-        toast.success("Success")
         localStorage.setItem("token",token)
       } catch (err) {
         console.error(err.message);

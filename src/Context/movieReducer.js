@@ -9,7 +9,8 @@ const token = localStorage.getItem("token");
 export const initialState = {
   searchQuery: "",
   token,
-  isCheckingDetails: !!token,
+  isCheckingDetails: false,
+  isLoadingUser: !!token,
   error: null,
   activeModal: "null",
   user: null,
@@ -34,7 +35,7 @@ const movieReducer = (state = initialState, action) => {
       };
 
     case "USER_LOADED":
-      return { ...state, user: action.payload, isCheckingDetails: false };
+      return { ...state, user: action.payload, isLoadingUser: false };
 
     // case "LOGIN_FAILURE":
     //   return {
@@ -46,7 +47,14 @@ const movieReducer = (state = initialState, action) => {
     //   };
 
     case "LOGOUT":
-      return { ...state, token: null, user:null, isCheckingDetails: false, error: null };
+      return {
+        ...state,
+        token: null,
+        user: null,
+        isCheckingDetails: false,
+        isLoadingUser: false,
+        error: null,
+      };
 
     case "OPEN_MODAL":
       return { ...state, activeModal: action.payload };
@@ -56,7 +64,6 @@ const movieReducer = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export const selectIsLoggedIn = (state) => !!state.token;
 

@@ -8,10 +8,9 @@ import upload from "../../../assets/upload.svg";
 import { register } from "../../../api/Auth";
 import toast from "react-hot-toast";
 
-
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const ALLOWED_IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
-
+const MAX_AVATAR_SIZE = 2 * 1024 * 1024; // 2 MB
 const validationSchema = Yup.object({
   username: Yup.string()
     .trim()
@@ -33,6 +32,11 @@ const validationSchema = Yup.object({
       "file-type",
       "Only JPG, PNG or WEBP images are allowed",
       (file) => !file || ALLOWED_IMAGE_TYPES.includes(file.type),
+    )
+    .test(
+      "file-size",
+      "Image must be smaller than 2 MB",
+      (file) => !file || file.size <= MAX_AVATAR_SIZE,
     ),
 });
 
@@ -79,8 +83,8 @@ const SignupModal = () => {
       setStatus(null);
       try {
         await register(values);
-        toast.success("Account has beed created")
-        openLogin(); 
+        toast.success("Account has beed created");
+        openLogin();
       } catch (err) {
         console.log(err);
         if (err.errors) {
@@ -96,7 +100,7 @@ const SignupModal = () => {
             false,
           );
         } else {
-          setStatus(err.message); 
+          setStatus(err.message);
         }
       }
     },
