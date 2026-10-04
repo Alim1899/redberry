@@ -1,0 +1,116 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 640px;
+  padding-bottom: 48px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.field input,
+.field select {
+  width: 100%;
+  height: 46px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: var(--field-background);
+  color: var(--white);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field input::placeholder {
+  color: var(--btnDisabled);
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--orange);
+}
+
+.field input:disabled {
+  color: var(--btnDisabled);
+  cursor: not-allowed;
+}
+
+.field input[type="date"] {
+  color-scheme: dark;
+}
+
+.selectWrap {
+  position: relative;
+}
+
+.selectWrap select {
+  appearance: none;
+  padding-right: 48px;
+}
+
+.chevron {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--btnDisabled);
+}
+
+.field input.invalid {
+  border-color: var(--orange);
+}
+
+.error {
+  font-size: 12px;
+  color: var(--orange);
+}
+
+.submit {
+  align-self: flex-start;
+  height: 44px;
+  padding: 0 28px;
+  border: none;
+  border-radius: 50px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.submit:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submit:disabled {
+  background: var(--gray);
+  color: var(--btnDisabled);
+  cursor: not-allowed;
+}
+.field select.placeholder {
+  color: var(--btnDisabled);
+}
+
+.field select option {
+  background: var(--modal-background);
+  color: var(--white);
+}

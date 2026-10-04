@@ -9,13 +9,19 @@ import userIcon from "../../../assets/user.svg";
 import { logout } from "../../../api/Auth";
 import { Link } from "react-router-dom";
 
-const getInitials = (fullName) =>
-  fullName
-    .split(" ")
-    .map((word) => word[0])
-    .slice(0, 2)
-    .join("")
-    .toUpperCase();
+const getInitials = (fullName, username) => {
+  const name = fullName?.trim();
+
+  if (name) {
+    const words = name.split(/\s+/);
+    if (words.length > 1) {
+      return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+    }
+    return name.slice(0, 2).toUpperCase(); 
+  }
+
+  return (username ?? "").slice(0, 2).toUpperCase();
+};
 
 const Avatar = ({ src, initials, showDot }) => (
   <span className={classes.avatar}>
@@ -29,11 +35,11 @@ const UserMenu = () => {
   const { user } = state;
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
-  const currentUser = state.user;
-  const fullName = currentUser?.fullName ?? user?.username;
-  const firstName = fullName?.split(" ")[0];
-  const initials = getInitials(fullName);
-  const profileComplete = currentUser?.profileComplete ?? false;
+ const displayName = user?.fullName?.trim() || user?.username || "";
+const firstName = displayName.split(" ")[0];
+const initials = getInitials(user?.fullName, user?.username);
+
+const profileComplete = user?.profileComplete ?? false;
 
   useEffect(() => {
     if (!open) return;
@@ -64,7 +70,6 @@ const UserMenu = () => {
       setOpen(false);
     }
   };
-
   return (
     <div className={classes.userMenu} ref={ref}>
       <button
@@ -74,7 +79,7 @@ const UserMenu = () => {
         aria-expanded={open}
       >
         <Avatar
-          src={currentUser?.avatar}
+          src={user?.avatar}
           initials={initials}
           showDot={!profileComplete}
         />
@@ -90,13 +95,13 @@ const UserMenu = () => {
         <div className={classes.dropdown}>
           <div className={classes.header}>
             <Avatar
-              src={currentUser?.avatar}
+              src={user?.avatar}
               initials={initials}
               showDot={!profileComplete}
             />
             <div className={classes.info}>
-              <p className={classes.fullName}>{fullName}</p>
-              <p className={classes.email}>{currentUser?.email}</p>
+              <p className={classes.fullName}>{displayName}</p>
+              <p className={classes.email}>{user?.email}</p>
             </div>
           </div>
 

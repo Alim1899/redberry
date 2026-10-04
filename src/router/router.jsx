@@ -5,6 +5,7 @@ import Details from "../components/Profile/Details/Details";
 import Tickets from "../components/Profile/Tickets/Tickets";
 import ProtectedRoute from "./ProtectedRoute";
 import Profile from "../components/Profile/Profile";
+import NotFound from "../components/NotFount/NotFound";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: "*", element: <NotFound/> },
     ],
   },
 ]);

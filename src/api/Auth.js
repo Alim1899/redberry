@@ -49,3 +49,22 @@ export const logout = (token) =>
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
   });
+
+  // SAVE UPDATED USER DATA
+  export const updateProfile = (
+  token,
+  { fullName, mobileNumber, dateOfBirth, preferredVenueId },
+) => {
+  const formData = new FormData();
+  formData.append("fullName", fullName);
+  formData.append("mobileNumber", mobileNumber); // სივრცეებს სერვერი თავად აშორებს
+  formData.append("dateOfBirth", dateOfBirth); // yyyy-mm-dd
+  if (preferredVenueId) formData.append("preferredVenueId", preferredVenueId);
+
+  // Content-Type-ს არ ვწერთ, ბრაუზერი boundary-ით დააყენებს
+  return request("/profile", {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: formData,
+  });
+};

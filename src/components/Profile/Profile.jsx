@@ -5,7 +5,7 @@ const tabClass = ({ isActive }) =>
   isActive ? `${classes.tab} ${classes.active}` : classes.tab;
 
 const Profile = () => {
-  const ticketsCount = 0;
+  const ticketsCount = 2;
 
   return (
     <main className={classes.profile}>

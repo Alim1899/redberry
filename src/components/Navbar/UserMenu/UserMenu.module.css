@@ -2,7 +2,6 @@
   position: relative;
 }
 
-/* ღილაკი */
 .trigger {
   display: flex;
   align-items: center;
@@ -104,26 +103,26 @@
   padding: 12px;
   border-radius: 8px;
   background: var(--field-background);
+  background-color: #0e2127;
 }
 
 .noticeTitle {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--warning);
 }
 
 .noticeText {
   margin: 4px 0 0;
   font-size: 12px;
   color: var(--btnDisabled);
+  
 }
 
 .complete .noticeTitle {
-  color: var(--succes);
+  color: var(--success);
 }
 
-/* მენიუს პუნქტები */
 .item {
   display: flex;
   align-items: center;
@@ -156,5 +155,5 @@
 }
 
 .logout {
-  color: var(--warning);
+  color: var(--red);
 }

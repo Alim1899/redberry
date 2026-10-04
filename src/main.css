@@ -4,15 +4,33 @@
   --white: #fffeff;
   --modal-background: #060c1c;
   --orange: #c43d26;
+  --red: #d13530;
   --success: #2ecc71;
-  --warning:#e57c04;
+  --warning: #e57c04;
   --gray: rgba(255, 255, 255, 0.3);
   --border-color: rgba(255, 255, 255, 0.08);
   --btnDisabled: rgba(255, 255, 255, 0.6);
   --field-background: rgba(255, 255, 255, 0.1);
 }
 
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--modal-background);
+
+  font-family: "Archivo", system-ui, sans-serif;
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
 }

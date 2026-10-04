@@ -1,10 +1,4 @@
 .layout{
     width: var(--content-width);
-}
-.loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  color: var(--white);
+    margin: 0 auto;
 }
