@@ -68,3 +68,6 @@ export const logout = (token) =>
     body: formData,
   });
 };
+
+// GET FILTER OPTIONS
+export const getFilterOptions = () => request("/filter-options");

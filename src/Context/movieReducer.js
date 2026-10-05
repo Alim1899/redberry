@@ -14,6 +14,7 @@ export const initialState = {
   error: null,
   activeModal: "null",
   user: null,
+  filterOptions: null,
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -37,14 +38,8 @@ const movieReducer = (state = initialState, action) => {
     case "USER_LOADED":
       return { ...state, user: action.payload, isLoadingUser: false };
 
-    // case "LOGIN_FAILURE":
-    //   return {
-    //     ...state,
-    //     token: null,
-    //     user:null,
-    //     isCheckingDetails: false,
-    //     error: action.payload,
-    //   };
+    case "FILTER_OPTIONS_LOADED":
+      return { ...state, filterOptions: action.payload };
 
     case "LOGOUT":
       return {

@@ -102,7 +102,6 @@
   margin-bottom: 8px;
   padding: 12px;
   border-radius: 8px;
-  background: var(--field-background);
   background-color: #0e2127;
 }
 
@@ -156,4 +155,10 @@
 
 .logout {
   color: var(--red);
+}
+.noticeTitle{
+  color: var(--warning);
+}
+.notice{
+  background-color: var(--light-warning);
 }

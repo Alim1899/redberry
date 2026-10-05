@@ -114,3 +114,19 @@
   background: var(--modal-background);
   color: var(--white);
 }
+
+.status {
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--field-background);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.incomplete {
+  color: var(--warning);
+}
+
+.complete {
+  color: var(--success);
+}

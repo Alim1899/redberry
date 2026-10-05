@@ -1,10 +1,11 @@
 .profile {
   width: var(--content-width);
-  margin: 0 auto;
-  padding-top: 140px; /* ნავბარი fixed-ია (111px) */
+  margin: 20px auto;
+  padding-top: 140px;
   color: var(--white);
   background-color: var(--modal-background);
-  margin: auto
+  margin-left: 25px;
+  
 }
 
 .tabs {
