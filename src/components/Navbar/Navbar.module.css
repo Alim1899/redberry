@@ -47,6 +47,8 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.08em;
+  text-decoration: none;
+  color: var(--white);
 }
 
 /* search */

@@ -1,0 +1,27 @@
+.home {
+  padding-top: 140px; /* the navbar is fixed (111px) */
+  padding-bottom: 48px;
+  color: var(--white);
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.header p {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--btnDisabled);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  align-items: start; /* needed for the sticky sidebar */
+}

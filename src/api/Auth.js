@@ -50,8 +50,8 @@ export const logout = (token) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-  // SAVE UPDATED USER DATA
-  export const updateProfile = (
+// SAVE UPDATED USER DATA
+export const updateProfile = (
   token,
   { fullName, mobileNumber, dateOfBirth, preferredVenueId },
 ) => {
@@ -71,3 +71,26 @@ export const logout = (token) =>
 
 // GET FILTER OPTIONS
 export const getFilterOptions = () => request("/filter-options");
+// GET TICKETS
+export const getTickets = () => request("/tickets");
+
+// FOR FILTERS FOR A PARAMS
+export const buildSessionsQuery = ({
+  venues,
+  formats,
+  languages,
+  bands,
+  date,
+  sort,
+  page,
+}) => {
+  const params = new URLSearchParams({ date, sort, page });
+  venues.forEach((v) => params.append("venues[]", v));
+  formats.forEach((f) => params.append("formats[]", f));
+  languages.forEach((l) => params.append("languages[]", l));
+  bands.forEach((b) => params.append("bands[]", b));
+  return params.toString();
+};
+
+export const getSessions = (query, options) =>
+  request(`/sessions?${query}`, options);

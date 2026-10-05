@@ -2,6 +2,7 @@ import classes from "./Navbar.module.css";
 import useMovies from "../../Context/useReducer";
 import searchIcon from "../../assets/search.svg";
 import UserMenu from "./UserMenu/UserMenu";
+import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const { state, dispatch } = useMovies();
   const { searchQuery, token } = state;
@@ -18,7 +19,9 @@ const Navbar = () => {
         <h1 className={classes.logo}>
           KINO <span>XII</span>
         </h1>
-        <h2 className={classes.sessions}>SESSIONS</h2>
+      <NavLink  to="/" end className={classes.sessions}>
+          SESSIONS
+        </NavLink>
       </section>
 
       <section className={classes.rightBar}>
